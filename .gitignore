@@ -1,0 +1,10 @@
+# the generated website: built by tools/build.ps1 and published to the gh-pages branch by tools/publish.ps1
+docs/
+# working files: YouTube harvests, enrichment drafts, publication records, the gh-pages working copy
+work/
+# local preview screenshots
+preview/
+# editor / agent settings
+.claude/
+Thumbs.db
+.DS_Store

@@ -1,0 +1,41 @@
+[
+  {
+    "slug": "pccs-2026",
+    "name": "PCCS Conference 2026",
+    "organiser": "Paediatric Critical Care Society",
+    "organiserShort": "PCCS",
+    "location": "Lord's, London",
+    "date": "November 2026",
+    "sortDate": "2026-11-05",
+    "description": "PVJ joined the Paediatric Critical Care Society community at Lord's in London for PCCS Conference 2026. We spoke with clinicians, nurses, allied health professionals, researchers, students and community partners about the ideas and experiences shaping paediatric critical care.",
+    "partnerLogo": "partners/pccs.png",
+    "partnerLabel": "In partnership with",
+    "playlistUrl": "https://www.youtube.com/playlist?list=PLO62h7755y-s"
+  },
+  {
+    "slug": "rcpch-2025",
+    "name": "RCPCH Conference 2025",
+    "organiser": "Royal College of Paediatrics and Child Health",
+    "organiserShort": "RCPCH",
+    "location": "Glasgow",
+    "date": "2025",
+    "sortDate": "2025-03-26",
+    "description": "Interviews recorded at the Royal College of Paediatrics and Child Health annual conference in Glasgow, covering research, clinical practice, medicines safety, education and the voices of children and young people.",
+    "partnerLogo": "",
+    "partnerLabel": "",
+    "playlistUrl": ""
+  },
+  {
+    "slug": "rcpch-2024",
+    "name": "RCPCH Conference 2024",
+    "organiser": "Royal College of Paediatrics and Child Health",
+    "organiserShort": "RCPCH",
+    "location": "Birmingham",
+    "date": "March 2024",
+    "sortDate": "2024-03-25",
+    "description": "Interviews recorded at the Royal College of Paediatrics and Child Health annual conference in Birmingham, where presenters shared audits, research and improvement projects from across child health.",
+    "partnerLogo": "",
+    "partnerLabel": "",
+    "playlistUrl": ""
+  }
+]

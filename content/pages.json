@@ -1,0 +1,39 @@
+[
+  {
+    "path": "/about/",
+    "title": "About PVJ",
+    "description": "The Paediatric Video Journal is an open-access video journal publishing short interviews recorded at paediatric conferences.",
+    "file": "about.html",
+    "nav": "about"
+  },
+  {
+    "path": "/about/editorial-policy/",
+    "title": "Editorial policy",
+    "description": "How The Paediatric Video Journal selects, records and publishes interviews, and how corrections and removal requests are handled.",
+    "file": "editorial-policy.html",
+    "nav": "about",
+    "parentLabel": "About",
+    "parentHref": "/about/"
+  },
+  {
+    "path": "/work-with-us/",
+    "title": "Work with PVJ",
+    "description": "Conference organisers and societies: how PVJ records, edits and publishes interviews from your meeting.",
+    "file": "work-with-us.html",
+    "nav": ""
+  },
+  {
+    "path": "/privacy/",
+    "title": "Privacy and cookies",
+    "description": "How this website handles personal data. The site sets no cookies and runs no analytics.",
+    "file": "privacy.html",
+    "nav": ""
+  },
+  {
+    "path": "/terms/",
+    "title": "Terms of use",
+    "description": "Terms for using The Paediatric Video Journal website and its videos.",
+    "file": "terms.html",
+    "nav": ""
+  }
+]
