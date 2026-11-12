@@ -125,7 +125,7 @@ Second round the same day ("much better"), and what was done:
 - The PCCS 2026 card on the home page uses the conference banner he sent, and each conference card has a "Watch the videos from this conference" link. He said he will send pictures and logos for the two RCPCH conferences.
 - YouTube and LinkedIn buttons were added at the bottom of the home page.
 
-Open from that round: with the banner he wrote "maybe add something PCC related here as like a side image, to match design of the conference". It is not clear whether he means the banner itself or the page around it, and no such picture has been supplied.
+With the banner he wrote "maybe add something PCC related here as like a side image, to match design of the conference". The site now shows his banner with three stills from PCCS 2026 interviews down the right-hand side (`src/assets/img/conferences/pccs-2026.jpg`, used on the home page card and at the top of the PCCS 2026 page). Whether that is what he meant is for him to say.
 
 Asked for but waiting on material or a later stage:
 

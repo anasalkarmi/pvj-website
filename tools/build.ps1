@@ -666,6 +666,7 @@ $playlist
 </div>
 $partner
 </div>
+$(if ([string]$c.image) { '<img class="conf-banner" src="' + (U ([string]$c.image)) + '" alt="" width="1280" height="720" decoding="async">' })
 </div>
 <h2 class="block-title">Topics covered</h2>
 <ul class="chips">$cChips</ul>
