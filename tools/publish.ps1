@@ -40,6 +40,14 @@ if (-not (Test-Path (Join-Path $pages '.git'))) {
     else { RunGit worktree add --orphan -b gh-pages $pages }
 }
 
+# GitHub sometimes commits to gh-pages itself (the Pages settings rewrite the CNAME file),
+# so start from what is published right now. Everything in this working copy is generated.
+if (-not $NoPush -and (AskGit ls-remote --exit-code --heads origin gh-pages) -eq 0) {
+    RunGit fetch -q origin gh-pages
+    Set-Location $pages
+    try { RunGit reset -q --hard origin/gh-pages } finally { Set-Location $root }
+}
+
 # Mirror docs -> the gh-pages working copy (robocopy copes with long paths; keep .git).
 robocopy (Join-Path $root 'docs') $pages /MIR /XD .git /XF .git /NFL /NDL /NJH /NJS /NP | Out-Null
 if ($LASTEXITCODE -ge 8) { throw "robocopy failed ($LASTEXITCODE)" }

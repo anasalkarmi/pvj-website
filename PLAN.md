@@ -3,7 +3,7 @@
 The Paediatric Video Journal (PVJ) website, modelled on video journals such as VJOncology:
 a browsable library of short conference interviews, organised by conference, topic and speaker.
 
-Status on 12 November 2026: **version 1 is live at https://paediatricvj.com in soft-launch mode** - anyone with the address can use it, but every page asks search engines not to list it until the owner approves the draft pages (see section 6). To open it to search engines, set `"preview": false` in `content/site.json` and run `tools\publish.ps1`.
+Status on 12 November 2026: **the site is live at https://paediatricvj.com and open to search engines** (`"preview": false` in `content/site.json`; it has a sitemap and an RSS feed). The About, Editorial policy, Work with PVJ, Privacy and Terms pages are still first drafts that the owner has not signed off (see section 6). To hide the site from search engines again, set `"preview": true` and run `tools\publish.ps1`.
 
 ## 1. What the reference site does, and what PVJ takes from it
 
