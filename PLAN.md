@@ -101,7 +101,7 @@ The stills are YouTube's own automatic frames (the best of four per video), not 
 
 Still to do, and who it needs:
 
-- The owner's explicit go-ahead: telling the speakers their page exists. `work\outreach\` holds a list of the 107 speakers with their page links and a draft message. Nothing has been sent.
+- Telling the speakers their page exists: on 12 November 2026 a comment linking to the video's page was posted from the PVJ LinkedIn page under each of the 48 PCCS 2026 posts (wording says "with key points and a transcript" only where a transcript is published). Not done: personal messages, and anything for the RCPCH 2024 and 2025 speakers, who have no PVJ LinkedIn post. `work\outreach\` holds the list of 107 speakers with their page links and a draft message; it needs the owner's wording, channel and contacts.
 - A listener: the 55 transcripts in the review folder.
 - The owner's approval of the draft pages (section 6).
 - The owner's accounts or decisions: Google Search Console, a newsletter provider, visitor statistics, an ISSN application, an editorial board.
