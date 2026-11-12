@@ -39,6 +39,12 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools\check-thumbnails.ps1
 - **Add videos after a new upload to YouTube:** see "Adding the next conference" in `PLAN.md` and the recipe in `AGENTS.md`.
 - **Site-wide settings** (domain, contact email, social links, notice text): `content/site.json`.
 
+## Transcripts and key points
+
+- `content/transcripts/<youtubeId>.txt` holds a video's key points and transcript; the video page shows them when the file exists.
+- `content/transcripts/_review/` holds transcripts that still need a person to check them against the audio. `CHECKLIST.tsv` in that folder says what to check in each one. They are not shown on the site. After checking and correcting one, move its `.txt` file up one folder, delete its line from the checklist, and publish.
+- Transcripts start from YouTube's automatic captions, tidied for readability, so the site labels them as automatic transcripts.
+
 ## Publishing
 
 Two branches on GitHub: `main` holds this source; `gh-pages` holds the built site, which GitHub Pages serves.

@@ -68,6 +68,29 @@ $conferences = @(Read-Json (Join-Path $root 'content\conferences.json') | Sort-O
 $pages = @(Read-Json (Join-Path $root 'content\pages.json'))
 $videos = @(Read-Json (Join-Path $root 'content\videos.json'))
 
+# Optional per-video file content/transcripts/<youtubeId>.txt:
+#   KEY POINTS / "- point" lines / TRANSCRIPT / paragraphs separated by blank lines
+$transDir = Join-Path (Join-Path $root 'content') 'transcripts'
+# content/transcripts/_hold.tsv lists videos whose transcript still needs a human check; those stay off the site.
+$transHold = @{}
+$holdFile = Join-Path $transDir '_hold.tsv'
+if (Test-Path -LiteralPath $holdFile) {
+    foreach ($line in ((Read-Text $holdFile) -split "`n")) {
+        $l = $line.Trim(); if (-not $l -or $l.StartsWith('#')) { continue }
+        $transHold[($l -split "`t")[0].Trim()] = 1
+    }
+}
+function Read-Transcript([string]$id) {
+    if ($script:transHold.ContainsKey($id)) { return $null }
+    $f = Join-Path $script:transDir ($id + '.txt')
+    if (-not (Test-Path -LiteralPath $f)) { return $null }
+    $t = (Read-Text $f).Replace("`r", '')
+    $m = [regex]::Match($t, '(?s)KEY POINTS[ \t]*\n(.*?)\nTRANSCRIPT[ \t]*\n(.*)$')
+    if (-not $m.Success) { return $null }
+    $points = @($m.Groups[1].Value -split "\n" | ForEach-Object { ($_ -replace '^\s*-\s*', '').Trim() } | Where-Object { $_ })
+    return [pscustomobject]@{ points = $points; text = $m.Groups[2].Value.Trim() }
+}
+
 $topicBySlug = @{}; foreach ($t in $topics) { $topicBySlug[$t.slug] = $t }
 $confBySlug = @{}; foreach ($c in $conferences) { $confBySlug[$c.slug] = $c }
 
@@ -153,6 +176,17 @@ function Thumb($v, [string]$sizes, [bool]$eager = $false) {
     return ('<img src="https://i.ytimg.com/vi/{0}/mqdefault.jpg" srcset="https://i.ytimg.com/vi/{0}/mqdefault.jpg 320w, https://i.ytimg.com/vi/{0}/hqdefault.jpg 480w, https://i.ytimg.com/vi/{0}/sddefault.jpg 640w" sizes="{1}" alt="" width="320" height="180" loading="{2}" decoding="async">' -f $v.youtubeId, $sizes, $load)
 }
 function Who($v) { return (@($v.people | ForEach-Object { $_.name }) -join ' and ') }
+# A speaker's picture is a square crop of the thumbnail of their most recent solo interview;
+# speakers who only appear in joint interviews keep their initials.
+function Avatar([string]$slug, [string]$initials) {
+    $sp = $script:speakers[$slug]
+    $solo = $null
+    if ($sp) { $solo = @($sp.videos | Where-Object { $_.people.Count -eq 1 }) | Select-Object -First 1 }
+    if (-not $solo) { return '<span class="avatar" aria-hidden="true">' + $initials + '</span>' }
+    $pos = [string]$script:confBySlug[$solo.conference].photoPosition
+    if (-not $pos) { $pos = '35% 30%' }
+    return '<span class="avatar photo" aria-hidden="true"><img src="https://i.ytimg.com/vi/' + $solo.youtubeId + '/mqdefault.jpg" alt="" loading="lazy" decoding="async" style="object-position:' + $pos + '"></span>'
+}
 function SearchText($v) {
     $parts = @($v.title) + @($v.people | ForEach-Object { $_.name; $_.role }) + @($v.topics | ForEach-Object { $script:topicBySlug[$_].name }) + @($script:confBySlug[$v.conference].name, $script:confBySlug[$v.conference].organiser)
     return ($parts -join ' ').ToLowerInvariant()
@@ -219,6 +253,7 @@ $navItems = @(
 )
 $sitemap = New-Object Collections.ArrayList
 $pageCount = 0
+$transcriptCount = 0
 $year = (Get-Date).Year
 
 function Write-Out([string]$path, [string]$content) {
@@ -493,10 +528,27 @@ foreach ($v in $videos) {
         $li = New-Object Text.StringBuilder
         foreach ($p in $v.people) {
             $role = ''; if ($p.role) { $role = '<span>' + (Esc $p.role) + '</span>' }
-            [void]$li.Append('<li class="person"><span class="avatar" aria-hidden="true">' + $p.initials + '</span><div><b><a href="' + (U "/speakers/$($p.slug)/") + '">' + (Esc $p.name) + '</a></b>' + $role + '</div></li>')
+            [void]$li.Append('<li class="person">' + (Avatar $p.slug $p.initials) + '<div><b><a href="' + (U "/speakers/$($p.slug)/") + '">' + (Esc $p.name) + '</a></b>' + $role + '</div></li>')
         }
         $peopleHtml = '<ul class="people">' + $li.ToString() + '</ul>'
     }
+
+    # key points + transcript (optional), citation line
+    $kpHtml = ''; $trHtml = ''; $ldTranscript = ''
+    $tr = Read-Transcript $id
+    if ($tr) {
+        if ($tr.points.Count -gt 0) { $kpHtml = '<h2 class="block-title">Key points</h2><ul class="keypoints">' + ((@($tr.points) | ForEach-Object { '<li>' + (Esc $_) + '</li>' }) -join '') + '</ul>' }
+        if ($tr.text) {
+            $trHtml = '<details class="transcript"><summary>Read the transcript</summary><p class="note">Automatic transcript, lightly edited for readability. It may contain errors, so check it against the video before quoting.</p>' + (Paras $tr.text) + '</details>'
+            $ldTranscript = ',"transcript":"' + (J ($tr.text -replace '\s+', ' ')) + '"'
+            $script:transcriptCount++
+        }
+    }
+    $citeWho = Who $v
+    $cite = ''; if ($citeWho) { $cite = (Esc $citeWho) + '. ' }
+    $cite += '&ldquo;' + (Esc $v.title) + '.&rdquo; <em>The Paediatric Video Journal</em>, ' + (DateLong $v.published) + '.'
+    if ($pageUrl) { $cite += ' ' + $pageUrl }
+    $citeHtml = '<h2 class="block-title">Cite this video</h2><p class="cite">' + $cite + '</p>'
     $chips = (@($v.topics) | ForEach-Object { '<li><a class="chip" href="' + (U "/topics/$_/") + '">' + (Esc $topicBySlug[$_].name) + '</a></li>' }) -join ''
 
     $share = New-Object Text.StringBuilder
@@ -549,11 +601,14 @@ $(Crumbs @(@{ label = 'Conferences'; href = '/conferences/' }, @{ label = $c.nam
 <li>$(Dur $v.seconds) min</li>
 </ul>
 $peopleHtml
+$kpHtml
 <div class="desc">$(Paras $v.description)</div>
+$trHtml
 <h2 class="block-title">Topics</h2>
 <ul class="chips">$chips</ul>
 <h2 class="block-title">Share</h2>
 <div class="share">$($share.ToString())</div>
+$citeHtml
 <p class="disclaimer">This interview is educational content intended for healthcare professionals and is not medical advice. Views expressed are those of the speaker. &copy; The Paediatric Video Journal. All rights reserved.</p>
 </article>
 <aside class="side" aria-label="More videos">
@@ -562,7 +617,7 @@ $($side.ToString())
 </div>
 </div>
 "@
-    $ld = '{"@context":"https://schema.org","@type":"VideoObject","name":"' + (J $v.title) + '","description":"' + (J $v.summary) + '","thumbnailUrl":["https://i.ytimg.com/vi/' + $id + '/maxresdefault.jpg"],"uploadDate":"' + $v.published + '","duration":"' + (DurIso $v.seconds) + '","embedUrl":"https://www.youtube-nocookie.com/embed/' + $id + '","contentUrl":"https://www.youtube.com/watch?v=' + $id + '","publisher":{"@type":"Organization","name":"' + (J $site.fullName) + '"}}'
+    $ld = '{"@context":"https://schema.org","@type":"VideoObject","name":"' + (J $v.title) + '","description":"' + (J $v.summary) + '","thumbnailUrl":["https://i.ytimg.com/vi/' + $id + '/maxresdefault.jpg"],"uploadDate":"' + $v.published + '","duration":"' + (DurIso $v.seconds) + '","embedUrl":"https://www.youtube-nocookie.com/embed/' + $id + '","contentUrl":"https://www.youtube.com/watch?v=' + $id + '"' + $ldTranscript + ',"publisher":{"@type":"Organization","name":"' + (J $site.fullName) + '"}}'
     $who = Who $v
     $ogTitle = $v.title; if ($who) { $ogTitle = $v.title + ' - ' + $who }
     Write-Page $v.url $ogTitle $v.summary $body @{ nav = 'videos'; image = "https://i.ytimg.com/vi/$id/maxresdefault.jpg"; ogType = 'video.other'; jsonld = $ld }
@@ -667,7 +722,7 @@ foreach ($L in $letters) {
     [void]$groups.Append('<section data-filter-group><h2 class="letter" id="letter-' + $L + '">' + $L + '</h2><ul class="speaker-grid">')
     foreach ($s in @($speakerList | Where-Object { $_.letter -eq $L })) {
         $role = ''; if ($s.role) { $role = '<span>' + (Esc $s.role) + '</span>' }
-        [void]$groups.Append('<li data-search="' + (Esc (($s.name + ' ' + $s.role).ToLowerInvariant())) + '"><a class="speaker-card" href="' + (U "/speakers/$($s.slug)/") + '"><span class="avatar" aria-hidden="true">' + $s.initials + '</span><span><b>' + (Esc $s.name) + '</b>' + $role + '</span></a></li>')
+        [void]$groups.Append('<li data-search="' + (Esc (($s.name + ' ' + $s.role).ToLowerInvariant())) + '"><a class="speaker-card" href="' + (U "/speakers/$($s.slug)/") + '">' + (Avatar $s.slug $s.initials) + '<span><b>' + (Esc $s.name) + '</b>' + $role + '</span></a></li>')
     }
     [void]$groups.Append('</ul></section>')
 }
@@ -700,7 +755,7 @@ foreach ($s in $speakerList) {
 <div class="page-head">
 $(Crumbs @(@{ label = 'Speakers'; href = '/speakers/' }, @{ label = $s.name }))
 <div class="speaker-head">
-<span class="avatar" aria-hidden="true">$($s.initials)</span>
+$(Avatar $s.slug $s.initials)
 <div><h1>$(Esc $s.name)</h1>$role</div>
 </div>
 </div>
@@ -719,6 +774,13 @@ foreach ($p in $pages) {
     $frag = [regex]::Replace($frag, '(?s)<!--.*?-->', '')
     $frag = $frag.Replace('{{base}}', $cfgBase).Trim()
     $crumbs = @(); if ($p.parentLabel) { $crumbs += @{ label = $p.parentLabel; href = $p.parentHref } }; $crumbs += @{ label = $p.title }
+    # "cta": true in pages.json adds an enquiry panel under the page
+    $ctaHtml = ''
+    if ($p.cta) {
+        $ctaBtn = '<a class="btn light" href="' + (U '/contact/') + '">Contact us</a>'
+        if ($site.contactEmail) { $ctaBtn = '<a class="btn light" href="mailto:' + (Esc $site.contactEmail) + '?subject=' + [uri]::EscapeDataString('Conference coverage enquiry') + '">Email us about your event</a><a class="btn outline-light" href="' + (U '/contact/') + '">Other ways to reach us</a>' }
+        $ctaHtml = '<div class="section tight"><div class="cta"><div><h2>Planning a conference?</h2><p>Tell us the event, the dates and roughly how many interviews you have in mind, and we will come back to you.</p></div><div class="hero-actions">' + $ctaBtn + '</div></div></div>'
+    }
     Write-Page $p.path $p.title $p.description @"
 <div class="wrap">
 <div class="page-head">
@@ -728,6 +790,7 @@ $(Crumbs $crumbs)
 <div class="prose">
 $frag
 </div>
+$ctaHtml
 </div>
 "@ @{ nav = [string]$p.nav }
 }
@@ -796,4 +859,4 @@ if ($isPreview) {
 Write-Out '/.nojekyll' ''
 if ($site.domain) { Write-Out '/CNAME' ([string]$site.domain + "`n") }
 
-Write-Host ("Built {0} pages -> {1}  ({2} videos, {3} speakers, {4} topics, {5} conferences)" -f $pageCount, $outDir, $videos.Count, $speakerList.Count, $liveTopics.Count, $conferences.Count)
+Write-Host ("Built {0} pages -> {1}  ({2} videos, {3} with transcripts, {4} speakers, {5} topics, {6} conferences)" -f $pageCount, $outDir, $videos.Count, $transcriptCount, $speakerList.Count, $liveTopics.Count, $conferences.Count)

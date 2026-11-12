@@ -81,6 +81,23 @@ Still needed before search engines are let in:
 4. **Legal identity** - Privacy and Terms name "The Paediatric Video Journal" only. Add the company or owner name if there is one.
 5. **Then switch on indexing** - `"preview": false` in `content/site.json`, publish, and register the site with Google Search Console.
 
+## 6a. Added on 12 November 2026
+
+- Key points, an automatic transcript and a "cite this video" line on video pages: 68 videos have them; 55 more transcripts wait in `content/transcripts/_review/` for a check against the audio.
+- Speaker pictures taken from each speaker's most recent solo interview.
+- The 75 RCPCH video titles shown in sentence case, matching the 2026 titles (the YouTube titles are unchanged).
+- Work with PVJ page: the PCCS 2026 facts and an enquiry panel.
+- The YouTube channel links to the site.
+- Thumbnail design samples for the 75 older videos are in `work/thumbnails/samples/` awaiting the owner's choice; nothing was uploaded.
+
+Still to do, and who it needs:
+
+- Owner's click: the bulk edit that adds the site link to all 123 YouTube descriptions.
+- Owner's choice: thumbnail option A or B, then make and upload the 75 thumbnails. Videos whose YouTube frame shows the on-screen name caption need a clean still from the original footage.
+- A listener: the 55 transcripts in the review folder.
+- Owner's approval of the draft pages, then open the site to search engines and register it with Google Search Console.
+- Owner's accounts or decisions: a newsletter provider, visitor statistics, an ISSN application, an editorial board.
+
 ## 7. Roadmap after launch
 
 Phase 2 (content quality)

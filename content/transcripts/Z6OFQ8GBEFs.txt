@@ -1,0 +1,10 @@
+KEY POINTS
+- Syndromes such as sepsis and ARDS are heterogeneous: some patients benefit from a treatment, some are unaffected and some may be harmed.
+- Blood biomarkers, including RNA and proteins, define natural differences between patients, and these can now be measured rapidly at the bedside.
+- Precision medicine trials measure biomarkers, split patients into groups and evaluate drugs in each group to learn which work for which patients.
+TRANSCRIPT
+So I've been talking about precision medicine and intensive care. One of the challenges we face both in adult and paediatric intensive care is that we treat very heterogeneous syndromes, whether they be sepsis or ARDS. And part of the reason we've struggled to find new therapies to treat these patients is there are some patients who benefit, some where there's no effect and some where maybe even the patients are being harmed.
+
+So what we've been doing is trying to understand that heterogeneity better and can we personalise our therapies. We and others have found various biomarkers in the blood, looking at either RNA, proteins, multiple biomarkers, that actually define natural differences between patients. Importantly, in trials that have already compared other treatments, we've seen there is this differential response to the different treatments in these different groups.
+
+Recently, we've been able to show that we can measure these biomarkers rapidly at the bedside and it identifies patients that have different outcomes. And what we're moving to now is precision medicine trials both in adult and paediatric intensive care. What we do is measure these biomarkers, split the patients into different groups, evaluate the drugs in these different groups, and hopefully this way we will learn which drugs work and for which patients, delivering a new paradigm for treatment in critical care.

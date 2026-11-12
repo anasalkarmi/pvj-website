@@ -1,0 +1,12 @@
+KEY POINTS
+- An audit at St Mary's Hospital in London looked at how LocSSIPs were used for line insertions.
+- People were filling out the paper forms, but these were not being uploaded online in significant numbers, and it was not being filled in effectively in 90% of cases.
+- The team improved inductions and created an online form that can be filled in at the bedside, so that it can be nationally audited.
+TRANSCRIPT
+So we conducted an audit in St Mary's Hospital in London about the utilisation of LocSSIPs, which is a local safety standard for invasive procedures. So we're looking at whether this was being utilised as common practice in our hospital, and how we utilised it and how safe it was. In 2023 there were about 268 never events following insertions of lines, so this led to us creating an audit to look at how these local standards were met.
+
+So when we looked at this, we looked at how many colleagues were filling in the paper forms, which is looking at how, you know, when the line was inserted, how it was inserted, the length, all of those things. So when we're inserting lines which have a guide wire, it's very important that this is filled out by the bedside. So what we found is that people are filling out the paper forms, but these weren't being uploaded in a significant number online. So this is a big concern, because it needs to be something that's on our online platforms to allow us to collect the data, to know, you know, for confidentiality reasons as well as patient safety reasons.
+
+So eventually we found out that this was not being filled in, in 90% of cases we weren't filling this in effectively. So this led to us creating new standards, so improving this in our inductions, ensuring that we had this as an online form so that people could fill it in by the bedside, because we're moving towards a technological era where paper forms are becoming more obsolete and more things are being conducted online.
+
+So following this, our main thing for the future and for other hospitals is to incorporate LocSSIPs whenever you're including invasive lines, that could be in the neonatal intensive care, paediatric intensive care environments, making sure you have an online platform to put this on, and then this can be nationally audited to improve standard of care for patients to have central lines inserted.

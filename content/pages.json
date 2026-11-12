@@ -20,7 +20,8 @@
     "title": "Work with PVJ",
     "description": "Conference organisers and societies: how PVJ records, edits and publishes interviews from your meeting.",
     "file": "work-with-us.html",
-    "nav": ""
+    "nav": "",
+    "cta": true
   },
   {
     "path": "/privacy/",

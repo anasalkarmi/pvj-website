@@ -1,0 +1,8 @@
+KEY POINTS
+- The PIVOTAL platform trial examines sedative choice, intravenous fluid strategy and blood transfusion threshold at once across most ICU patients.
+- Its Bayesian adaptive approach means the team can learn about the interventions as they go rather than wait for a trial to finish.
+- Questions can potentially be answered in a relatively short time frame and replaced with new ones, so the team learns from every child.
+TRANSCRIPT
+As the chief investigator of the PIVOTAL platform trial, we are looking at aspects of routine care on paediatric critical illness, and that includes the primary choice of sedative agent, the intravenous fluid strategy and the threshold for blood transfusion, and we're doing it simultaneously across the majority of patients who come to the ICU.
+
+So the questions we're addressing are important ones in themselves, but we're also learning about this methodology. This Bayesian adaptive approach means we can learn about the interventions as we go, and rather than run a trial that takes 10 years start to finish, we have the potential to be able to answer the questions in a relatively short time frame and potentially replace them with new questions. So the point is we want to get to where we're learning from every child that comes into intensive care unit in the UK.

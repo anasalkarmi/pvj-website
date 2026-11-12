@@ -1,0 +1,14 @@
+KEY POINTS
+- The number of neonatal MRI scans done per month rose by 700% compared with a cohort from about 15 years ago.
+- About 40% of images were of suboptimal quality, which has implications for the information given to families and for cost.
+- Next steps include standardising MR imaging processes, looking at sedation practices and advocating for longer MR time slots and more scanners.
+TRANSCRIPT
+So magnetic resonance imaging is an evolving area that doctors looking after newborn babies utilise more and more often in order to help prognosticating issues that babies at risk of brain injuries might face. It's quite a challenging aspect because the scan requires sufficient time to obtain an adequate imaging and we need for the babies to not move during the scan.
+
+Our project aimed to look at how MR imaging processes changed in our hospital over time. So comparing our data, a recent cohort, to a data set collected about 15 years ago to see how our processes changed over time. We looked at, in particular, the indication for imaging, the image quality as described by a specialist neuroradiologist, whether they are appropriate for interpretation and the number of scans performed, how it changed over the years.
+
+We collected data over a 34 month period using our electronic patient records and standardised MRI reporting performers, and what we found, our key findings, indicate that there has been a shift in the indications for MRI scans being performed on newborns, now with about 20% of scans being performed for antenatally diagnosed anatomical abnormalities of the brain. This is likely representing an improvement over time in fetal medicine and fetal synography.
+
+We found a 700% increase in the MRI scans done per month compared to our historic cohort, which is likely related to changes in practices for neonatal management of conditions like HIV and therapeutic hypothermia and evolving evidence indicating MRI being a good prognostication for these conditions. We also found that about 40% of our images are of suboptimal quality, which has obvious negative implications for providing information to families as well as financial implications.
+
+So our next steps are to work alongside our radiology and radiographer colleagues to standardise our MR imaging processes, in particular looking at sedation practices to minimise motion artifacts, and to advocate for longer MR time slots as well as more MRI scanners, as this increase is unlikely to been reflected in the number of MRI time slots and MRI Eye scanners.

@@ -1,0 +1,12 @@
+KEY POINTS
+- A retrospective audit in a paediatric ICU found a median eight-hourly delay in starting weaning and a median three-hourly delay in sustaining it.
+- Spontaneous breathing trials and four-hourly comfort scores were not performed consistently.
+- Next steps include a checklist, guideline or protocol, and an electronic-record dashboard showing whether a patient can safely be weaned.
+TRANSCRIPT
+So I conducted an audit as a medical student in Birmingham in the setting of a paediatric ICU, and the title of my audit was basically just looking at delays in ventilation and weaning. The reason why we conducted this audit was because there were delays that were identified previously, and there was no formal guideline or weaning protocol that was being followed in the PICU at the moment. And part of the audit was to just identify the delays, why they were being delays in the first place, and just to see what can be done to sort of take that load off the staff and make sure that they are following the protocol in a timely manner.
+
+So, I conducted the retrospective audit and that just involved me looking at sort of 24-hour periods of patients, looking at what could have been done when they met the criteria and why they weren't weaned in a timely manner. And the criteria that I used for this audit was based off of evidence-based guidelines like the Ponda papers and the SANDWICH trials.
+
+And ultimately what we found was that there were delays, and we got a median of eight hourly delay in starting weaning in PICU patients and a three-hourly delay, a median three-hourly delay, to sustaining that weaning. There were other things that I looked at as well, such as a spontaneous breathing trial that was not performed in much of the patients that I looked at, and then four-hourly comfort scores, which is also a factor that we studied, and then that wasn't performed consistently as well.
+
+So ultimately the aim of the audit wasn't to criticise the practices in the PICU, but it was more so to identify what was happening, and if there can be a checklist or a guideline, a protocol that can be followed. And ultimately we want to integrate that into the system, Epic. So potentially in the form of a dashboard, which we are looking at at the moment, a dashboard that can help staff look at what parameters have been met and whether a patient can safely be weaned and onto extubation.

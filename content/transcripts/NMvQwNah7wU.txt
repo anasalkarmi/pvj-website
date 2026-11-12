@@ -1,0 +1,8 @@
+KEY POINTS
+- Hospital Episode Statistics data were used to look nationally at mental health admissions of young people.
+- All cause admissions rose by about 10%, while mental health admissions rose by between 60 and 70%.
+- The rise was mostly driven by 11 to 15 year old females, with eating disorders increasing by 600% in that group.
+TRANSCRIPT
+My study is looking at hospital admissions of young people with mental health problems. We used Hospital Episode Statistics data to look nationally around mental health admissions between 5 and 18 year olds from 2012 to 2022. And what we find is that although all cause admissions in this group have increased by about 10% over that period, mental health admissions have increased between 60 and 70%.
+
+This change is mostly driven by increases in 11 to 15 year old females, and particularly increases in eating disorders in that group, which have increased by 600% over the study period. We really want to understand this in greater detail with other elements of the MAPS study, which this project is one element of.

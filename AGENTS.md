@@ -44,6 +44,21 @@ you changed at phone width (375 px) and desktop width.
 5. Run `tools\import-youtube.ps1` (adds only new videos; existing entries are left untouched), then build and preview.
 6. Resolve every WARNING the import prints. Known typos in YouTube text go in `work\import\text-fixes.json`.
 
+## Recipe: transcripts and key points for new videos
+
+YouTube only serves captions to its own pages, so they are collected in a signed-in browser tab:
+open any video on youtube.com, press "Show transcript", and read the `transcript-segment-view-model`
+elements. For many videos, loop over them in the page (navigate with a `yt-navigate` event on
+`ytd-app`), then send the result to `tools\caption-receiver.ps1` by pointing the tab at
+`http://localhost:<port>/recv?part=1#<url-encoded JSON of { youtubeId: text }>`.
+
+1. `tools\prepare-transcript-batches.ps1` splits the saved captions into work packs in `work\transcripts\`.
+2. Tidy each pack following `work\transcripts\BRIEF.md` (fidelity rules, key points, file layout).
+3. `tools\validate-transcripts.ps1` compares every transcript with its captions; fix until it passes.
+4. Anything the tidier was unsure about (a garbled word kept, a name or clinical term guessed) goes to
+   `content\transcripts\_review\` with a line in `CHECKLIST.tsv`, not onto the site. This is a clinical
+   audience: never publish a guessed drug, diagnosis, score or person's name.
+
 ## Work that suits a cheaper model
 
 - Step 3 above (structured extraction and topic tagging), with the import cross-checks as the safety net.

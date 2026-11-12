@@ -1,0 +1,12 @@
+KEY POINTS
+- The research applies multimodal data processing and artificial intelligence to mental health detection, with ADHD and depression as the main tasks.
+- It uses video, audio, behaviour and questionnaire data, mirroring what clinicians observe when a patient comes to them.
+- The aim is an application that could indicate whether someone has ADHD or depression, developed in close collaboration with clinicians.
+TRANSCRIPT
+So my research is on multimodal data processing and artificial intelligence and I'm applying that knowledge for mental health detection. And ADHD and depression are the main tasks.
+
+So what clinicians are doing when a patient comes to them, they ask a couple of questions and then they observe them visually and obviously when they are speaking, the patient is speaking, so they also observe. They do a couple of tests and then based on those tests they diagnose that this person is depressed or ADHD or no.
+
+So in my research the main thing is to use video, because the doctor is looking toward the patient, use audio, the microphone, because obviously they are listening, and then a little bit the behaviour they are doing, and then the keyboard and the questionnaire. So use these things in a digital world in a computer to provide an application tomorrow to detect someone has mental health, because we are in the changing world now.
+
+So everyone is using smart devices, children are using the gadgets, different playing. So these sensor common senses are there. So the purpose tomorrow is there should be an application running behind that can indicate someone has ADHD or depression. So I'm closely collaborating with clinicians. So engineering and medical is basically interdisciplinary research is going on to provide a solution for tomorrow and we call it AI to detect the mental health.

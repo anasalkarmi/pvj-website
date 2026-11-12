@@ -1,0 +1,10 @@
+KEY POINTS
+- The Phoenix sepsis criteria use large-scale data to help tell children with sepsis from children who are ill from something else.
+- Sepsis is characterised by organ dysfunction associated with infection that carries an additional risk of death, where it used to be a very inclusive category.
+- The criteria are intended to support epidemiological studies and clinical trials, but are not a screening tool for who should be treated.
+TRANSCRIPT
+So I was talking today about the Phoenix sepsis criteria, which are an attempt to use large scale data to improve our ability to discern patients with sepsis from children who are ill from something else. This is the output from about 5 years' work from a collaboration led by the Society of Critical Care Medicine in the US, and essentially what it's done is characterised a degree of organ dysfunction associated with infection that carries an additional risk of death. That's a big and complicated sentence, but it's a contrast to what sepsis was before, which was a very inclusive category that included children who wouldn't even be sick enough to be in hospital.
+
+So we now have two papers published in JAMA at the end of January that describe how 3 million, 3 and a half million patient encounters from around the world, of children coming into accident emergency rooms or on the ward, were classified by the presence of organ dysfunction. And those that had a degree of organ dysfunction that scores more than two points on this novel score had a greatly increased risk of death. And the idea is that that will assist with epidemiological studies, it'll assist with clinical trials to make sure they've got the same population of patients included wherever they've come from.
+
+But I should be clear what it is not is a screening tool for who should be treated for potential to deteriorate with infection. That's a much harder holy grail that we're still searching for. But I think it does do something useful to standardise doctors who are notoriously variable in what they mean when they say the word sepsis currently. So I think it is a development, yes.

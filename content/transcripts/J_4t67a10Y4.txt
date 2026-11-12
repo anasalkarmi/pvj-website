@@ -1,0 +1,12 @@
+KEY POINTS
+- A five-year research professorship aims to develop personalised approaches to ventilation and breathing support in critically ill children.
+- It will develop bedside blood protein biomarker tests to group patients into high and low risk, for example to choose which patients receive steroids.
+- It will also use lung ultrasound to guide fluid decisions and test whether machine learning on electronic health records can help manage ventilated patients.
+TRANSCRIPT
+So the main focus of my research for the next five years is going to be my NIHR research professorship, which is a personal award, a personal fellowship, and the concept around my research professorship for the next 5 years is personalised approaches to ventilation and breathing support management. And the reason that's important is because ventilation and breathing support is very commonly provided in paediatric ICUs, but for the sick patients there are lot of variations in how this ventilation care is provided.
+
+Aspects around fluid management in ventilated patients, positioning, prone positioning or supine positioning of patients, steroid therapy in paediatric ARDS are all unclear and uncertain areas. We understand that because children are so different and have babies through to adolescence in our unit, we can't apply the same rules to everybody and the treatments that work for one set won't work for the other set. So we are trying to get a personalised approach to these treatments.
+
+The research professorship has just started about less than a year ago and the focus of this professorship will be to develop bedside tests to look at protein biomarkers in the blood to help us to group patients into high and low risk so that we can choose treatments such as steroids for those high-risk patients. Use lung ultrasound scans to classify patients into high risk and low risk and use that information to decide which patients can have more fluid and which patients can have less fluid. And finally to look at electronic health records of patients who are ventilated from several units, to look at whether machine learning models can help us to manage these patients better.
+
+So those are the three components of the research professorship and that will be the best part of my five years spent on these aspects.
