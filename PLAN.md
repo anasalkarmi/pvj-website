@@ -79,7 +79,7 @@ The site was opened before the owner had signed off the following, so they are s
 2. **"Intended for healthcare professionals"** - confirm this wording for the notice bar and footer.
 3. **PCCS logo** - shown on the PCCS 2026 page as "In partnership with". Confirm PCCS is happy with that use.
 4. **Legal identity** - Privacy and Terms name "The Paediatric Video Journal" only. Add the company or owner name if there is one.
-5. **Google Search Console** - not registered yet. It needs a Google account that should own the listing (PVJ's, not an editor's) and one DNS record at GoDaddy.
+5. **Google Search Console** - registered on 12 November 2026 under PVJ's own Google account (the `paediatricvj@gmail.com` one), as the URL-prefix property `https://paediatricvj.com/`, verified by the file the build writes from `"googleSiteVerification"` in `content/site.json` (do not remove it). `sitemap.xml` was submitted and read the same day: 270 pages, 123 videos.
 
 ## 6a. Added on 12 November 2026
 
@@ -104,7 +104,7 @@ Still to do, and who it needs:
 - Telling the speakers their page exists: on 12 November 2026 a comment linking to the video's page was posted from the PVJ LinkedIn page under each of the 48 PCCS 2026 posts (wording says "with key points and a transcript" only where a transcript is published). Not done: personal messages, and anything for the RCPCH 2024 and 2025 speakers, who have no PVJ LinkedIn post. `work\outreach\` holds the list of 107 speakers with their page links and a draft message; it needs the owner's wording, channel and contacts.
 - A listener: the words marked `[unclear]` in the transcripts (`content/transcripts/UNCLEAR.tsv`).
 - The owner's approval of the draft pages (section 6).
-- The owner's accounts or decisions: Google Search Console, a newsletter provider, visitor statistics, an ISSN application, an editorial board.
+- The owner's accounts or decisions: a newsletter provider, visitor statistics, an ISSN application, an editorial board.
 
 ## 6b. The owner's feedback, 12 November 2026 (WhatsApp text and voice notes)
 
@@ -145,7 +145,7 @@ An audit of every built page found the technical base sound (unique titles and d
 
 What decides ranking from here, and is not in the code:
 
-1. **Google Search Console**: verify the site under PVJ's Google account and submit `sitemap.xml`. Not done yet. Without it there is no way to see what Google has indexed.
+1. **Google Search Console**: done on 12 November 2026 (PVJ's Google account; sitemap read, 270 pages and 123 videos found; the home page was already in Google's index). Look at the Pages and Video pages reports there after a week or two to see what has been indexed.
 2. **Links in**: the 123 YouTube descriptions link to the home page; a link to each video's own page would be better. PCCS, RCPCH and speakers' institutions linking to their pages matters more than anything on the site.
 3. **More text**: two or three sentences of description per clinical area (`content/topics.json`). (All 123 transcripts are on the site since 12 November 2026.)
 4. Nobody can promise first place for general searches. A search for the journal's own name should find it within weeks of indexing; subject searches depend on items 2 and 3 and on time.
@@ -157,7 +157,7 @@ Phase 2 (content quality)
 - Add the site to the LinkedIn page.
 - Short speaker biographies (optional `content/speakers.json`).
 - RCPCH logo on the RCPCH conference pages, if permitted.
-- Register the site with Google Search Console and submit `sitemap.xml`.
+- Read the Pages and Video pages reports in Google Search Console once Google has crawled the sitemap.
 - Listen for the words marked `[unclear]` in the transcripts and fill them in (`content/transcripts/UNCLEAR.tsv`).
 
 Phase 3 (growth, as PVJ produces the content)
