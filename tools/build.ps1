@@ -920,5 +920,10 @@ if ($isPreview) {
 }
 Write-Out '/.nojekyll' ''
 if ($site.domain) { Write-Out '/CNAME' ([string]$site.domain + "`n") }
+# Google Search Console ownership file. site.json "googleSiteVerification" holds the file name Google gave
+# (for example google0123456789abcdef.html). Removing it un-verifies the site in Search Console.
+if ([string]$site.googleSiteVerification -match '^google[0-9a-f]+\.html$') {
+    Write-Out ('/' + [string]$site.googleSiteVerification) ('google-site-verification: ' + [string]$site.googleSiteVerification)
+}
 
 Write-Host ("Built {0} pages -> {1}  ({2} videos, {3} with transcripts, {4} speakers, {5} topics, {6} conferences)" -f $pageCount, $outDir, $videos.Count, $transcriptCount, $speakerList.Count, $liveTopics.Count, $conferences.Count)
