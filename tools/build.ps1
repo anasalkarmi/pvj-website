@@ -250,8 +250,8 @@ function Paras([string]$text) {
 # ---------------------------------------------------------------- layout
 $navItems = @(
     @{ key = 'videos'; label = 'Videos'; href = '/videos/' },
-    @{ key = 'conferences'; label = 'Conferences'; href = '/conferences/' },
     @{ key = 'topics'; label = 'Topics'; href = '/topics/' },
+    @{ key = 'conferences'; label = 'Conferences'; href = '/conferences/' },
     @{ key = 'speakers'; label = 'Speakers'; href = '/speakers/' },
     @{ key = 'about'; label = 'About'; href = '/about/' }
 )
@@ -341,8 +341,8 @@ $footLogo
 <h2>Journal</h2>
 <ul>
 <li><a href="$(U '/videos/')">All videos</a></li>
-<li><a href="$(U '/conferences/')">Conferences</a></li>
 <li><a href="$(U '/topics/')">Topics</a></li>
+<li><a href="$(U '/conferences/')">Conferences</a></li>
 <li><a href="$(U '/speakers/')">Speakers</a></li>
 </ul>
 </div>
@@ -366,11 +366,12 @@ $footLogo
 </div>
 </div>
 <div class="foot-legal">
-<p>The Paediatric Video Journal publishes educational content intended for healthcare professionals. It is not medical advice. Views expressed in interviews are those of the speakers.</p>
+<p>The Paediatric Video Journal publishes educational content intended for healthcare professionals. It is not medical advice. Views expressed in the videos are those of the speakers.</p>
 <p>&copy; $script:year The Paediatric Video Journal. All rights reserved.</p>
 </div>
 </div>
 </footer>
+$(if ($path -ne '/contact/') { '<a class="contact-fab" href="' + (U '/contact/') + '">Contact us</a>' })
 <script src="$(U '/assets/js/site.js')?v=$script:jsV" defer></script>
 </body>
 </html>
@@ -381,26 +382,23 @@ $footLogo
 }
 
 # ---------------------------------------------------------------- home
-$featConf = $confBySlug[[string]$site.featuredConference]
-if (-not $featConf) { $featConf = $conferences[0] }
-$featVideos = @($confVideos[$featConf.slug])
-$hero = $videos[0]
-$heroConf = $confBySlug[$hero.conference]
-
-$topicTiles = New-Object Text.StringBuilder
-foreach ($t in @($liveTopics | Sort-Object @{ Expression = { $topicVideos[$_.slug].Count }; Descending = $true }, name | Select-Object -First 12)) {
-    [void]$topicTiles.Append('<a class="tile" href="' + (U "/topics/$($t.slug)/") + '"><b>' + (Esc $t.name) + '</b><span>' + (Plural $topicVideos[$t.slug].Count 'video') + '</span></a>')
-}
-$bandThumbs = New-Object Text.StringBuilder
-foreach ($v in @($featVideos | Select-Object -First 4)) {
-    [void]$bandThumbs.Append('<a class="thumb" href="' + (U $v.url) + '" aria-label="' + (Esc $v.title) + '">' + (Thumb $v '(max-width: 900px) 45vw, 300px') + '</a>')
-}
+# Order set by the owner (12 November 2026): what PVJ is, then the clinical areas, then the
+# conferences, then the latest videos. The home page must read as a video journal for all of
+# paediatrics, not as the site of one conference or one specialty.
+# Topics with "group": "theme" in topics.json are cross-cutting subjects; the rest are clinical areas.
+function TopicTile($t) { return '<a class="tile" href="' + (U "/topics/$($t.slug)/") + '"><b>' + (Esc $t.name) + '</b><span>' + (Plural $topicVideos[$t.slug].Count 'video') + '</span></a>' }
+$clinicalTiles = (@($liveTopics | Where-Object { [string]$_.group -ne 'theme' } | ForEach-Object { TopicTile $_ }) -join '')
+$themeTiles = (@($liveTopics | Where-Object { [string]$_.group -eq 'theme' } | ForEach-Object { TopicTile $_ }) -join '')
 $confCards = New-Object Text.StringBuilder
 foreach ($c in $conferences) {
     $cv = @($confVideos[$c.slug]); if ($cv.Count -eq 0) { continue }
+    # "image" in conferences.json is a photo of the conference itself (a path under /assets/img/).
+    # Until one is supplied the card shows the thumbnail of the conference's newest video.
+    $pic = Thumb $cv[0] '(max-width: 480px) 100vw, (max-width: 780px) 50vw, 380px'
+    if ([string]$c.image) { $pic = '<img src="' + (U ([string]$c.image)) + '" alt="" width="640" height="360" loading="lazy" decoding="async">' }
     [void]$confCards.Append(@"
 <article class="card">
-<a class="thumb" href="$(U "/conferences/$($c.slug)/")" tabindex="-1" aria-hidden="true">$(Thumb $cv[0] '(max-width: 480px) 100vw, (max-width: 780px) 50vw, 380px')</a>
+<a class="thumb" href="$(U "/conferences/$($c.slug)/")" tabindex="-1" aria-hidden="true">$pic</a>
 <div class="card-body">
 <h3><a href="$(U "/conferences/$($c.slug)/")">$(Esc $c.name)</a></h3>
 <p class="who">$(Esc $c.location) &middot; $(Esc $c.date)</p>
@@ -411,49 +409,36 @@ foreach ($c in $conferences) {
 }
 
 $homeBody = @"
-<section class="hero">
+<section class="hero solo">
 <div class="wrap">
-<div>
 <span class="eyebrow">Open-access video journal</span>
-<h1>Child health expertise, <em>straight from the conference floor</em></h1>
+<h1>The Paediatric <em>Video Journal</em></h1>
 <p class="lede">$(Esc $site.tagline)</p>
 <div class="hero-actions">
-<a class="btn" href="$(U '/videos/')">Watch the latest</a>
-<a class="btn ghost" href="$(U "/conferences/$($featConf.slug)/")">Explore $(Esc $featConf.name)</a>
+<a class="btn" href="#clinical-areas">Browse by clinical area</a>
+<a class="btn ghost" href="$(U '/videos/')">All $($videos.Count) videos</a>
 </div>
 <ul class="stats">
 <li><b>$($videos.Count)</b>videos</li>
 <li><b>$($speakerList.Count)</b>speakers</li>
-<li><b>$($conferences.Count)</b>conferences</li>
+<li><b>$($liveTopics.Count)</b>clinical areas and topics</li>
 </ul>
-</div>
-<div class="hero-feature">
-<div class="card">
-<a class="thumb" href="$(U $hero.url)" tabindex="-1" aria-hidden="true">$(Thumb $hero '(max-width: 900px) 92vw, 560px' $true)<span class="dur">$(Dur $hero.seconds)</span></a>
-<div class="card-body">
-<p class="label">Latest interview</p>
-<h3><a href="$(U $hero.url)">$(Esc $hero.title)</a></h3>
-<p class="who">$(Esc (Who $hero))</p>
-<p class="meta"><a href="$(U "/conferences/$($heroConf.slug)/")">$(Esc $heroConf.name)</a> &middot; $(DateShort $hero.published)</p>
-</div>
-</div>
-</div>
 </div>
 </section>
 
-<section class="section tight">
+<section class="section tight" id="clinical-areas">
 <div class="wrap">
-<div class="band">
-<div>
-<span class="eyebrow">Conference coverage</span>
-<h2>$(Esc $featConf.name)</h2>
-<p>$(Esc $featConf.description)</p>
-<div class="hero-actions">
-<a class="btn light" href="$(U "/conferences/$($featConf.slug)/")">Watch all $($featVideos.Count) interviews</a>
+<div class="section-head"><h2>Browse by clinical area</h2><a class="more" href="$(U '/topics/')">All topics</a></div>
+<div class="tiles">$clinicalTiles</div>
+<h3 class="sub-head">Across child health</h3>
+<div class="tiles compact">$themeTiles</div>
 </div>
-</div>
-<div class="band-thumbs">$($bandThumbs.ToString())</div>
-</div>
+</section>
+
+<section class="section alt">
+<div class="wrap">
+<div class="section-head"><h2>Conference coverage</h2><a class="more" href="$(U '/conferences/')">All conferences</a></div>
+<div class="grid three">$($confCards.ToString())</div>
 </div>
 </section>
 
@@ -464,25 +449,11 @@ $(Grid @($videos | Select-Object -First 8))
 </div>
 </section>
 
-<section class="section alt">
-<div class="wrap">
-<div class="section-head"><h2>Browse by topic</h2><a class="more" href="$(U '/topics/')">All topics</a></div>
-<div class="tiles">$($topicTiles.ToString())</div>
-</div>
-</section>
-
-<section class="section">
-<div class="wrap">
-<div class="section-head"><h2>Conferences</h2><a class="more" href="$(U '/conferences/')">All conferences</a></div>
-<div class="grid three">$($confCards.ToString())</div>
-</div>
-</section>
-
 <section class="section tight">
 <div class="wrap">
 <div class="cta">
 <div>
-<h2>Bring PVJ to your conference</h2>
+<h2>Work with PVJ</h2>
 <p>We record, edit and publish short interviews with your speakers and delegates, and share them with the child health community.</p>
 </div>
 <div class="hero-actions">
@@ -504,7 +475,7 @@ $videosBody = @"
 <div class="page-head">
 $(Crumbs @(@{ label = 'Videos' }))
 <h1>All videos</h1>
-<p class="lede">Every PVJ interview in one place. Search by speaker, subject or organisation, or narrow the list by conference and topic.</p>
+<p class="lede">Every PVJ video in one place. Search by speaker, subject or organisation, or narrow the list by conference and topic.</p>
 </div>
 <div class="filters">
 <div><label class="sr-only" for="f-q">Search videos</label><input id="f-q" type="search" placeholder="Search by title, speaker or organisation" autocomplete="off"></div>
@@ -519,7 +490,7 @@ $(Grid $videos)
 </div>
 <div class="section tight"></div>
 "@
-Write-Page '/videos/' 'All videos' "Browse all $($videos.Count) PVJ video interviews with child health professionals. Search by speaker or filter by conference and topic." $videosBody @{ nav = 'videos' }
+Write-Page '/videos/' 'All videos' "Browse all $($videos.Count) PVJ videos in paediatrics and child health. Search by speaker or filter by clinical area, topic and conference." $videosBody @{ nav = 'videos' }
 
 # ---------------------------------------------------------------- video pages
 foreach ($v in $videos) {
@@ -688,15 +659,17 @@ $(Grid $cv $false)
 }
 
 # ---------------------------------------------------------------- topics
-$allTiles = ($liveTopics | ForEach-Object { '<a class="tile" href="' + (U "/topics/$($_.slug)/") + '"><b>' + (Esc $_.name) + '</b><span>' + (Plural $topicVideos[$_.slug].Count 'video') + '</span></a>' }) -join ''
-Write-Page '/topics/' 'Topics' 'Browse PVJ video interviews by topic, from critical care and neonatology to research, education and patient safety.' @"
+Write-Page '/topics/' 'Topics' 'Browse PVJ videos by clinical area and topic, from critical care, neurology and neonatology to research, education and patient safety.' @"
 <div class="wrap">
 <div class="page-head">
 $(Crumbs @(@{ label = 'Topics' }))
 <h1>Topics</h1>
-<p class="lede">Find interviews by subject. Each video is filed under up to three topics.</p>
+<p class="lede">Find videos by clinical area or by theme. A video can appear under more than one.</p>
 </div>
-<div class="tiles">$allTiles</div>
+<h2 class="sub-head">Clinical areas</h2>
+<div class="tiles">$clinicalTiles</div>
+<h2 class="sub-head">Across child health</h2>
+<div class="tiles">$themeTiles</div>
 </div>
 <div class="section tight"></div>
 "@ @{ nav = 'topics' }
@@ -804,7 +777,7 @@ $cards = New-Object Text.StringBuilder
 if ($site.contactEmail) { [void]$cards.Append('<li><a href="mailto:' + (Esc $site.contactEmail) + '"><b>Email</b><span>' + (Esc $site.contactEmail) + '</span></a></li>') }
 [void]$cards.Append('<li><a href="' + (Esc $site.linkedinUrl) + '" rel="noopener"><b>LinkedIn</b><span>Message PVJ on our LinkedIn page</span></a></li>')
 [void]$cards.Append('<li><a href="' + (Esc $site.youtubeUrl) + '" rel="noopener"><b>YouTube</b><span>Subscribe to The Paediatric Video Journal</span></a></li>')
-Write-Page '/contact/' 'Contact' 'Get in touch with The Paediatric Video Journal about conference coverage, corrections or anything else.' @"
+Write-Page '/contact/' 'Contact' 'Get in touch with The Paediatric Video Journal about a video, a correction, working with PVJ or anything else.' @"
 <div class="wrap">
 <div class="page-head">
 $(Crumbs @(@{ label = 'Contact' }))

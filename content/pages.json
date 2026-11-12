@@ -2,14 +2,14 @@
   {
     "path": "/about/",
     "title": "About PVJ",
-    "description": "The Paediatric Video Journal is an open-access video journal publishing short interviews recorded at paediatric conferences.",
+    "description": "The Paediatric Video Journal is an open-access video journal publishing short videos for the paediatric community.",
     "file": "about.html",
     "nav": "about"
   },
   {
     "path": "/about/editorial-policy/",
     "title": "Editorial policy",
-    "description": "How The Paediatric Video Journal selects, records and publishes interviews, and how corrections and removal requests are handled.",
+    "description": "How The Paediatric Video Journal selects, records and publishes videos, and how corrections and removal requests are handled.",
     "file": "editorial-policy.html",
     "nav": "about",
     "parentLabel": "About",

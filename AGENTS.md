@@ -7,7 +7,8 @@ Read `README.md` and `PLAN.md` first. This file holds the rules and the recipes.
 - `content/` is the source of truth. `docs/` is generated and git-ignored: never edit it by hand, always rebuild. `tools/publish.ps1` builds and pushes the result to the `gh-pages` branch; source changes are ordinary commits on `main`.
 - Never change an existing `slug` in `content/videos.json`. It is the public URL of that video.
 - Facts come from PVJ's own material (YouTube titles and descriptions, the owner's instructions). Do not add, "correct" or embellish names, roles, affiliations or claims from outside knowledge. If something looks wrong, list it for the owner instead.
-- Do not invent organisational facts (team, board, sponsors, peer review, accreditation, the word "independent").
+- Do not invent organisational facts (team, board, sponsors, peer review, accreditation). The owner's own mission text on the About page calls PVJ "independent"; use that word only where he has.
+- The owner's brief for the home page (12 November 2026): PVJ is a video journal for all of paediatrics, not the site of one conference. Order: his statement of what PVJ is, then the clinical areas, then the conferences, then the latest videos. Do not lead with a conference or a single specialty.
 - British English. Plain, professional wording.
 - The site must stay free of cookies, trackers and third-party scripts unless the owner asks, and then `content/pages/privacy.html` must change in the same piece of work.
 - Do not publish (commit, push, change DNS) without the owner's go-ahead.
@@ -41,7 +42,8 @@ you changed at phone width (375 px) and desktop width.
    `{ "id", "title", "speakers": [{ "name", "role" }], "topics": [1 to 3 slugs from content/topics.json], "summary" (one sentence, 160 characters at most), "notes" }`.
    - `title`: the YouTube title; if it has the form "Topic | Speaker", keep only the topic part.
    - `name` and `role`: exactly as the description states them (drop a leading "A"/"An" and praise words such as "leading").
-   - Topics by subject, most specific first. Do not tag a video `critical-care` only because of where it was filmed.
+   - Topics by subject, most specific first.
+   - Owner's rule (12 November 2026): every video from a PCCS conference also sits under `critical-care`, whatever else it is about. The import does not add this: put `critical-care` last in the topics of each PCCS video in `content/videos.json` after importing. Videos from general conferences such as RCPCH are filed by subject only.
 4. Add the conference to `content/conferences.json` if it is new (slug must match the enrich file name).
 5. Run `tools\import-youtube.ps1` (adds only new videos; existing entries are left untouched), then build and preview.
 6. Resolve every WARNING the import prints. Known typos in YouTube text go in `work\import\text-fixes.json`.

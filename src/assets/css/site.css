@@ -136,10 +136,19 @@ a.chip:hover { border-color: var(--teal); color: var(--teal-dark); background: v
 .stats li { font-size: 0.9rem; color: var(--muted); }
 .stats b { display: block; font-size: 1.7rem; line-height: 1.1; color: var(--ink); letter-spacing: -0.02em; }
 
+/* home page: the statement of what PVJ is comes first, on its own (owner's request) */
+.hero.solo { padding: 60px 0 26px; }
+.hero.solo .wrap { display: block; }
+.hero.solo h1 { font-size: clamp(2.3rem, 5.4vw, 3.6rem); }
+.hero.solo .lede { font-size: clamp(1.14rem, 2.1vw, 1.42rem); line-height: 1.5; color: var(--ink); max-width: 36em; border-left: 4px solid var(--red); padding-left: 18px; }
+.sub-head { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 34px 0 14px; }
+.page-head + .sub-head { margin-top: 6px; }
+
 @media (max-width: 900px) {
   .hero { padding: 36px 0; }
   .hero .wrap { grid-template-columns: 1fr; gap: 36px; }
   .hero-feature::before { inset: 14px -8px -10px 14px; }
+  .hero.solo { padding: 34px 0 12px; }
 }
 
 /* ---------- video grid + cards ---------- */
@@ -183,6 +192,15 @@ a.thumb:hover img { transform: scale(1.03); }
 .tile:hover { transform: translateY(-2px); border-color: var(--teal); color: var(--ink); }
 .tile b { font-size: 1.02rem; line-height: 1.25; }
 .tile span { font-size: 0.82rem; color: var(--muted); }
+.tiles.compact .tile { min-height: 0; gap: 6px; padding: 12px 14px 11px; }
+.tiles.compact .tile b { font-size: 0.95rem; }
+
+/* ---------- contact button that stays in the corner of every page (owner's request) ---------- */
+.contact-fab { position: fixed; right: 18px; bottom: 18px; z-index: 60; display: inline-flex; align-items: center; background: var(--red); color: #fff; font-weight: 700; font-size: 0.95rem; text-decoration: none; padding: 12px 20px; border-radius: 999px; box-shadow: 0 8px 24px rgba(31, 26, 36, 0.3); }
+.contact-fab:hover { background: var(--red-dark); color: #fff; }
+.contact-fab:focus-visible { outline-color: #fff; box-shadow: 0 0 0 5px var(--teal-dark); }
+@media (max-width: 560px) { .contact-fab { right: 12px; bottom: 12px; padding: 10px 16px; font-size: 0.9rem; } }
+@media print { .contact-fab { display: none; } }
 
 .conf-list { display: grid; gap: 18px; list-style: none; padding: 0; margin: 0; }
 .conf-item { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 26px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
@@ -334,7 +352,7 @@ li:nth-child(even) > .speaker-card .avatar { background: var(--red); }
 .cta .hero-actions { flex: none; }
 @media (max-width: 700px) { .cta { padding: 30px 22px; } }
 
-.site-footer { background: var(--night); color: #b9c7ce; padding: 54px 0 30px; margin-top: 30px; font-size: 0.92rem; }
+.site-footer { background: var(--night); color: #b9c7ce; padding: 54px 0 84px; margin-top: 30px; font-size: 0.92rem; } /* bottom space keeps the last line clear of the corner contact button */
 .site-footer a { color: #e3ecef; text-decoration: none; }
 .site-footer a:hover { color: #fff; text-decoration: underline; }
 .foot-grid { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 36px; }

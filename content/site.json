@@ -1,7 +1,7 @@
 {
   "name": "PVJ",
   "fullName": "The Paediatric Video Journal",
-  "tagline": "Short video interviews with the people shaping child health, recorded at leading paediatric conferences.",
+  "tagline": "The Paediatric Video Journal (PVJ) is an open-access video journal dedicated to sharing the latest research, innovations, expert insights and educational content in paediatrics and child health with healthcare professionals worldwide.",
   "url": "https://paediatricvj.com",
   "basePath": "",
   "domain": "paediatricvj.com",
@@ -10,6 +10,5 @@
   "youtubeChannelId": "UCTDx9ovxVjT-F92cxOrQhmg",
   "youtubeUrl": "https://www.youtube.com/channel/UCTDx9ovxVjT-F92cxOrQhmg",
   "linkedinUrl": "https://www.linkedin.com/company/105979509/",
-  "featuredConference": "pccs-2026",
   "notice": "PVJ is an open-access video journal. Content is intended for healthcare professionals."
 }

@@ -1,5 +1,5 @@
 [
-  { "slug": "critical-care", "name": "Critical care", "description": "Paediatric intensive care: clinical practice, outcomes and the questions driving PICU research." },
+  { "slug": "critical-care", "name": "Paediatric critical care", "description": "Paediatric intensive care: clinical practice, outcomes and the questions driving PICU research." },
   { "slug": "emergency-medicine", "name": "Emergency and acute care", "description": "Recognising and treating the acutely unwell child, from the emergency department to the ward." },
   { "slug": "neonatology", "name": "Neonatology", "description": "Care of newborn and preterm infants, in hospital and at home." },
   { "slug": "respiratory", "name": "Respiratory and ventilation", "description": "Respiratory disease, airway and breathing support in children." },
@@ -13,14 +13,14 @@
   { "slug": "surgery-trauma", "name": "Surgery and trauma", "description": "Surgical care, anaesthesia, major trauma and recovery." },
   { "slug": "dermatology", "name": "Dermatology", "description": "Skin conditions in children and young people." },
   { "slug": "adolescent-transition", "name": "Adolescent health and transition", "description": "Young people's health and the move from children's to adult services." },
-  { "slug": "patient-safety", "name": "Patient safety and quality improvement", "description": "Making care safer and better: standards, early warning systems and improvement projects." },
-  { "slug": "research", "name": "Research and clinical trials", "description": "How paediatric evidence is built: trials, surveillance, research networks and capacity." },
-  { "slug": "data-digital-ai", "name": "Data, digital and AI", "description": "Data science, digital tools and artificial intelligence in child health." },
-  { "slug": "education-training", "name": "Education and training", "description": "Teaching, simulation and learning for the child health workforce and students." },
-  { "slug": "workforce-wellbeing", "name": "Workforce and wellbeing", "description": "Careers, staffing, teamwork and the wellbeing of people who care for children." },
-  { "slug": "nursing-allied-health", "name": "Nursing and allied health", "description": "Perspectives from nurses, pharmacists, therapists and other allied health professionals." },
-  { "slug": "family-voice", "name": "Children, young people and families", "description": "Lived experience, co-production and the voices of children, young people and parents." },
-  { "slug": "health-equity-global", "name": "Health equity and global child health", "description": "Inequalities, underserved communities and child health around the world." },
-  { "slug": "safeguarding-ethics-law", "name": "Safeguarding, ethics and law", "description": "Child protection, ethical decisions and the legal framework around children's care." },
-  { "slug": "policy-advocacy", "name": "Policy and advocacy", "description": "Strategy, policy and advocacy for children's health services." }
+  { "slug": "patient-safety", "group": "theme", "name": "Patient safety and quality improvement", "description": "Making care safer and better: standards, early warning systems and improvement projects." },
+  { "slug": "research", "group": "theme", "name": "Research and clinical trials", "description": "How paediatric evidence is built: trials, surveillance, research networks and capacity." },
+  { "slug": "data-digital-ai", "group": "theme", "name": "Data, digital and AI", "description": "Data science, digital tools and artificial intelligence in child health." },
+  { "slug": "education-training", "group": "theme", "name": "Education and training", "description": "Teaching, simulation and learning for the child health workforce and students." },
+  { "slug": "workforce-wellbeing", "group": "theme", "name": "Workforce and wellbeing", "description": "Careers, staffing, teamwork and the wellbeing of people who care for children." },
+  { "slug": "nursing-allied-health", "group": "theme", "name": "Nursing and allied health", "description": "Perspectives from nurses, pharmacists, therapists and other allied health professionals." },
+  { "slug": "family-voice", "group": "theme", "name": "Children, young people and families", "description": "Lived experience, co-production and the voices of children, young people and parents." },
+  { "slug": "health-equity-global", "group": "theme", "name": "Health equity and global child health", "description": "Inequalities, underserved communities and child health around the world." },
+  { "slug": "safeguarding-ethics-law", "group": "theme", "name": "Safeguarding, ethics and law", "description": "Child protection, ethical decisions and the legal framework around children's care." },
+  { "slug": "policy-advocacy", "group": "theme", "name": "Policy and advocacy", "description": "Strategy, policy and advocacy for children's health services." }
 ]

@@ -1,7 +1,7 @@
 # PVJ website plan
 
 The Paediatric Video Journal (PVJ) website, modelled on video journals such as VJOncology:
-a browsable library of short conference interviews, organised by conference, topic and speaker.
+a video journal for all of paediatrics, browsable by clinical area and topic, by conference and by speaker.
 
 Status on 12 November 2026: **the site is live at https://paediatricvj.com and open to search engines** (`"preview": false` in `content/site.json`; it has a sitemap and an RSS feed). The About, Editorial policy, Work with PVJ, Privacy and Terms pages are still first drafts that the owner has not signed off (see section 6). To hide the site from search engines again, set `"preview": true` and run `tools\publish.ps1`.
 
@@ -10,8 +10,8 @@ Status on 12 November 2026: **the site is live at https://paediatricvj.com and o
 | VJOncology | PVJ version 1 |
 |---|---|
 | "For healthcare professionals" notice bar | Same, one line at the top of every page |
-| Mega-menu: Diseases, Topics, Conferences | Videos, Conferences, Topics, Speakers, About |
-| Home: intro, congress tiles, trending videos, channels | Home: intro + latest interview, featured conference, latest videos, topic tiles, conferences, partner call-to-action |
+| Mega-menu: Diseases, Topics, Conferences | Videos, Topics, Conferences, Speakers, About |
+| Home: intro, congress tiles, trending videos, channels | Home: the owner's statement of what PVJ is, clinical areas, conferences, latest videos, partner call-to-action (order set by the owner, see 6b) |
 | Conference pages with all coverage | One page per conference with every interview |
 | Expert index | A to Z speaker index, one page per speaker |
 | Video page: player, speaker, date, related | Same, plus topics, share buttons and a link to the LinkedIn post |
@@ -105,6 +105,22 @@ Still to do, and who it needs:
 - A listener: the 55 transcripts in the review folder.
 - The owner's approval of the draft pages (section 6).
 - The owner's accounts or decisions: Google Search Console, a newsletter provider, visitor statistics, an ISSN application, an editorial board.
+
+## 6b. The owner's feedback, 12 November 2026 (WhatsApp text and voice notes)
+
+What he asked for, and what was done:
+
+- "It's a video journal platform", not a conference site. His one-sentence statement is now the first thing on the home page and is the site's description everywhere (`tagline` in `content/site.json`).
+- Home page order: the statement, then the clinical areas (so a neurologist, or a funder, sees "there is a neurology page" at once), then the conferences, then the latest videos. Topics are split into clinical areas and cross-cutting themes with `"group": "theme"` in `content/topics.json`.
+- Every PCCS video sits under Paediatric critical care as well as its own subjects; RCPCH videos are spread across the clinical areas by subject.
+- His three-paragraph mission text opens the About page, word for word.
+- A "Contact us" button stays in the bottom-right corner of every page and opens the Contact page.
+
+Asked for but waiting on material or a later stage:
+
+- A picture of each conference itself on the conference cards, instead of a video thumbnail. The cards take an `"image"` path in `content/conferences.json`; one photo per conference is needed (PCCS 2026, RCPCH 2025, RCPCH 2024).
+- An editorial board and the people who decide what is published: he called this "a later stage".
+- He plans to email the site for feedback once the home page is right, and to use it in grant and funding applications.
 
 ## 7. Roadmap after launch
 
