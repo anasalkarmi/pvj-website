@@ -98,7 +98,7 @@
       { "name": "Professor Jonathan Round", "role": "Professor of Practice in Clinical Education and Consultant Paediatric Intensivist" }
     ],
     "conference": "pccs-2026",
-    "topics": ["oncology-haematology", "critical-care", "research"],
+    "topics": ["oncology", "critical-care", "research"],
     "summary": "Long-term PICANet trends in oncology admissions to intensive care, how to interpret them, and plans for the Care PICU study.",
     "description": "Professor Jonathan Round, Professor of Practice in Clinical Education and Consultant Paediatric Intensivist, provides insights into long-term trends in oncology admissions to paediatric intensive care. He describes the METRO research group's use of PICANet data to explore changes in mortality, admission numbers and illness severity. The interview considers how these trends should be interpreted, including the possible contribution of changing admission thresholds and patient selection. Professor Round also discusses questions that remain about this patient group and introduces plans for the Care PICU study, which aims to examine pathways into intensive care and subsequent outcomes in greater detail.\n\nThis interview took place at the PCCS Annual Scientific Meeting 2026 in London.",
     "published": "2026-11-07",
@@ -203,7 +203,7 @@
       { "name": "Professor Jonathan Round", "role": "Professor of Practice in Clinical Education and Consultant Paediatric Intensivist" }
     ],
     "conference": "pccs-2026",
-    "topics": ["oncology-haematology", "critical-care"],
+    "topics": ["oncology", "critical-care"],
     "summary": "How admission patterns and mortality for unplanned oncology PICU admissions vary by time of day, and what the data can and cannot show.",
     "description": "Professor Jonathan Round, Professor of Practice in Clinical Education and Consultant Paediatric Intensivist, provides insights into research examining the timing of unplanned oncology admissions to paediatric intensive care. Drawing on PICANet data, he describes differences in admission patterns and mortality across the day and night. He explores possible explanations, including variation in admission decisions and patient selection, while distinguishing these hypotheses from conclusions the available data can establish. The interview highlights the value of large datasets in identifying questions for further investigation and the need for prospective research to understand the pathways and outcomes of children with cancer who require intensive care.\n\nThis interview took place at the PCCS Annual Scientific Meeting 2026 in London.",
     "published": "2026-11-07",
@@ -870,7 +870,7 @@
       { "name": "Dr Harriet Aughey", "role": "Royal Devon University Hospital" }
     ],
     "conference": "rcpch-2025",
-    "topics": ["neonatology", "infection-allergy", "patient-safety"],
+    "topics": ["neonatology", "infection", "patient-safety"],
     "summary": "A pilot letting newborns with suspected early-onset infection switch to oral antibiotics and go home sooner, with fewer bed days and no adverse events.",
     "description": "Dr David Bartle and Dr Harriet Aughey, Royal Devon University Hospital, present the Neonatal Oral Antibiotics at Home (NOAH) project. Inspired by the results of the RAIN study, which demonstrated the benefits of switching from intravenous to oral antibiotics in newborns and enabling earlier discharge, the NOAH project was developed to support babies with suspected early-onset infection who are eligible to switch to oral antibiotics. The project involved extensive collaboration with local infectious disease teams, maternity and neonatal safety initiatives, and partnerships such as the Maternity and Neonatal Safety Improvement Programme. Supported by the Health Innovation Network South West and PenARC, the pilot has yielded positive outcomes, including reduced hospital bed days, improved parental satisfaction, enhanced bonding, and better breastfeeding rates. Importantly, there have been no adverse events or cases of reinfection. The team is now planning a regional rollout and evaluation, with all project resources available for download to support implementation in other trusts. This interview took place at the RCPCH conference 2025 in Glasgow, Scotland.",
     "published": "2025-06-23",
@@ -1166,7 +1166,7 @@
       { "name": "Dr Connie Foxhall", "role": "Warrington Hospital" }
     ],
     "conference": "rcpch-2025",
-    "topics": ["emergency-medicine", "infection-allergy"],
+    "topics": ["emergency-medicine", "infection"],
     "summary": "An audit finds point-of-care testing for Group A Streptococcus shortened waits and lowered antibiotic prescribing in a paediatric emergency department.",
     "description": "Dr Alison Kemp and Dr Connie Foxhall, Warrington Hospital, provide insights into a retrospective audit evaluating the implementation of point-of-care testing for Group A Streptococcus in the paediatric emergency department. The discussion highlights the analysis of 82 children randomly selected between November 2023 and February 2024, focusing on antibiotic prescription rates, reattendance, and length of stay. The findings showed that children who received point-of-care testing had a significantly shorter average wait time (186 minutes) compared to those who did not (317 minutes). Antibiotic prescription rates were lower among tested children, supporting improved antimicrobial stewardship and reduced clinician bias in decision-making. Drs Kemp and Foxhall emphasise that point-of-care testing enhances patient care by lowering wait times, reducing unnecessary admissions and readmissions, and supporting timely, evidence-based treatment. This interview took place at the RCPCH conference 2025 in Glasgow, Scotland.",
     "published": "2025-06-23",
@@ -1292,7 +1292,7 @@
       { "name": "Jordan Nicolle", "role": "Paediatric nurse at Brighton and Sussex Medical School" }
     ],
     "conference": "rcpch-2025",
-    "topics": ["respiratory", "infection-allergy", "health-equity-global"],
+    "topics": ["respiratory", "allergy", "health-equity-global"],
     "summary": "A service evaluation of over 300 patient notes finds some ethnic groups have more severe asthma and more A&E attendances, with next steps to explore barriers.",
     "description": "Jordan Nicolle, paediatric nurse at Brighton and Sussex Medical School, provides insights into a service evaluation project focused on asthma and allergy in children and young people. The discussion highlights findings from a retrospective review of over 300 patient notes, examining clinical outcomes and A&E attendances in relation to ethnicity and socioeconomic status. The evaluation found that certain ethnic groups were more likely to have more severe asthma, as measured by an asthma severity scale, and were also more likely to present to A&E. Jordan Nicolle emphasizes the importance of understanding these differences and outlines the next steps, which include exploring barriers to accessing asthma and allergy clinics and investigating the experiences of parents and carers. This interview took place at the RCPCH conference 2025 in Glasgow, Scotland.",
     "published": "2025-06-22",
@@ -1349,7 +1349,7 @@
       { "name": "Dr Sarah Leiter", "role": "Cambridge University Hospitals NHS Foundation Trust" }
     ],
     "conference": "rcpch-2025",
-    "topics": ["oncology-haematology", "genetics-rare-disease"],
+    "topics": ["oncology", "genetics-rare-disease"],
     "summary": "How routine whole genome sequencing can be delivered in clinical care to find genetic changes quickly and guide treatment of suspected childhood cancer.",
     "description": "Dr Sarah Leiter, Cambridge University Hospitals NHS Foundation Trust, provides insights into the implementation of paired whole genome sequencing (WGS) for children with suspected cancer. The discussion highlights how routine WGS can be delivered as part of clinical care, offering significant benefits by rapidly identifying genetic changes that inform diagnosis and treatment decisions. Dr Leiter emphasises the importance of this approach in improving outcomes for children with suspected cancer, enabling more precise and individualized management strategies. She outlines how integrating WGS into routine clinical pathways can change clinical management and support families facing complex diagnostic journeys. This interview took place at the RCPCH conference 2025 in Glasgow, Scotland.",
     "published": "2025-06-22",
@@ -1405,7 +1405,7 @@
       { "name": "Professor Ed Clarke", "role": "Expert in paediatric infection, immunity, and global health" }
     ],
     "conference": "rcpch-2025",
-    "topics": ["infection-allergy", "health-equity-global", "research"],
+    "topics": ["infection", "health-equity-global", "research"],
     "summary": "The challenges of reaching children in low- and middle-income countries with vaccines, and new approaches such as micro-needle patches and new vaccines.",
     "description": "Professor Ed Clarke, a leading expert in paediatric infection, immunity, and global health, provides insights from his latest research into the major challenges and innovations in global vaccination for children. Professor Clarke highlights two key issues: ensuring that children in low- and middle-income countries receive existing vaccines, such as measles and rubella, which are often missed due to logistical and societal barriers; and developing new vaccines targeted at pathogens that cause significant disease burdens in these regions, such as group A streptococcus and viral hemorrhagic fevers. Professor Clarke emphasises the importance of new technologies like micro-needle patches (recently published), which offer pain-free, easy-to-administer alternatives to traditional injections and help overcome cold chain and training challenges. He outlines how these innovations can improve vaccine coverage and preparedness for future outbreaks, with a particular focus on his work in The Gambia and other resource-limited settings. This interview took place at the RCPCH conference 2025 in Glasgow, Scotland.",
     "published": "2025-06-22",
@@ -1573,7 +1573,7 @@
       { "name": "Eva Wooding", "role": "Royal Devon University Healthcare NHS Foundation Trust" }
     ],
     "conference": "rcpch-2024",
-    "topics": ["infection-allergy", "medicines"],
+    "topics": ["allergy", "medicines"],
     "summary": "Why no children with a low-risk antibiotic allergy label were referred for delabelling, and why paediatric services need to improve this.",
     "description": "Eva Wooding, Royal Devon University Healthcare NHS Foundation Trust, discusses her work in assessing the appropriate uptake of penicillin allergy delabelling services in a University Teaching Hospital. The team found that referral to the paediatric antibiotic allergy de-labelling clinic was poor with 0% of 'low risk' allergies being referred. Further work needs to be carried out in paediatric services to support de-labelling of antibiotic allergies as we know fewer than 10% of people that believe they have an antibiotic allergy really do.. This interview took place at the RCPCH conference 2024 in Birmingham, UK.",
     "published": "2024-12-30",
@@ -1615,7 +1615,7 @@
       { "name": "Eva Tsouana", "role": "Basildon Hospital" }
     ],
     "conference": "rcpch-2024",
-    "topics": ["oncology-haematology", "medicines"],
+    "topics": ["haematology", "medicines"],
     "summary": "How adherence to hydroxycarbamide was measured in children with sickle cell disease, and why patient-reported adherence ran higher than laboratory measures.",
     "description": "Eva Tsouana, Basildon Hospital, discusses her work in measuring adherence to hydroxycarbamide in paediatric patients with sickle cell disease. With a current lack of a standardised biomarker or objective assessment tool for measuring adherence, her team assessed adherence using various methodologies and they subsequently identified markers that may influence adherence based on patient and treatment characteristics. Patient-reported adherence were found to be higher than adherence assessed by laboratory markers and MPRs. Further research and qualitative interventions are needed to measure and improve adherence to hydroxycarbamide. This interview took place at the RCPCH conference 2024 in Birmingham, UK.",
     "published": "2024-12-30",
@@ -1643,7 +1643,7 @@
       { "name": "Professor Mark Peters", "role": "UCL Great Ormond Street Institute for Child Health" }
     ],
     "conference": "rcpch-2024",
-    "topics": ["infection-allergy", "critical-care"],
+    "topics": ["infection", "critical-care"],
     "summary": "An overview of the Phoenix criteria for identifying sepsis and septic shock in children, and how they were developed and validated.",
     "description": "Professor Mark Peters, UCL Great Ormond Street Institute for Child Health, provides an overview of the Phoenix criteria for paediatric sepsis and septic shock. The Phoenix sepsis criteria for sepsis and septic shock in children were derived and validated by the international SCCM Paediatric Sepsis Definition Task Force using a large international database and survey, systematic review and meta-analysis, and modified Delphi consensus approach. A Phoenix Sepsis Score of at least 2 identified potentially life-threatening organ dysfunction in children younger than 18 years with infection, and its use has the potential to improve clinical care, epidemiological assessment, and research in paediatric sepsis and septic shock around the world. This interview took place at the RCPCH conference 2024 in Birmingham, UK.",
     "published": "2024-12-30",
@@ -1685,7 +1685,7 @@
       { "name": "Aniqah Hossain", "role": "Royal London Hospital" }
     ],
     "conference": "rcpch-2024",
-    "topics": ["infection-allergy"],
+    "topics": ["infection"],
     "summary": "The characteristics and clinical profile of children with TB disease at a large East London NHS trust, where pulmonary TB was the most common form.",
     "description": "Aniqah Hossain, Royal London Hospital, discusses her work in describing the characteristics and clinical profile of children presenting with TB disease to a large NHS Trust in East London. In the predominantly south Asian cohort, female predominance was seen. Pulmonary TB was the most common clinical phenotype found. This interview took place at the RCPCH conference 2024 in Birmingham, UK.",
     "published": "2024-12-30",
@@ -1714,7 +1714,7 @@
       { "name": "David Tuthill", "role": "Cardiff and Vale University Health Board" }
     ],
     "conference": "rcpch-2024",
-    "topics": ["infection-allergy", "family-voice"],
+    "topics": ["infection", "family-voice"],
     "summary": "Why some families choose not to vaccinate their children, with refusal largely driven by media misinformation and worries about side effects.",
     "description": "David Tuthill, Cardiff and Vale University Health Board, discusses his work carried out in collaboration with Public Health Wales and The Children's Hospital for Wales to try and identify why families choose not to vaccinate their children. Dr Tuthill and his team found that most refusal to vaccination by families was not supported by scientific facts and mainly driven by media misinformation and worries about side effects. This interview took place at the RCPCH conference 2024 in Birmingham, UK.",
     "published": "2024-12-30",
@@ -1728,7 +1728,7 @@
       { "name": "Binod Pander", "role": "Royal National Orthopaedic Hospital" }
     ],
     "conference": "rcpch-2024",
-    "topics": ["oncology-haematology", "patient-safety"],
+    "topics": ["oncology", "patient-safety"],
     "summary": "Whether referrals for suspected bone and soft tissue tumours meet the two-week cancer standard, and where delays in the pathway occur.",
     "description": "Binod Pander, Royal National Orthopaedic Hospital, discusses his work in identifying if cancer pathway standards are being met in a tertiary referral centre in London. The standards are being adhered to in terms of reviewing patients within the two week time frame and diagnosing within 28 days. However, a delay was identified in initiation of cancer treatment. Furthermore, lots of cases of benign osteochondroma have been identified as potentially leading to delay for other more important cases. Further discussions are needed to streamline the pathway for these benign cases. This interview took place at the RCPCH conference 2024 in Birmingham, UK.",
     "published": "2024-12-30",
@@ -1742,7 +1742,7 @@
       { "name": "Rebecca Howitt", "role": "University of Oxford" }
     ],
     "conference": "rcpch-2024",
-    "topics": ["oncology-haematology", "patient-safety"],
+    "topics": ["oncology", "patient-safety"],
     "summary": "Complication rates of PICC lines in adolescents with Hodgkin's lymphoma, including mechanical problems that can delay treatment.",
     "description": "Rebecca Howitt, University of Oxford, discusses her work on PICC line complication rates in adolescent Hodgkin's Lymphoma patients. The team at Oxford continue to have a positive experience with PICC lines regarding quality of life and patient acceptability. However, Rebecca and her team found that mechanical complications of PICC lines remain a clinical concern, often leading to treatment delays. Ultimately, larger studies are needed to develop strategies to minimise PICC line complications. This interview took place at the RCPCH conference 2024 in Birmingham, UK.",
     "published": "2024-12-30",

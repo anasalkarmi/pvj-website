@@ -15,6 +15,13 @@ Read `README.md` and `PLAN.md` first. This file holds the rules and the recipes.
 - Thumbnails: show the owner the design and get a yes before uploading anything to YouTube. The approved layout is the one in `tools/make-thumbnails.ps1`; a new layout needs a new yes.
 - Do not message speakers, partners or anyone else on PVJ's behalf without the owner approving the exact wording and the channel.
 
+## Topics (`content/topics.json`)
+
+- A topic without `"group"` is a clinical area: it gets a badge on the home page, with the icon `src/icons/clinical/<slug>.svg` (see `src/icons/README.md` for the source and licence). Keep clinical names short ("Neurology", not "Neurology and neurodisability"): the owner asked for that.
+- `"group": "theme"` marks a cross-cutting subject (research, education, policy and so on). Themes appear on the Topics page only, never on the home page.
+- A topic with no videos is not shown anywhere (Immunology was in that state when it was added).
+- A topic slug is a public address. To replace a topic, give the new one `"aliases": ["old-slug"]`: the build then writes a forwarding page at the old address.
+
 ## PowerShell gotchas in `tools/`
 
 - Scripts must stay plain ASCII: Windows PowerShell 5.1 misreads non-ASCII script files. Put non-ASCII text in the JSON content files, which are read as UTF-8.

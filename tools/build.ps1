@@ -387,7 +387,17 @@ $(if ($path -ne '/contact/') { '<a class="contact-fab" href="' + (U '/contact/')
 # paediatrics, not as the site of one conference or one specialty.
 # Topics with "group": "theme" in topics.json are cross-cutting subjects; the rest are clinical areas.
 function TopicTile($t) { return '<a class="tile" href="' + (U "/topics/$($t.slug)/") + '"><b>' + (Esc $t.name) + '</b><span>' + (Plural $topicVideos[$t.slug].Count 'video') + '</span></a>' }
-$clinicalTiles = (@($liveTopics | Where-Object { [string]$_.group -ne 'theme' } | ForEach-Object { TopicTile $_ }) -join '')
+# A clinical area is shown as a small badge: an icon from src/icons/clinical/<slug>.svg (inlined, so it
+# takes the badge colour) above a short name. The owner wants every clinical area visible on the first
+# screen of the home page, without counts. The themes are listed on the Topics page only.
+$iconDir = Join-Path (Join-Path (Join-Path $root 'src') 'icons') 'clinical'
+function AreaTile($t) {
+    $svg = ''
+    $f = Join-Path $iconDir "$($t.slug).svg"
+    if (Test-Path -LiteralPath $f) { $svg = ([regex]::Replace([IO.File]::ReadAllText($f, [Text.Encoding]::UTF8), '<\?xml[^>]*\?>', '')).Trim() }
+    return '<a class="area" href="' + (U "/topics/$($t.slug)/") + '"><span class="area-icon" aria-hidden="true">' + $svg + '</span><b>' + (Esc $t.name) + '</b></a>'
+}
+$areaTiles = (@($liveTopics | Where-Object { [string]$_.group -ne 'theme' } | ForEach-Object { AreaTile $_ }) -join '')
 $themeTiles = (@($liveTopics | Where-Object { [string]$_.group -eq 'theme' } | ForEach-Object { TopicTile $_ }) -join '')
 $confCards = New-Object Text.StringBuilder
 foreach ($c in $conferences) {
@@ -402,36 +412,32 @@ foreach ($c in $conferences) {
 <div class="card-body">
 <h3><a href="$(U "/conferences/$($c.slug)/")">$(Esc $c.name)</a></h3>
 <p class="who">$(Esc $c.location) &middot; $(Esc $c.date)</p>
-<p class="meta">$(Plural $cv.Count 'video')</p>
+<p class="meta"><a href="$(U "/conferences/$($c.slug)/")">Watch the videos from this conference</a></p>
 </div>
 </article>
 "@)
 }
+$heroLogo = ''
+if ($hasLogo) { $heroLogo = '<img class="hero-logo" src="' + (U '/assets/img/pvj-logo.png') + '" alt="PVJ" width="134" height="120">' }
 
 $homeBody = @"
 <section class="hero solo">
 <div class="wrap">
+<div class="hero-brand">
+$heroLogo
+<div>
 <span class="eyebrow">Open-access video journal</span>
 <h1>The Paediatric <em>Video Journal</em></h1>
-<p class="lede">$(Esc $site.tagline)</p>
-<div class="hero-actions">
-<a class="btn" href="#clinical-areas">Browse by clinical area</a>
-<a class="btn ghost" href="$(U '/videos/')">All $($videos.Count) videos</a>
 </div>
-<ul class="stats">
-<li><b>$($videos.Count)</b>videos</li>
-<li><b>$($speakerList.Count)</b>speakers</li>
-<li><b>$($liveTopics.Count)</b>clinical areas and topics</li>
-</ul>
+</div>
+<p class="lede">$(Esc $site.tagline)</p>
 </div>
 </section>
 
 <section class="section tight" id="clinical-areas">
 <div class="wrap">
 <div class="section-head"><h2>Browse by clinical area</h2><a class="more" href="$(U '/topics/')">All topics</a></div>
-<div class="tiles">$clinicalTiles</div>
-<h3 class="sub-head">Across child health</h3>
-<div class="tiles compact">$themeTiles</div>
+<div class="areas">$areaTiles</div>
 </div>
 </section>
 
@@ -463,8 +469,20 @@ $(Grid @($videos | Select-Object -First 8))
 </div>
 </div>
 </section>
+
+<section class="section tight">
+<div class="wrap">
+<div class="follow">
+<h2>Follow PVJ</h2>
+<div class="hero-actions">
+<a class="btn ghost" href="$(Esc $site.youtubeUrl)" rel="noopener">YouTube</a>
+<a class="btn ghost" href="$(Esc $site.linkedinUrl)" rel="noopener">LinkedIn</a>
+</div>
+</div>
+</div>
+</section>
 "@
-$orgLd = '{"@context":"https://schema.org","@type":"Organization","name":"' + (J $site.fullName) + '","alternateName":"' + (J $site.name) + '","sameAs":["' + (J $site.youtubeUrl) + '","' + (J $site.linkedinUrl) + '"]' + $(if ($cfgUrl) { ',"url":"' + (J (AbsUrl '/')) + '"' } else { '' }) + '}'
+$orgLd ='{"@context":"https://schema.org","@type":"Organization","name":"' + (J $site.fullName) + '","alternateName":"' + (J $site.name) + '","sameAs":["' + (J $site.youtubeUrl) + '","' + (J $site.linkedinUrl) + '"]' + $(if ($cfgUrl) { ',"url":"' + (J (AbsUrl '/')) + '"' } else { '' }) + '}'
 Write-Page '/' $site.fullName $site.tagline $homeBody @{ jsonld = $orgLd }
 
 # ---------------------------------------------------------------- videos index
@@ -667,8 +685,8 @@ $(Crumbs @(@{ label = 'Topics' }))
 <p class="lede">Find videos by clinical area or by theme. A video can appear under more than one.</p>
 </div>
 <h2 class="sub-head">Clinical areas</h2>
-<div class="tiles">$clinicalTiles</div>
-<h2 class="sub-head">Across child health</h2>
+<div class="areas">$areaTiles</div>
+<h2 class="sub-head">More topics</h2>
 <div class="tiles">$themeTiles</div>
 </div>
 <div class="section tight"></div>
@@ -689,6 +707,13 @@ $(Grid $tv)
 </div>
 <div class="section tight"></div>
 "@ @{ nav = 'topics' }
+}
+# A topic that replaced an older one lists the old slug in "aliases": the old address forwards to it.
+foreach ($t in $liveTopics) {
+    foreach ($oldSlug in @($t.aliases | Where-Object { $_ })) {
+        $to = U "/topics/$($t.slug)/"
+        Write-Out "/topics/$oldSlug/" ('<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><title>' + (Esc $t.name) + ' | ' + (Esc $site.name) + '</title><meta name="robots" content="noindex"><link rel="canonical" href="' + (AbsUrl "/topics/$($t.slug)/") + '"><meta http-equiv="refresh" content="0; url=' + $to + '"></head><body><p><a href="' + $to + '">' + (Esc $t.name) + '</a></p></body></html>')
+    }
 }
 
 # ---------------------------------------------------------------- speakers

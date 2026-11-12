@@ -116,9 +116,20 @@ What he asked for, and what was done:
 - His three-paragraph mission text opens the About page, word for word.
 - A "Contact us" button stays in the bottom-right corner of every page and opens the Contact page.
 
+Second round the same day ("much better"), and what was done:
+
+- The PVJ logo sits beside the title in the top block; the counts of videos and speakers were removed ("maybe once we've got 3,000 videos").
+- The home page lists clinical areas only, as small badges with an icon each, so that all of them are visible on the first screen. The other topics (research, AI, policy and so on) are on the Topics page.
+- Shorter names: Adolescent health, Emergency care, Gastroenterology, Neurology, Respiratory, Surgery.
+- "Oncology and haematology" became Oncology and Haematology; "Infection, immunity and allergy" became Infection, Allergy and Immunology. The 14 videos were re-filed by subject; vaccination videos went under Infection, which leaves Immunology with no videos, so it is not shown yet. The two old addresses forward to Infection and Oncology.
+- The PCCS 2026 card on the home page uses the conference banner he sent, and each conference card has a "Watch the videos from this conference" link. He said he will send pictures and logos for the two RCPCH conferences.
+- YouTube and LinkedIn buttons were added at the bottom of the home page.
+
+Open from that round: with the banner he wrote "maybe add something PCC related here as like a side image, to match design of the conference". It is not clear whether he means the banner itself or the page around it, and no such picture has been supplied.
+
 Asked for but waiting on material or a later stage:
 
-- A picture of each conference itself on the conference cards, instead of a video thumbnail. Decided on 12 November 2026: keep the video thumbnails for now. The cards take an `"image"` path in `content/conferences.json` if photos are supplied later.
+- A picture of each conference itself on the conference cards, instead of a video thumbnail: done for PCCS 2026 with his banner; the two RCPCH cards keep a video thumbnail until he sends their pictures (`"image"` in `content/conferences.json`).
 - An editorial board and the people who decide what is published: he called this "a later stage".
 - He plans to email the site for feedback once the home page is right, and to use it in grant and funding applications.
 
