@@ -643,7 +643,7 @@ $($side.ToString())
 </div>
 </div>
 "@
-    $ld = '{"@context":"https://schema.org","@type":"VideoObject","name":"' + (J $v.title) + '","description":"' + (J $v.summary) + '","thumbnailUrl":["https://i.ytimg.com/vi/' + $id + '/maxresdefault.jpg"],"uploadDate":"' + $v.published + '","duration":"' + (DurIso $v.seconds) + '","embedUrl":"https://www.youtube-nocookie.com/embed/' + $id + '","contentUrl":"https://www.youtube.com/watch?v=' + $id + '"' + $ldTranscript + ',"publisher":{"@type":"Organization","name":"' + (J $site.fullName) + '"' + $(if ($cfgUrl) { ',"logo":{"@type":"ImageObject","url":"' + (J $logoAbs) + '"}' } else { '' }) + '}}'
+    $ld = '{"@context":"https://schema.org","@type":"VideoObject","name":"' + (J $v.title) + '","description":"' + (J $v.summary) + '","thumbnailUrl":["https://i.ytimg.com/vi/' + $id + '/maxresdefault.jpg"],"uploadDate":"' + $v.published + 'T00:00:00+00:00","duration":"' + (DurIso $v.seconds) + '","embedUrl":"https://www.youtube-nocookie.com/embed/' + $id + '","contentUrl":"https://www.youtube.com/watch?v=' + $id + '"' + $ldTranscript + ',"publisher":{"@type":"Organization","name":"' + (J $site.fullName) + '"' + $(if ($cfgUrl) { ',"logo":{"@type":"ImageObject","url":"' + (J $logoAbs) + '"}' } else { '' }) + '}}'
     $who = Who $v
     $ogTitle = $v.title; if ($who) { $ogTitle = $v.title + ' - ' + $who }
     $headTitle = ''; if (($ogTitle + ' | ' + $site.name).Length -gt 70) { $headTitle = [string]$v.title }
@@ -736,6 +736,7 @@ $(Crumbs @(@{ label = 'Topics'; href = '/topics/' }, @{ label = $t.name }))
 <span class="eyebrow">Topic</span>
 <h1>$(Esc $t.name)</h1>
 <p class="lede">$(Esc $t.description)</p>
+$(if ([string]$t.about) { '<p class="about">' + (Esc ([string]$t.about)) + '</p>' })
 </div>
 <p class="filter-status">$(Plural $tv.Count 'video')</p>
 <h2 class="sr-only">Videos</h2>

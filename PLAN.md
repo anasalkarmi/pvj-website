@@ -149,7 +149,9 @@ What decides ranking from here, and is not in the code:
 
 1. **Google Search Console**: done on 12 November 2026 (PVJ's Google account; sitemap read, 270 pages and 123 videos found; the home page was already in Google's index). Look at the Pages and Video pages reports there after a week or two to see what has been indexed.
 2. **Links in**: the 123 YouTube descriptions link to the home page; a link to each video's own page would be better. PCCS, RCPCH and speakers' institutions linking to their pages matters more than anything on the site.
-3. **More text**: two or three sentences of description per clinical area (`content/topics.json`). (All 123 transcripts are on the site since 12 November 2026.)
+3. **More text**: done on 12 November 2026. All 123 transcripts are on the site, and each of the 26 topic pages has a paragraph naming the subjects its videos cover (`"about"` in `content/topics.json`, written only from the videos' titles and summaries).
+4. **Google's own test** (URL inspection, live test of a video page, 12 November 2026): page can be indexed, video detected, breadcrumbs and video data valid. Its one note, an upload date without a time zone, was fixed the same day.
+5. **The other three domains** forward their home page to `https://paediatricvj.com/` with a 301, but any deeper address on them returns 404 (GoDaddy forwards the root only). Nothing links to those, so it was left alone.
 4. Nobody can promise first place for general searches. A search for the journal's own name should find it within weeks of indexing; subject searches depend on items 2 and 3 and on time.
 
 ## 7. Roadmap after launch

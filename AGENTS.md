@@ -20,6 +20,7 @@ Read `README.md` and `PLAN.md` first. This file holds the rules and the recipes.
 - A topic without `"group"` is a clinical area: it gets a badge on the home page, with the icon `src/icons/clinical/<slug>.svg` (see `src/icons/README.md` for the source and licence). Keep clinical names short ("Neurology", not "Neurology and neurodisability"): the owner asked for that.
 - `"group": "theme"` marks a cross-cutting subject (research, education, policy and so on). Themes appear on the Topics page only, never on the home page.
 - A topic with no videos is not shown anywhere (Immunology was in that state when it was added).
+- `"about"` is the paragraph under the one-line description on a topic's page (added for search engines, 12 November 2026). It names the subjects of the videos filed there, using only words from those videos' titles and summaries: no speakers, hospitals or conferences, no counts, no advice, no praise. Re-read it when videos are added to or moved out of a topic.
 - A topic slug is a public address. To replace a topic, give the new one `"aliases": ["old-slug"]`: the build then writes a forwarding page at the old address.
 
 ## PowerShell gotchas in `tools/`
