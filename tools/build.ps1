@@ -171,6 +171,8 @@ $jsV = FileHash8 (Join-Path (Join-Path $assetSrc 'js') 'site.js')
 $imgSrc = Join-Path $assetSrc 'img'
 $hasLogo = Test-Path (Join-Path $imgSrc 'pvj-logo.png')
 $ogDefault = AbsUrl '/assets/img/og-default.png'
+$logoAbs = AbsUrl '/assets/img/pvj-logo.png'
+$crumbItems = $null
 
 # ---------------------------------------------------------------- components
 function Thumb($v, [string]$sizes, [bool]$eager = $false) {
@@ -189,32 +191,34 @@ function Avatar([string]$slug, [string]$initials) {
     if (-not $solo) { return '<span class="avatar" aria-hidden="true">' + $initials + '</span>' }
     $pos = [string]$script:confBySlug[$solo.conference].photoPosition
     if (-not $pos) { $pos = '0% 50%' }
-    return '<span class="avatar photo" aria-hidden="true"><img src="https://i.ytimg.com/vi/' + $solo.youtubeId + '/mqdefault.jpg" alt="" loading="lazy" decoding="async" style="object-position:' + $pos + '"></span>'
+    return '<span class="avatar photo" aria-hidden="true"><img src="https://i.ytimg.com/vi/' + $solo.youtubeId + '/mqdefault.jpg" alt="" width="52" height="52" loading="lazy" decoding="async" style="object-position:' + $pos + '"></span>'
 }
 function SearchText($v) {
     $parts = @($v.title) + @($v.people | ForEach-Object { $_.name; $_.role }) + @($v.topics | ForEach-Object { $script:topicBySlug[$_].name }) + @($script:confBySlug[$v.conference].name, $script:confBySlug[$v.conference].organiser)
     return ($parts -join ' ').ToLowerInvariant()
 }
-function Card($v, [bool]$showConf = $true) {
+function Card($v, [bool]$showConf = $true, [bool]$withSummary = $false) {
     $c = $script:confBySlug[$v.conference]
     $who = Who $v
     $whoHtml = ''; if ($who) { $whoHtml = '<p class="who">' + (Esc $who) + '</p>' }
+    $sumHtml = ''; if ($withSummary -and $v.summary) { $sumHtml = '<p class="sum">' + (Esc $v.summary) + '</p>' }
     if ($showConf) { $meta = '<a href="' + (U "/conferences/$($c.slug)/") + '">' + (Esc $c.name) + '</a> &middot; ' + (DateShort $v.published) } else { $meta = (DateShort $v.published) }
     return @"
 <article class="card" data-search="$(Esc (SearchText $v))" data-conference="$($v.conference)" data-topics="$(@($v.topics) -join ' ')">
 <a class="thumb" href="$(U $v.url)" tabindex="-1" aria-hidden="true">$(Thumb $v '(max-width: 480px) 100vw, (max-width: 780px) 50vw, 300px')<span class="dur">$(Dur $v.seconds)</span></a>
 <div class="card-body">
 <h3><a href="$(U $v.url)">$(Esc $v.title)</a></h3>
+$sumHtml
 $whoHtml
 <p class="meta">$meta</p>
 </div>
 </article>
 "@
 }
-function Grid($list, [bool]$showConf = $true, [string]$extra = '') {
+function Grid($list, [bool]$showConf = $true, [string]$extra = '', [bool]$withSummary = $false) {
     $sb = New-Object Text.StringBuilder
     [void]$sb.Append('<div class="grid' + $extra + '">')
-    foreach ($v in $list) { [void]$sb.Append((Card $v $showConf)) }
+    foreach ($v in $list) { [void]$sb.Append((Card $v $showConf $withSummary)) }
     [void]$sb.Append('</div>')
     return $sb.ToString()
 }
@@ -227,6 +231,7 @@ function SideItem($v) {
 "@
 }
 function Crumbs($items) {
+    $script:crumbItems = @($items)
     $parts = @('<a href="' + (U '/') + '">Home</a>')
     foreach ($it in $items) { if ($it.href) { $parts += '<a href="' + (U $it.href) + '">' + (Esc $it.label) + '</a>' } else { $parts += (Esc $it.label) } }
     return '<p class="crumbs">' + ($parts -join '<span>/</span>') + '</p>'
@@ -268,7 +273,11 @@ function Write-Out([string]$path, [string]$content) {
 }
 
 function Write-Page([string]$path, [string]$title, [string]$desc, [string]$body, [hashtable]$opt = @{}) {
-    if ($path -eq '/') { $fullTitle = (Esc $site.name) + ' | ' + (Esc $site.fullName) } else { $fullTitle = (Esc $title) + ' | ' + (Esc $site.name) }
+    if ($path -eq '/') { $fullTitle = (Esc $site.name) + ' | ' + (Esc $site.fullName) } else {
+        $titleText = $title; if ($opt.headTitle) { $titleText = [string]$opt.headTitle }
+        $titleSuffix = $site.name; if (($titleText + ' | ' + $site.name).Length -lt 40) { $titleSuffix = $site.fullName }
+        $fullTitle = (Esc $titleText) + ' | ' + (Esc $titleSuffix)
+    }
     $canonical = AbsUrl $path
     $image = $script:ogDefault; if ($opt.image) { $image = $opt.image }
     $ogType = 'website'; if ($opt.ogType) { $ogType = $opt.ogType }
@@ -281,6 +290,17 @@ function Write-Page([string]$path, [string]$title, [string]$desc, [string]$body,
     if ($image) { [void]$head.AppendLine('<meta property="og:image" content="' + $image + '">') }
     if ($script:cfgUrl) { [void]$head.AppendLine('<link rel="alternate" type="application/rss+xml" title="PVJ - latest videos" href="' + (U '/feed.xml') + '">') }
     if ($opt.jsonld) { [void]$head.AppendLine('<script type="application/ld+json">' + $opt.jsonld + '</script>') }
+    if ($script:crumbItems -and $canonical) {
+        $bcList = '{"@type":"ListItem","position":1,"name":"Home","item":"' + (J (AbsUrl '/')) + '"}'
+        $bcPos = 1
+        foreach ($bc in $script:crumbItems) {
+            $bcPos++
+            $bcUrl = $canonical; if ($bc.href) { $bcUrl = AbsUrl $bc.href }
+            $bcList += ',{"@type":"ListItem","position":' + $bcPos + ',"name":"' + (J ([string]$bc.label)) + '","item":"' + (J $bcUrl) + '"}'
+        }
+        [void]$head.AppendLine('<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[' + $bcList + ']}</script>')
+    }
+    $script:crumbItems = $null
 
     $nav = New-Object Text.StringBuilder
     foreach ($n in $script:navItems) {
@@ -290,8 +310,8 @@ function Write-Page([string]$path, [string]$title, [string]$desc, [string]$body,
     $logo = '<b>PVJ</b>'
     $footLogo = ''
     if ($script:hasLogo) {
-        $logo = '<img src="' + (U '/assets/img/pvj-logo.png') + '" alt="PVJ" height="44">'
-        $footLogo = '<span class="foot-logo"><img src="' + (U '/assets/img/pvj-logo.png') + '" alt="PVJ" height="46" loading="lazy"></span>'
+        $logo = '<img src="' + (U '/assets/img/pvj-logo.png') + '" alt="PVJ" width="49" height="44">'
+        $footLogo = '<span class="foot-logo"><img src="' + (U '/assets/img/pvj-logo.png') + '" alt="PVJ" width="51" height="46" loading="lazy"></span>'
     }
     $html = @"
 <!doctype html>
@@ -486,8 +506,8 @@ $(Grid @($videos | Select-Object -First 8))
 </div>
 </section>
 "@
-$orgLd ='{"@context":"https://schema.org","@type":"Organization","name":"' + (J $site.fullName) + '","alternateName":"' + (J $site.name) + '","sameAs":["' + (J $site.youtubeUrl) + '","' + (J $site.linkedinUrl) + '"]' + $(if ($cfgUrl) { ',"url":"' + (J (AbsUrl '/')) + '"' } else { '' }) + '}'
-Write-Page '/' $site.fullName $site.tagline $homeBody @{ jsonld = $orgLd }
+$orgLd ='{"@context":"https://schema.org","@type":"Organization","name":"' + (J $site.fullName) + '","alternateName":["' + (J $site.name) + '","The Pediatric Video Journal"],"sameAs":["' + (J $site.youtubeUrl) + '","' + (J $site.linkedinUrl) + '"]' + $(if ($cfgUrl) { ',"url":"' + (J (AbsUrl '/')) + '","logo":"' + (J $logoAbs) + '"' } else { '' }) + '}'
+Write-Page '/' $site.fullName $site.metaDescription $homeBody @{ jsonld = $orgLd }
 
 # ---------------------------------------------------------------- videos index
 $confOptions = ($conferences | Where-Object { $confVideos[$_.slug].Count -gt 0 } | ForEach-Object { '<option value="' + $_.slug + '">' + (Esc $_.name) + '</option>' }) -join ''
@@ -506,6 +526,7 @@ $(Crumbs @(@{ label = 'Videos' }))
 </div>
 <p class="filter-status" id="f-status" aria-live="polite"><span>$(Plural $videos.Count 'video')</span><button type="button" hidden>Clear filters</button></p>
 <div data-filter-list data-noun="video">
+<h2 class="sr-only">Videos</h2>
 $(Grid $videos)
 </div>
 <p class="empty" id="f-empty">No videos match those filters. Try a different search, or clear the filters.</p>
@@ -586,7 +607,7 @@ $(Crumbs @(@{ label = 'Conferences'; href = '/conferences/' }, @{ label = $c.nam
 <div class="watch-grid">
 <article>
 <div class="player" data-yt="$id" data-title="$(Esc $v.title)">
-<img src="https://i.ytimg.com/vi/$id/maxresdefault.jpg" alt="" width="1280" height="720">
+<img src="https://i.ytimg.com/vi/$id/maxresdefault.jpg" alt="$(Esc $v.title)" width="1280" height="720">
 <button type="button" aria-label="Play video: $(Esc $v.title)"><span class="play" aria-hidden="true"></span></button>
 </div>
 <p class="player-note">Pressing play loads the video from YouTube. <a href="$(U '/privacy/')">Privacy</a></p>
@@ -614,10 +635,11 @@ $($side.ToString())
 </div>
 </div>
 "@
-    $ld = '{"@context":"https://schema.org","@type":"VideoObject","name":"' + (J $v.title) + '","description":"' + (J $v.summary) + '","thumbnailUrl":["https://i.ytimg.com/vi/' + $id + '/maxresdefault.jpg"],"uploadDate":"' + $v.published + '","duration":"' + (DurIso $v.seconds) + '","embedUrl":"https://www.youtube-nocookie.com/embed/' + $id + '","contentUrl":"https://www.youtube.com/watch?v=' + $id + '"' + $ldTranscript + ',"publisher":{"@type":"Organization","name":"' + (J $site.fullName) + '"}}'
+    $ld = '{"@context":"https://schema.org","@type":"VideoObject","name":"' + (J $v.title) + '","description":"' + (J $v.summary) + '","thumbnailUrl":["https://i.ytimg.com/vi/' + $id + '/maxresdefault.jpg"],"uploadDate":"' + $v.published + '","duration":"' + (DurIso $v.seconds) + '","embedUrl":"https://www.youtube-nocookie.com/embed/' + $id + '","contentUrl":"https://www.youtube.com/watch?v=' + $id + '"' + $ldTranscript + ',"publisher":{"@type":"Organization","name":"' + (J $site.fullName) + '"' + $(if ($cfgUrl) { ',"logo":{"@type":"ImageObject","url":"' + (J $logoAbs) + '"}' } else { '' }) + '}}'
     $who = Who $v
     $ogTitle = $v.title; if ($who) { $ogTitle = $v.title + ' - ' + $who }
-    Write-Page $v.url $ogTitle $v.summary $body @{ nav = 'videos'; image = "https://i.ytimg.com/vi/$id/maxresdefault.jpg"; ogType = 'video.other'; jsonld = $ld }
+    $headTitle = ''; if (($ogTitle + ' | ' + $site.name).Length -gt 70) { $headTitle = [string]$v.title }
+    Write-Page $v.url $ogTitle $v.summary $body @{ headTitle = $headTitle; nav = 'videos'; image = "https://i.ytimg.com/vi/$id/maxresdefault.jpg"; ogType = 'video.other'; jsonld = $ld }
 }
 
 # ---------------------------------------------------------------- conferences
@@ -675,7 +697,7 @@ $(if ([string]$c.image) { '<img class="conf-banner" src="' + (U ([string]$c.imag
 <h2 class="block-title">Topics covered</h2>
 <ul class="chips">$cChips</ul>
 <div class="section tight"></div>
-$(Grid $cv $false)
+$(Grid $cv $false '' $true)
 </div>
 <div class="section tight"></div>
 "@ @{ nav = 'conferences'; image = "https://i.ytimg.com/vi/$($cv[0].youtubeId)/maxresdefault.jpg" }
@@ -708,10 +730,11 @@ $(Crumbs @(@{ label = 'Topics'; href = '/topics/' }, @{ label = $t.name }))
 <p class="lede">$(Esc $t.description)</p>
 </div>
 <p class="filter-status">$(Plural $tv.Count 'video')</p>
-$(Grid $tv)
+<h2 class="sr-only">Videos</h2>
+$(Grid $tv $true '' $true)
 </div>
 <div class="section tight"></div>
-"@ @{ nav = 'topics' }
+"@ @{ nav = 'topics'; headTitle = ($t.name + ' videos') }
 }
 # A topic that replaced an older one lists the old slug in "aliases": the old address forwards to it.
 foreach ($t in $liveTopics) {
@@ -756,8 +779,26 @@ $($groups.ToString())
 foreach ($s in $speakerList) {
     $sv = @($s.videos)
     $role = ''; if ($s.role) { $role = '<p>' + (Esc $s.role) + '</p>' }
-    $descr = "Watch $(Plural $sv.Count 'PVJ interview') with $($s.name)"; if ($s.role) { $descr += ", $($s.role)" }
-    Write-Page "/speakers/$($s.slug)/" $s.name ($descr + '.') @"
+    $descrHead = "Watch $(Plural $sv.Count 'PVJ video interview') with $($s.name)"
+    $descrTail = ', on ' + [string]$site.fullName + '.'
+    $descrRole = ''
+    if ($s.role) {
+        $roleMax = [Math]::Min(100, 158 - $descrHead.Length - $descrTail.Length - 2)
+        $descrRole = ([string]$s.role).Trim()
+        if ($descrRole.Length -gt $roleMax) {
+            $descrRole = $descrRole.Substring(0, $roleMax)
+            $cutAt = $descrRole.LastIndexOf(' ')
+            if ($cutAt -gt 0) { $descrRole = $descrRole.Substring(0, $cutAt) }
+            $descrRole = $descrRole.TrimEnd(' ', ',', ';', ':', '-')
+        }
+        $descrRole = ', ' + $descrRole
+    }
+    $descr = $descrHead + $descrRole + $descrTail
+    $personLd = ''
+    if ($cfgUrl) {
+        $personLd = '{"@context":"https://schema.org","@type":"Person","name":"' + (J ([string]$s.name)) + '","url":"' + (J (AbsUrl "/speakers/$($s.slug)/")) + '"' + $(if ($s.role) { ',"description":"' + (J ([string]$s.role)) + '"' } else { '' }) + '}'
+    }
+    Write-Page "/speakers/$($s.slug)/" $s.name $descr @"
 <div class="wrap">
 <div class="page-head">
 $(Crumbs @(@{ label = 'Speakers'; href = '/speakers/' }, @{ label = $s.name }))
@@ -767,10 +808,11 @@ $(Avatar $s.slug $s.initials)
 </div>
 </div>
 <p class="filter-status">$(Plural $sv.Count 'video')</p>
-$(Grid $sv)
+<h2 class="sr-only">Videos</h2>
+$(Grid $sv $true '' $true)
 </div>
 <div class="section tight"></div>
-"@ @{ nav = 'speakers' }
+"@ @{ nav = 'speakers'; jsonld = $personLd }
 }
 
 # ---------------------------------------------------------------- static pages
@@ -843,15 +885,28 @@ if ($isPreview) {
 } elseif ($cfgUrl) {
     $sm = New-Object Text.StringBuilder
     [void]$sm.AppendLine('<?xml version="1.0" encoding="UTF-8"?>')
-    [void]$sm.AppendLine('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
-    foreach ($p in $sitemap) { [void]$sm.AppendLine('<url><loc>' + (X (AbsUrl $p)) + '</loc></url>') }
+    [void]$sm.AppendLine('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">')
+    $videoByUrl = @{}
+    foreach ($vx in $videos) { $videoByUrl[[string]$vx.url] = $vx }
+    foreach ($p in $sitemap) {
+        $vx = $videoByUrl[[string]$p]
+        if ($vx) {
+            $vxPub = [string]$vx.published
+            $vxLine = '<url><loc>' + (X (AbsUrl $p)) + '</loc><lastmod>' + $vxPub + '</lastmod><video:video>'
+            $vxLine += '<video:thumbnail_loc>https://i.ytimg.com/vi/' + $vx.youtubeId + '/maxresdefault.jpg</video:thumbnail_loc>'
+            $vxLine += '<video:title>' + (X ([string]$vx.title)) + '</video:title><video:description>' + (X ([string]$vx.summary)) + '</video:description>'
+            $vxLine += '<video:player_loc>https://www.youtube-nocookie.com/embed/' + $vx.youtubeId + '</video:player_loc>'
+            $vxLine += '<video:duration>' + [int]$vx.seconds + '</video:duration><video:publication_date>' + $vxPub + 'T00:00:00+00:00</video:publication_date></video:video></url>'
+            [void]$sm.AppendLine($vxLine)
+        } else { [void]$sm.AppendLine('<url><loc>' + (X (AbsUrl $p)) + '</loc></url>') }
+    }
     [void]$sm.AppendLine('</urlset>')
     Write-Out '/sitemap.xml' $sm.ToString()
 
     $rss = New-Object Text.StringBuilder
     [void]$rss.AppendLine('<?xml version="1.0" encoding="UTF-8"?>')
     [void]$rss.AppendLine('<rss version="2.0"><channel>')
-    [void]$rss.AppendLine('<title>' + (X $site.fullName) + '</title><link>' + (X (AbsUrl '/')) + '</link><description>' + (X $site.tagline) + '</description><language>en-gb</language>')
+    [void]$rss.AppendLine('<title>' + (X $site.fullName) + '</title><link>' + (X (AbsUrl '/')) + '</link><description>' + (X $site.metaDescription) + '</description><language>en-gb</language>')
     foreach ($v in @($videos | Select-Object -First 40)) {
         $pub = ([datetime]::ParseExact($v.published, 'yyyy-MM-dd', $inv)).ToString('ddd, dd MMM yyyy', $inv) + ' 12:00:00 GMT'
         [void]$rss.AppendLine('<item><title>' + (X $v.title) + '</title><link>' + (X (AbsUrl $v.url)) + '</link><guid>' + (X (AbsUrl $v.url)) + '</guid><pubDate>' + $pub + '</pubDate><description>' + (X $v.summary) + '</description></item>')

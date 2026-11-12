@@ -133,6 +133,23 @@ Asked for but waiting on material or a later stage:
 - An editorial board and the people who decide what is published: he called this "a later stage".
 - He plans to email the site for feedback once the home page is right, and to use it in grant and funding applications.
 
+## 6c. Search engines (the owner asked for this by phone, 12 November 2026)
+
+An audit of every built page found the technical base sound (unique titles and descriptions, canonical addresses, one main heading per page, a complete sitemap, valid video data, no trackers). Changes made the same day:
+
+- Topic, speaker and conference pages now show each video's one-line summary, so those pages have real text for a search engine to read.
+- Structured data: breadcrumbs on every page that shows them, a Person record on each speaker page, the PVJ logo on the organisation record and on each video's publisher. "The Pediatric Video Journal" is recorded as an alternative name (the owner holds the pediatricvj domains).
+- The sitemap now describes each of the 123 videos (thumbnail, title, summary, player, length, date).
+- Page titles: long video titles no longer run past what Google shows; short ones ("Allergy", a speaker's name) now end with "The Paediatric Video Journal".
+- The home page has a shorter description for search results; the statement on the page itself is unchanged.
+
+What decides ranking from here, and is not in the code:
+
+1. **Google Search Console**: verify the site under PVJ's Google account and submit `sitemap.xml`. Not done yet. Without it there is no way to see what Google has indexed.
+2. **Links in**: the 123 YouTube descriptions link to the home page; a link to each video's own page would be better. PCCS, RCPCH and speakers' institutions linking to their pages matters more than anything on the site.
+3. **More text**: the 55 transcripts held for checking, and two or three sentences of description per clinical area (`content/topics.json`).
+4. Nobody can promise first place for general searches. A search for the journal's own name should find it within weeks of indexing; subject searches depend on items 2 and 3 and on time.
+
 ## 7. Roadmap after launch
 
 Phase 2 (content quality)
