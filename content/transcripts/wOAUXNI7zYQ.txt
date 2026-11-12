@@ -1,0 +1,12 @@
+KEY POINTS
+- Extubation failure, reintubation within 48 hours of a planned extubation, is traumatising for families and linked to longer stays and higher mortality.
+- In PICANet data, a comorbidity, longer ventilation and a high severity of illness on admission were linked to increased risk, but prediction performed poorly.
+- Further data, such as on airways and comorbidities, may allow prediction and then studies of respiratory support, steroids and non-invasive support.
+TRANSCRIPT
+Hi, I'm here to talk about my PhD, which is looking at extubation failure. Extubation failure is when a child has a planned extubation on the PICU and for whatever reason within 48 hours the team have to reintubate the child. This is really important to parents. We've been working with parent groups and done PPIE. This is a really horrible thing to happen and very traumatising for families, and it's also associated with adverse outcomes for children such as increased length of [unclear] stay and mortality.
+
+So we've been working on a multistream project really, but what the work I presented today was about data, looking at which children experience extubation failure. Can we predict whether they will experience it based on things that we know about them when they come into PICU or that happen during the early days? So we've been using PICANet registry data to look at the characteristics of children who did and didn't experience extubation failure that we detected from the paediatric critical [unclear] minimum data set, to see if we can identify some things.
+
+We found some factors that were strongly associated with extubation failure. So having a comorbidity when you come into PICU, being on the ventilator for longer, having a high [unclear] score, so having a high severity of illness when you came into the PICU, were all associated with increased risk of extubation failure. However, when we try to use those to predict children that might experience extubation failure, the model doesn't perform very well actually predicting.
+
+So the next part of our work will be to collect a bit more data, maybe some data on airways, a bit more detail about what those comorbidities are, to see if we have a bit more data we might actually be able to predict this. And then the reason why we want to be able to is then we can design interventional studies, like studies of respiratory support, studies of using steroids to [unclear], and studies of non-invasive respiratory support, to see if we can actually reduce this for all children no matter what their risk is.

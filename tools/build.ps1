@@ -557,7 +557,9 @@ foreach ($v in $videos) {
     if ($tr) {
         if ($tr.points.Count -gt 0) { $kpHtml = '<h2 class="block-title">Key points</h2><ul class="keypoints">' + ((@($tr.points) | ForEach-Object { '<li>' + (Esc $_) + '</li>' }) -join '') + '</ul>' }
         if ($tr.text) {
-            $trHtml = '<details class="transcript"><summary>Read the transcript</summary><p class="note">Automatic transcript, lightly edited for readability. It may contain errors, so check it against the video before quoting.</p>' + (Paras $tr.text) + '</details>'
+            $trNote = 'Automatic transcript, lightly edited for readability. It may contain errors, so check it against the video before quoting.'
+            if ($tr.text.Contains('[unclear]')) { $trNote += ' Words that could not be made out are marked [unclear].' }
+            $trHtml = '<details class="transcript"><summary>Read the transcript</summary><p class="note">' + $trNote + '</p>' + (Paras $tr.text) + '</details>'
             $ldTranscript = ',"transcript":"' + (J ($tr.text -replace '\s+', ' ')) + '"'
             $script:transcriptCount++
         }

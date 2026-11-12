@@ -66,9 +66,16 @@ elements. For many videos, loop over them in the page (navigate with a `yt-navig
 1. `tools\prepare-transcript-batches.ps1` splits the saved captions into work packs in `work\transcripts\`.
 2. Tidy each pack following `work\transcripts\BRIEF.md` (fidelity rules, key points, file layout).
 3. `tools\validate-transcripts.ps1` compares every transcript with its captions; fix until it passes.
-4. Anything the tidier was unsure about (a garbled word kept, a name or clinical term guessed) goes to
-   `content\transcripts\_review\` with a line in `CHECKLIST.tsv`, not onto the site. This is a clinical
-   audience: never publish a guessed drug, diagnosis, score or person's name.
+4. This is a clinical audience: never publish a guessed drug, diagnosis, score, organisation, number or
+   person's name. A word the tidier is unsure about (garbled, or only a best reading) is either settled
+   from PVJ's own text (the YouTube title and description) or written as `[unclear]`, and it never
+   appears in a key point. Everyday words whose meaning is obvious from the sentence may be repaired.
+   Decision of 12 November 2026 (Anas): transcripts go on the site without waiting for someone to check
+   them against the audio, so `[unclear]` is the safeguard. Every `[unclear]` has a line in
+   `content\transcripts\UNCLEAR.tsv` (what the captions said), so that someone who listens to the video
+   can fill the word in and delete the line.
+5. `tools\validate-transcripts.ps1` accepts `[unclear]` and no other bracketed note. To keep one
+   transcript off the site, list its YouTube id in `content\transcripts\_hold.tsv`.
 
 ## Recipe: thumbnails in the PVJ layout
 

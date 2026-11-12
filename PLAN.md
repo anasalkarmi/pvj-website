@@ -83,7 +83,7 @@ The site was opened before the owner had signed off the following, so they are s
 
 ## 6a. Added on 12 November 2026
 
-- Key points, an automatic transcript and a "cite this video" line on video pages: 68 videos have them; 55 more transcripts wait in `content/transcripts/_review/` for a check against the audio.
+- Key points, an automatic transcript and a "cite this video" line on video pages: all 123 videos have them. The last 55 transcripts were released on 12 November 2026 without an audio check; words that could not be settled are shown as `[unclear]` and listed in `content/transcripts/UNCLEAR.tsv`.
 - Speaker pictures taken from each speaker's most recent solo interview.
 - The 75 RCPCH video titles shown in sentence case, matching the 2026 titles (the YouTube titles are unchanged).
 - Work with PVJ page: the PCCS 2026 facts and an enquiry panel.
@@ -102,7 +102,7 @@ The stills are YouTube's own automatic frames (the best of four per video), not 
 Still to do, and who it needs:
 
 - Telling the speakers their page exists: on 12 November 2026 a comment linking to the video's page was posted from the PVJ LinkedIn page under each of the 48 PCCS 2026 posts (wording says "with key points and a transcript" only where a transcript is published). Not done: personal messages, and anything for the RCPCH 2024 and 2025 speakers, who have no PVJ LinkedIn post. `work\outreach\` holds the list of 107 speakers with their page links and a draft message; it needs the owner's wording, channel and contacts.
-- A listener: the 55 transcripts in the review folder.
+- A listener: the words marked `[unclear]` in the transcripts (`content/transcripts/UNCLEAR.tsv`).
 - The owner's approval of the draft pages (section 6).
 - The owner's accounts or decisions: Google Search Console, a newsletter provider, visitor statistics, an ISSN application, an editorial board.
 
@@ -147,7 +147,7 @@ What decides ranking from here, and is not in the code:
 
 1. **Google Search Console**: verify the site under PVJ's Google account and submit `sitemap.xml`. Not done yet. Without it there is no way to see what Google has indexed.
 2. **Links in**: the 123 YouTube descriptions link to the home page; a link to each video's own page would be better. PCCS, RCPCH and speakers' institutions linking to their pages matters more than anything on the site.
-3. **More text**: the 55 transcripts held for checking, and two or three sentences of description per clinical area (`content/topics.json`).
+3. **More text**: two or three sentences of description per clinical area (`content/topics.json`). (All 123 transcripts are on the site since 12 November 2026.)
 4. Nobody can promise first place for general searches. A search for the journal's own name should find it within weeks of indexing; subject searches depend on items 2 and 3 and on time.
 
 ## 7. Roadmap after launch
@@ -158,7 +158,7 @@ Phase 2 (content quality)
 - Short speaker biographies (optional `content/speakers.json`).
 - RCPCH logo on the RCPCH conference pages, if permitted.
 - Register the site with Google Search Console and submit `sitemap.xml`.
-- Check the 55 held transcripts against the audio and publish them.
+- Listen for the words marked `[unclear]` in the transcripts and fill them in (`content/transcripts/UNCLEAR.tsv`).
 
 Phase 3 (growth, as PVJ produces the content)
 - Newsletter sign-up.

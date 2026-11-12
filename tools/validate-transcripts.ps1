@@ -36,10 +36,15 @@ foreach ($id in $ids) {
         elseif ($p.Length -gt 172) { $problems += "key point over 170 characters ($($p.Length - 2))" }
     }
     $raw = [IO.File]::ReadAllText((Join-Path $capDir ($id + '.txt')), $enc)
-    $rawTok = Tokens $raw; $txtTok = Tokens $text
+    # Two bracketed marks are allowed in a transcript: [unclear] where a word could not be made out,
+    # and the closing note for a recording whose captions become unintelligible part-way through.
+    $cutNote = '[The rest of this recording could not be transcribed clearly.]'
+    $isCut = $text.Contains($cutNote)
+    $plain = $text.Replace($cutNote, '').Replace('[unclear]', '')
+    $rawTok = Tokens $raw; $txtTok = Tokens $plain
     if ($rawTok.Count -gt 0) {
-        $ratio = [Math]::Round($txtTok.Count / $rawTok.Count, 2); $ratios += $ratio
-        if ($ratio -lt 0.72 -or $ratio -gt 1.08) { $problems += "transcript length is $ratio of the captions (allowed 0.72 to 1.08): content was dropped or added" }
+        $ratio = [Math]::Round($txtTok.Count / $rawTok.Count, 2); if (-not $isCut) { $ratios += $ratio }
+        if ((-not $isCut -and $ratio -lt 0.72) -or $ratio -gt 1.08) { $problems += "transcript length is $ratio of the captions (allowed 0.72 to 1.08): content was dropped or added" }
     }
     # words that appear in neither the captions nor the video's own title/description/speaker details
     $known = @{}
@@ -51,7 +56,8 @@ foreach ($id in $ids) {
     $share = 0; if ($txtTok.Count -gt 0) { $share = [Math]::Round(@($txtTok | Where-Object { -not $known.ContainsKey($_) }).Count / $txtTok.Count, 3) }
     if ($share -gt 0.06) { $problems += "$([Math]::Round($share * 100, 1))% of the words are in neither the captions nor the description (limit 6%): " + (($new | Select-Object -First 14) -join ', ') }
     if ($text -match '(?m)^\s*-\s') { $problems += 'transcript contains list lines' }
-    if ($text -match '\[|\]|\(inaudible|\(unclear') { $problems += 'transcript contains bracketed editor notes' }
+    if ($plain -match '\[|\]|\(inaudible|\(unclear') { $problems += 'transcript contains bracketed editor notes other than [unclear]' }
+    foreach ($p in $points) { if ($p -match '\[unclear\]') { $problems += 'a key point contains [unclear]' } }
     if ($problems.Count -gt 0) { $fail++; foreach ($p in $problems) { "FAIL  $id  $p" } } else { $ok++ }
 }
 $avg = 0; if ($ratios.Count -gt 0) { $avg = [Math]::Round(($ratios | Measure-Object -Average).Average, 2) }
