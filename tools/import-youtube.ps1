@@ -102,7 +102,7 @@ foreach ($h in $harvest) {
     $conf = $confOf[$h.id]
 
     # --- description: drop the copyright boilerplate (the site prints its own notice)
-    $paras = @([regex]::Split($rawDesc.Replace("`r", ''), "\n+") | ForEach-Object { $_.Trim() } | Where-Object { $_ -and $_ -notmatch '(?i)^(this work is|these works are)\b.*copyright' })
+    $paras = @([regex]::Split($rawDesc.Replace("`r", ''), "\n+") | ForEach-Object { $_.Trim() } | Where-Object { $_ -and $_ -notmatch '(?i)^(this work is|these works are)\b.*copyright' -and $_ -notmatch '(?i)on the PVJ website:\s*https?://' })
     $desc = $paras -join "`n`n"
 
     # --- slug: never changes once a video has one
