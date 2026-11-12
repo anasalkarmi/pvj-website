@@ -273,7 +273,8 @@ function Write-Out([string]$path, [string]$content) {
 }
 
 function Write-Page([string]$path, [string]$title, [string]$desc, [string]$body, [hashtable]$opt = @{}) {
-    if ($path -eq '/') { $fullTitle = (Esc $site.name) + ' | ' + (Esc $site.fullName) } else {
+    # The home page's search title comes from site.json "homeTitle" (the visible heading does not change).
+    if ($path -eq '/') { $fullTitle = (Esc $site.name) + ' | ' + (Esc $site.fullName); if ([string]$site.homeTitle) { $fullTitle = Esc ([string]$site.homeTitle) } } else {
         $titleText = $title; if ($opt.headTitle) { $titleText = [string]$opt.headTitle }
         $titleSuffix = $site.name; if (($titleText + ' | ' + $site.name).Length -lt 40) { $titleSuffix = $site.fullName }
         $fullTitle = (Esc $titleText) + ' | ' + (Esc $titleSuffix)
@@ -729,6 +730,14 @@ $(Crumbs @(@{ label = 'Topics' }))
 
 foreach ($t in $liveTopics) {
     $tv = @($topicVideos[$t.slug])
+    # Related topics: the topics that most often share a video with this one (links between topic pages).
+    $coTopics = @{}
+    foreach ($rv in $tv) { foreach ($rs in @($rv.topics)) { if ($rs -ne $t.slug) { $coTopics[$rs] = 1 + [int]$coTopics[$rs] } } }
+    $relTopics = @($coTopics.Keys | Sort-Object @{ Expression = { $coTopics[$_] }; Descending = $true }, @{ Expression = { $topicBySlug[$_].name }; Descending = $false } | Select-Object -First 8)
+    $relHtml = ''
+    if ($relTopics.Count -gt 0) {
+        $relHtml = '<h2 class="sub-head">Related topics</h2><ul class="chips">' + (($relTopics | ForEach-Object { '<li><a class="chip" href="' + (U "/topics/$_/") + '">' + (Esc $topicBySlug[$_].name) + '</a></li>' }) -join '') + '</ul>'
+    }
     Write-Page "/topics/$($t.slug)/" $t.name ("$($t.description) $(Plural $tv.Count 'video') from PVJ.") @"
 <div class="wrap">
 <div class="page-head">
@@ -741,6 +750,7 @@ $(if ([string]$t.about) { '<p class="about">' + (Esc ([string]$t.about)) + '</p>
 <p class="filter-status">$(Plural $tv.Count 'video')</p>
 <h2 class="sr-only">Videos</h2>
 $(Grid $tv $true '' $true)
+$relHtml
 </div>
 <div class="section tight"></div>
 "@ @{ nav = 'topics'; headTitle = ($t.name + ' videos') }
