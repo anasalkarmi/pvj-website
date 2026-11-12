@@ -118,7 +118,7 @@ What he asked for, and what was done:
 
 Asked for but waiting on material or a later stage:
 
-- A picture of each conference itself on the conference cards, instead of a video thumbnail. The cards take an `"image"` path in `content/conferences.json`; one photo per conference is needed (PCCS 2026, RCPCH 2025, RCPCH 2024).
+- A picture of each conference itself on the conference cards, instead of a video thumbnail. Decided on 12 November 2026: keep the video thumbnails for now. The cards take an `"image"` path in `content/conferences.json` if photos are supplied later.
 - An editorial board and the people who decide what is published: he called this "a later stage".
 - He plans to email the site for feedback once the home page is right, and to use it in grant and funding applications.
 
