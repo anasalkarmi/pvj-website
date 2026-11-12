@@ -85,6 +85,11 @@ elements. For many videos, loop over them in the page (navigate with a `yt-navig
 4. Copy the stills a plan uses into `src\thumbnails\stills\`: once a thumbnail is uploaded, YouTube no longer serves the video's old default frame.
 5. Upload in YouTube Studio (video > Details > Thumbnail), one video at a time, then run `tools\check-uploaded-thumbnails.ps1`, which compares what YouTube serves with the rendered files.
 
+## Recipe: a conference's picture and logo
+
+- The picture on a conference's card and at the top of its page is the conference photo with three interview stills down the right-hand side (the layout the owner approved for PCCS 2026 and asked to repeat). `tools\make-conference-picture.ps1` makes it from the photo and three stills in `src\thumbnails\stills\` (use the `cropX` from the thumbnail plan); the header of that script explains the options. Pick stills of three different speakers from that conference, none of them the person in the main photo. Save it as `src\assets\img\conferences\<conference-slug>.jpg` and set `"image"` in `content\conferences.json`.
+- `"logo"` in `content\conferences.json` is shown to the left of the card text: a round badge by default, or `"logoShape": "wide"` for a wordmark (RCPCH). Conference photos and logos belong to the organisers and come from the owner or with his say-so; a logo here does not make the organiser a partner (`partnerLogo` is only for partnerships the owner has confirmed).
+
 ## Checking the live site
 
 `tools\check-live.ps1` asks GitHub's servers directly for the home page, both `www` and bare addresses over http and https, the sitemap, the feed and the 404 page, and says whether the site is hidden from search engines.

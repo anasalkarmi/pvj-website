@@ -163,6 +163,7 @@ a.chip:hover { border-color: var(--teal); color: var(--teal-dark); background: v
 }
 .conf-body { display: flex; align-items: center; gap: 14px; }
 .conf-logo { flex: none; width: 60px; height: 60px; border-radius: 50%; object-fit: cover; }
+.conf-logo.wide { width: 84px; height: auto; border-radius: 0; object-fit: contain; }
 .conf-banner { display: block; width: 100%; max-width: 820px; height: auto; border-radius: 14px; margin-top: 24px; }
 .follow { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 18px; border-top: 1px solid var(--line); padding-top: 26px; }
 .follow h2 { margin: 0; font-size: 1.25rem; }

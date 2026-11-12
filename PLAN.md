@@ -127,9 +127,11 @@ Second round the same day ("much better"), and what was done:
 
 With the banner he wrote "maybe add something PCC related here as like a side image, to match design of the conference". The site now shows his banner with three stills from PCCS 2026 interviews down the right-hand side (`src/assets/img/conferences/pccs-2026.jpg`, used on the home page card and at the top of the PCCS 2026 page). Whether that is what he meant is for him to say.
 
+Third round (pictures in WhatsApp, same day): the conference's logo sits to the left of the card text ("put the PCCS logo here... and the writing to its right... same with the RCPCH parts"), and the two RCPCH conferences have pictures "using the same format as the one you done for pccs". RCPCH 2025 uses his photo of the speaker at the podium, which shows the RCPCH logo, with three stills from 2025 interviews; RCPCH 2024 uses his lecture-theatre photo with the RCPCH logo on a white plate and three stills from 2024 interviews. His second 2025 photo (award winners on stage) is not used. The RCPCH logo was taken from rcpch.ac.uk on Anas's instruction (original kept in `src/brand/`). The photos and the logo belong to RCPCH; whether PVJ may use them is the owner's call, and the site does not call RCPCH a partner. `tools\make-conference-picture.ps1` makes these pictures.
+
 Asked for but waiting on material or a later stage:
 
-- A picture of each conference itself on the conference cards, instead of a video thumbnail: done for PCCS 2026 with his banner; the two RCPCH cards keep a video thumbnail until he sends their pictures (`"image"` in `content/conferences.json`).
+- A picture of each conference itself on the conference cards, instead of a video thumbnail: done for all three (see the third round below).
 - An editorial board and the people who decide what is published: he called this "a later stage".
 - He plans to email the site for feedback once the home page is right, and to use it in grant and funding applications.
 
@@ -156,7 +158,6 @@ Phase 2 (content quality)
 - Fix the four typos above in the YouTube descriptions.
 - Add the site to the LinkedIn page.
 - Short speaker biographies (optional `content/speakers.json`).
-- RCPCH logo on the RCPCH conference pages, if permitted.
 - Read the Pages and Video pages reports in Google Search Console once Google has crawled the sitemap.
 - Listen for the words marked `[unclear]` in the transcripts and fill them in (`content/transcripts/UNCLEAR.tsv`).
 

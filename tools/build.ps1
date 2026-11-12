@@ -425,13 +425,19 @@ foreach ($c in $conferences) {
     # "image" in conferences.json is a photo of the conference itself (a path under /assets/img/).
     # Until one is supplied the card shows the thumbnail of the conference's newest video.
     # "logo" is the conference's own badge, shown to the left of the card text (owner's request).
+    # A round badge is the default; "logoShape": "wide" is for a wordmark (about 5:1), shown uncropped.
+    $logoImg = ''
+    if ([string]$c.logo) {
+        if ([string]$c.logoShape -eq 'wide') { $logoImg = '<img class="conf-logo wide" src="' + (U ([string]$c.logo)) + '" alt="" width="84" height="16" loading="lazy" decoding="async">' }
+        else { $logoImg = '<img class="conf-logo" src="' + (U ([string]$c.logo)) + '" alt="" width="60" height="60" loading="lazy" decoding="async">' }
+    }
     $pic = Thumb $cv[0] '(max-width: 480px) 100vw, (max-width: 780px) 50vw, 380px'
     if ([string]$c.image) { $pic = '<img src="' + (U ([string]$c.image)) + '" alt="" width="640" height="360" loading="lazy" decoding="async">' }
     [void]$confCards.Append(@"
 <article class="card">
 <a class="thumb" href="$(U "/conferences/$($c.slug)/")" tabindex="-1" aria-hidden="true">$pic</a>
 <div class="card-body conf-body">
-$(if ([string]$c.logo) { '<img class="conf-logo" src="' + (U ([string]$c.logo)) + '" alt="" width="60" height="60" loading="lazy" decoding="async">' })
+$logoImg
 <div>
 <h3><a href="$(U "/conferences/$($c.slug)/")">$(Esc $c.name)</a></h3>
 <p class="who">$(Esc $c.location) &middot; $(Esc $c.date)</p>

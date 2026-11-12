@@ -17,6 +17,9 @@
   },
   {
     "slug": "rcpch-2025",
+    "image": "/assets/img/conferences/rcpch-2025.jpg",
+    "logo": "/assets/img/conferences/rcpch-logo.png",
+    "logoShape": "wide",
     "name": "RCPCH Conference 2025",
     "organiser": "Royal College of Paediatrics and Child Health",
     "organiserShort": "RCPCH",
@@ -30,6 +33,9 @@
   },
   {
     "slug": "rcpch-2024",
+    "image": "/assets/img/conferences/rcpch-2024.jpg",
+    "logo": "/assets/img/conferences/rcpch-logo.png",
+    "logoShape": "wide",
     "name": "RCPCH Conference 2024",
     "organiser": "Royal College of Paediatrics and Child Health",
     "organiserShort": "RCPCH",
