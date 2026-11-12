@@ -15,7 +15,10 @@ $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.Drawing
 $W = Split-Path -Parent $PSScriptRoot
 $Frames = Join-Path $W 'work\thumbnails\frames'
-$Out = Join-Path $W 'work\thumbnails\final'
+# the stills a committed plan uses are kept here, because uploading a thumbnail
+# replaces the video's old default frame (frame 0) on YouTube for good
+$Stills = Join-Path $W 'src\thumbnails\stills'
+$Out =Join-Path $W 'work\thumbnails\final'
 $Logo = Join-Path $W 'src\brand\PVJ-red-blue-original.png'
 [void][IO.Directory]::CreateDirectory($Out)
 $Dot = [string][char]0x00B7
@@ -76,6 +79,7 @@ foreach ($r in $rows) {
         if (-not $confOf.ContainsKey($r.id)) { throw 'id is not in content/videos.json' }
         $sub = $subOf[$confOf[$r.id]]; if (-not $sub) { throw "no label for conference $($confOf[$r.id])" }
         $framePath = Join-Path $Frames ("$($r.id)-$($r.frame).jpg")
+        if (-not (Test-Path -LiteralPath $framePath)) { $framePath = Join-Path $Stills ("$($r.id)-$($r.frame).jpg") }
         if (-not (Test-Path -LiteralPath $framePath)) { throw "frame $($r.frame) does not exist" }
         if ($r.head.Count -lt 1) { throw 'no headline' }
         if ($r.cropX -lt 0 -or $r.cropX -gt 606) { throw "cropX $($r.cropX) is outside 0..606" }

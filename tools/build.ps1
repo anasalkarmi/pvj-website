@@ -38,7 +38,9 @@ function Slug([string]$s) {
         if ([Globalization.CharUnicodeInfo]::GetUnicodeCategory($ch) -ne [Globalization.UnicodeCategory]::NonSpacingMark) { [void]$sb.Append($ch) }
     }
     $t = $sb.ToString().ToLowerInvariant()
-    $t = [regex]::Replace($t, '[''‘’]', '')
+    # Only the straight apostrophe is dropped; a curly one becomes a hyphen ("parent-s"). Leave it so:
+    # video and speaker addresses were made this way and must not change.
+    $t = [regex]::Replace($t, '['']', '')
     return ([regex]::Replace($t, '[^a-z0-9]+', '-')).Trim('-')
 }
 function DateLong([string]$d) { return ([datetime]::ParseExact($d, 'yyyy-MM-dd', $inv)).ToString('d MMMM yyyy', $inv) }
@@ -177,14 +179,16 @@ function Thumb($v, [string]$sizes, [bool]$eager = $false) {
 }
 function Who($v) { return (@($v.people | ForEach-Object { $_.name }) -join ' and ') }
 # A speaker's picture is a square crop of the thumbnail of their most recent solo interview;
-# speakers who only appear in joint interviews keep their initials.
+# speakers who only appear in joint interviews keep their initials. Every PVJ thumbnail has the
+# photo in its left half, so the crop starts at the left edge; a conference whose thumbnails are
+# laid out differently can set "photoPosition" (a CSS object-position) in conferences.json.
 function Avatar([string]$slug, [string]$initials) {
     $sp = $script:speakers[$slug]
     $solo = $null
     if ($sp) { $solo = @($sp.videos | Where-Object { $_.people.Count -eq 1 }) | Select-Object -First 1 }
     if (-not $solo) { return '<span class="avatar" aria-hidden="true">' + $initials + '</span>' }
     $pos = [string]$script:confBySlug[$solo.conference].photoPosition
-    if (-not $pos) { $pos = '35% 30%' }
+    if (-not $pos) { $pos = '0% 50%' }
     return '<span class="avatar photo" aria-hidden="true"><img src="https://i.ytimg.com/vi/' + $solo.youtubeId + '/mqdefault.jpg" alt="" loading="lazy" decoding="async" style="object-position:' + $pos + '"></span>'
 }
 function SearchText($v) {

@@ -11,6 +11,8 @@ Read `README.md` and `PLAN.md` first. This file holds the rules and the recipes.
 - British English. Plain, professional wording.
 - The site must stay free of cookies, trackers and third-party scripts unless the owner asks, and then `content/pages/privacy.html` must change in the same piece of work.
 - Do not publish (commit, push, change DNS) without the owner's go-ahead.
+- Thumbnails: show the owner the design and get a yes before uploading anything to YouTube. The approved layout is the one in `tools/make-thumbnails.ps1`; a new layout needs a new yes.
+- Do not message speakers, partners or anyone else on PVJ's behalf without the owner approving the exact wording and the channel.
 
 ## PowerShell gotchas in `tools/`
 
@@ -59,10 +61,23 @@ elements. For many videos, loop over them in the page (navigate with a `yt-navig
    `content\transcripts\_review\` with a line in `CHECKLIST.tsv`, not onto the site. This is a clinical
    audience: never publish a guessed drug, diagnosis, score or person's name.
 
+## Recipe: thumbnails in the PVJ layout
+
+1. `tools\thumbnail-candidates.ps1` fetches four stills per video into `work\thumbnails\frames\` and makes numbered sheets with pixel rulers.
+2. Write one plan row per video (format at the top of `tools\make-thumbnails.ps1`; the 2024 and 2025 plan is `src\thumbnails\plan-rcpch-2024-2025.tsv`). Pick the still where the speaker looks best and no on-screen caption shows; `cropX` puts the face in the middle of the 674 px photo.
+3. `tools\make-thumbnails.ps1 -Plan <file> -SheetName <name>` renders them and a contact sheet. Look at the whole sheet before uploading: cut-off headlines, a face behind the panel, a wrong name.
+4. Copy the stills a plan uses into `src\thumbnails\stills\`: once a thumbnail is uploaded, YouTube no longer serves the video's old default frame.
+5. Upload in YouTube Studio (video > Details > Thumbnail), one video at a time, then run `tools\check-uploaded-thumbnails.ps1`, which compares what YouTube serves with the rendered files.
+
+## Checking the live site
+
+`tools\check-live.ps1` asks GitHub's servers directly for the home page, both `www` and bare addresses over http and https, the sitemap, the feed and the 404 page, and says whether the site is hidden from search engines.
+
 ## Work that suits a cheaper model
 
 - Step 3 above (structured extraction and topic tagging), with the import cross-checks as the safety net.
 - Drafting or revising copy in `content/pages/` from facts the owner supplies.
 - Image preparation with `tools\make-assets.ps1`.
+- Thumbnail plan rows and the YouTube Studio uploads, with the contact sheet and `tools\check-uploaded-thumbnails.ps1` as the checks.
 
 Design changes, the build script and anything that publishes should stay with the lead agent and the owner.

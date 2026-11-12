@@ -25,7 +25,9 @@ function Slug([string]$s) {
     foreach ($ch in $n.ToCharArray()) {
         if ([Globalization.CharUnicodeInfo]::GetUnicodeCategory($ch) -ne [Globalization.UnicodeCategory]::NonSpacingMark) { [void]$sb.Append($ch) }
     }
-    $t = [regex]::Replace($sb.ToString().ToLowerInvariant(), '[''‘’]', '')
+    # Only the straight apostrophe is dropped; a curly one becomes a hyphen ("parent-s"). Leave it so:
+    # it matches tools/build.ps1 and the addresses already published.
+    $t = [regex]::Replace($sb.ToString().ToLowerInvariant(), '['']', '')
     return ([regex]::Replace($t, '[^a-z0-9]+', '-')).Trim('-')
 }
 function Q([string]$s) {

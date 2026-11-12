@@ -251,7 +251,8 @@ a.thumb:hover img { transform: scale(1.03); }
 .person div span { display: block; font-size: 0.9rem; color: var(--ink-2); line-height: 1.35; }
 
 .avatar.photo { overflow: hidden; background: #ddd8cf; }
-.avatar.photo img { width: 100%; height: 100%; object-fit: cover; }
+/* the square crop reaches a little past the photo into the thumbnail's text panel; the slight zoom from the left edge pushes that strip out of the circle */
+.avatar.photo img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.09); transform-origin: 0 45%; }
 
 .keypoints { margin: 0 0 24px; padding: 16px 20px 16px 38px; max-width: 46em; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--red); border-radius: 0 var(--radius) var(--radius) 0; }
 .keypoints li { margin-bottom: 8px; line-height: 1.5; }

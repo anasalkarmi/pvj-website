@@ -29,7 +29,7 @@ Status on 12 November 2026: **the site is live at https://paediatricvj.com and o
 - `/speakers/` and `/speakers/<slug>/` (107 speakers)
 - `/about/`, `/about/editorial-policy/`, `/work-with-us/`, `/contact/`
 - `/privacy/`, `/terms/`, `404.html`
-- `sitemap.xml`, `feed.xml` (RSS), `robots.txt` once the domain is set
+- `sitemap.xml`, `feed.xml` (RSS), `robots.txt`
 
 ## 3. Content
 
@@ -69,17 +69,17 @@ Corrections made on the site (the YouTube descriptions still contain these typos
 - Custom domain: `paediatricvj.com`, registered at GoDaddy. Its DNS points at GitHub Pages (four A records for the bare domain to 185.199.108-111.153, one CNAME for `www` to the GitHub account's `github.io` name), with free HTTPS from GitHub.
 - The same GoDaddy account also holds `paediatricvj.co.uk`, `pediatricvj.com` and `pediatricvj.co.uk`. Each one is forwarded (permanent, 301) to `https://paediatricvj.com` with GoDaddy's domain forwarding, so every spelling lands on the site.
 
-## 6. Before the full launch - approvals needed
+## 6. Launch state and approvals still owed
 
-Done: domain connected, repository and hosting set up, contact email on the Contact page.
+Done: domain connected (bare and `www`, both with a valid HTTPS certificate), repository and hosting set up, contact email on the Contact page, site opened to search engines on 12 November 2026. `tools\check-live.ps1` re-checks all of this in a few seconds.
 
-Still needed before search engines are let in:
+The site was opened before the owner had signed off the following, so they are still owed:
 
 1. **Draft pages** - About, Editorial policy, Work with PVJ, Privacy and Terms are drafts written from known facts. The owner should read and approve them. Terms assume the law of England and Wales.
 2. **"Intended for healthcare professionals"** - confirm this wording for the notice bar and footer.
 3. **PCCS logo** - shown on the PCCS 2026 page as "In partnership with". Confirm PCCS is happy with that use.
 4. **Legal identity** - Privacy and Terms name "The Paediatric Video Journal" only. Add the company or owner name if there is one.
-5. **Then switch on indexing** - `"preview": false` in `content/site.json`, publish, and register the site with Google Search Console.
+5. **Google Search Console** - not registered yet. It needs a Google account that should own the listing (PVJ's, not an editor's) and one DNS record at GoDaddy.
 
 ## 6a. Added on 12 November 2026
 
@@ -87,29 +87,36 @@ Still needed before search engines are let in:
 - Speaker pictures taken from each speaker's most recent solo interview.
 - The 75 RCPCH video titles shown in sentence case, matching the 2026 titles (the YouTube titles are unchanged).
 - Work with PVJ page: the PCCS 2026 facts and an enquiry panel.
-- The YouTube channel links to the site.
-- Thumbnail design samples for the 75 older videos are in `work/thumbnails/samples/` awaiting the owner's choice; nothing was uploaded.
+- The YouTube channel links to the site, and every one of the 123 video descriptions ends with a line pointing to it (`tools\import-youtube.ps1` drops that line again so it does not appear on the site).
+- All 75 RCPCH 2024 and 2025 videos have thumbnails in the PVJ layout with a red accent (the owner's contact chose "option B"), uploaded to YouTube and checked there one by one. Speaker pictures on the site are cut from the same thumbnails, so the crop was changed to match.
+
+How the 2024 and 2025 thumbnails are made (to repeat it or change one):
+
+1. `tools\thumbnail-candidates.ps1` downloads four stills per video from YouTube and lays them out as numbered sheets.
+2. The plan file `src\thumbnails\plan-rcpch-2024-2025.tsv` names, per video, the still, where the face sits, the speaker's name and a three-line headline.
+3. `tools\make-thumbnails.ps1 -Plan src\thumbnails\plan-rcpch-2024-2025.tsv` renders 1280x720 files into `work\thumbnails\final\`.
+4. Upload in YouTube Studio (video > Details > Thumbnail > Upload file > Save). `tools\check-uploaded-thumbnails.ps1` then confirms what is live.
+
+The stills are YouTube's own automatic frames (the best of four per video), not hand-picked from the footage. To use a better still, save it at 1280x720 as `src\thumbnails\stills\<youtubeId>-4.jpg`, put `4` in the frame column of that video's plan row and re-render. The 75 stills the plan uses are kept in `src\thumbnails\stills\`, because uploading a thumbnail replaces the video's old default frame on YouTube; the rendered files are in `work/`, which is not in the repository, and can be rendered again at any time.
 
 Still to do, and who it needs:
 
-- Owner's click: the bulk edit that adds the site link to all 123 YouTube descriptions.
-- Owner's choice: thumbnail option A or B, then make and upload the 75 thumbnails. Videos whose YouTube frame shows the on-screen name caption need a clean still from the original footage.
+- The owner's explicit go-ahead: telling the speakers their page exists. `work\outreach\` holds a list of the 107 speakers with their page links and a draft message. Nothing has been sent.
 - A listener: the 55 transcripts in the review folder.
-- Owner's approval of the draft pages, then open the site to search engines and register it with Google Search Console.
-- Owner's accounts or decisions: a newsletter provider, visitor statistics, an ISSN application, an editorial board.
+- The owner's approval of the draft pages (section 6).
+- The owner's accounts or decisions: Google Search Console, a newsletter provider, visitor statistics, an ISSN application, an editorial board.
 
 ## 7. Roadmap after launch
 
 Phase 2 (content quality)
-- Custom thumbnails for the 2024 and 2025 videos so they match the 2026 style.
 - Fix the four typos above in the YouTube descriptions.
-- Add the site link to YouTube descriptions and the channel page; add the site to the LinkedIn page.
-- Speaker photos and short biographies (optional `content/speakers.json`).
+- Add the site to the LinkedIn page.
+- Short speaker biographies (optional `content/speakers.json`).
 - RCPCH logo on the RCPCH conference pages, if permitted.
 - Register the site with Google Search Console and submit `sitemap.xml`.
+- Check the 55 held transcripts against the audio and publish them.
 
 Phase 3 (growth, as PVJ produces the content)
-- Transcripts on video pages (good for search and accessibility).
 - Newsletter sign-up.
 - Features: highlight films, round-table sessions, podcasts.
 - Privacy-friendly visitor statistics.
