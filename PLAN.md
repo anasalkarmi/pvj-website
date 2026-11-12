@@ -67,7 +67,7 @@ Corrections made on the site (the YouTube descriptions still contain these typos
 - The build needs only Windows PowerShell, which every Windows PC has. No Node, Python or installs.
 - Privacy by default: the site sets no cookies and has no analytics. The YouTube player loads only when a visitor presses play, from YouTube's privacy-enhanced domain, so no cookie banner is needed.
 - Custom domain: `paediatricvj.com`, registered at GoDaddy. Its DNS points at GitHub Pages (four A records for the bare domain to 185.199.108-111.153, one CNAME for `www` to the GitHub account's `github.io` name), with free HTTPS from GitHub.
-- The same GoDaddy account also holds `paediatricvj.co.uk`, `pediatricvj.com` and `pediatricvj.co.uk`. They are not connected yet; the tidy option is to forward each of them to `https://paediatricvj.com`.
+- The same GoDaddy account also holds `paediatricvj.co.uk`, `pediatricvj.com` and `pediatricvj.co.uk`. Each one is forwarded (permanent, 301) to `https://paediatricvj.com` with GoDaddy's domain forwarding, so every spelling lands on the site.
 
 ## 6. Before the full launch - approvals needed
 
