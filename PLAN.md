@@ -3,7 +3,7 @@
 The Paediatric Video Journal (PVJ) website, modelled on video journals such as VJOncology:
 a browsable library of short conference interviews, organised by conference, topic and speaker.
 
-Status on 11 November 2026: **version 1 is built and previewed locally. It is not published yet.**
+Status on 12 November 2026: **version 1 is live at https://paediatricvj.com in soft-launch mode** - anyone with the address can use it, but every page asks search engines not to list it until the owner approves the draft pages (see section 6). To open it to search engines, set `"preview": false` in `content/site.json` and run `tools\publish.ps1`.
 
 ## 1. What the reference site does, and what PVJ takes from it
 
@@ -66,17 +66,20 @@ Corrections made on the site (the YouTube descriptions still contain these typos
 - `content/*.json` is the content. `tools/build.ps1` turns it into the `docs/` folder; `tools/publish.ps1` pushes that build to the `gh-pages` branch, which GitHub Pages serves.
 - The build needs only Windows PowerShell, which every Windows PC has. No Node, Python or installs.
 - Privacy by default: the site sets no cookies and has no analytics. The YouTube player loads only when a visitor presses play, from YouTube's privacy-enhanced domain, so no cookie banner is needed.
-- Custom domain: bought at GoDaddy; DNS will point at GitHub Pages (four A records for the bare domain, one CNAME for `www`), with free HTTPS from GitHub.
+- Custom domain: `paediatricvj.com`, registered at GoDaddy. Its DNS points at GitHub Pages (four A records for the bare domain to 185.199.108-111.153, one CNAME for `www` to the GitHub account's `github.io` name), with free HTTPS from GitHub.
+- The same GoDaddy account also holds `paediatricvj.co.uk`, `pediatricvj.com` and `pediatricvj.co.uk`. They are not connected yet; the tidy option is to forward each of them to `https://paediatricvj.com`.
 
-## 6. Before launch - decisions and approvals needed
+## 6. Before the full launch - approvals needed
 
-1. **Domain name** - the exact domain, and access to its DNS settings at GoDaddy.
-2. **GitHub account** - which account owns the repository (it must be public for free GitHub Pages).
-3. **Contact email** - an address to show on the Contact page (currently LinkedIn and YouTube only).
-4. **Draft pages** - About, Editorial policy, Work with PVJ, Privacy and Terms are drafts written from known facts. The owner should read and approve them. Terms assume the law of England and Wales.
-5. **"Intended for healthcare professionals"** - confirm this wording for the notice bar and footer.
-6. **PCCS logo** - shown on the PCCS 2026 page as "In partnership with". Confirm PCCS is happy with that use.
-7. **Legal identity** - Privacy and Terms name "The Paediatric Video Journal" only. Add the company or owner name if there is one.
+Done: domain connected, repository and hosting set up, contact email on the Contact page.
+
+Still needed before search engines are let in:
+
+1. **Draft pages** - About, Editorial policy, Work with PVJ, Privacy and Terms are drafts written from known facts. The owner should read and approve them. Terms assume the law of England and Wales.
+2. **"Intended for healthcare professionals"** - confirm this wording for the notice bar and footer.
+3. **PCCS logo** - shown on the PCCS 2026 page as "In partnership with". Confirm PCCS is happy with that use.
+4. **Legal identity** - Privacy and Terms name "The Paediatric Video Journal" only. Add the company or owner name if there is one.
+5. **Then switch on indexing** - `"preview": false` in `content/site.json`, publish, and register the site with Google Search Console.
 
 ## 7. Roadmap after launch
 
