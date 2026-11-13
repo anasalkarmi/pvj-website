@@ -101,6 +101,14 @@ The speaker's own word, passed on by the owner or Anas, outranks the YouTube des
 
 A name caption inside the video itself can only be changed by re-exporting the video; tell the owner if that applies.
 
+## Recipe: the research roundup (`/research-roundup/`)
+
+- Each issue is two files in `content\roundups\`: `<slug>.json` (the slug is the date it was compiled; it holds `from`, `to`, `compiled`, `headline`, `lede`, `summary`, three intro lines, `notes` and `caution`) and `<slug>.html`, the page body.
+- The body is generated, never typed: `tools\make-roundup.ps1 -Issue <slug> -Report <checked report.md>` copies every title, figure and link from the checked report (two tables of exactly ten papers and five stories). The report itself is a working file and stays in `work\`.
+- The build writes `/research-roundup/<slug>/` and the index `/research-roundup/` (newest first) and links the index from the footer. A slug is a public address: do not change it.
+- The page says how it was made. The first note states that it is compiled with automated tools from abstracts and database records and is not peer reviewed; where the report says a detail is not verified, the page says so too. Never add a score, figure or date the report does not carry.
+- No outside fonts or scripts, as everywhere on the site.
+
 ## Checking the live site
 
 `tools\check-live.ps1` asks GitHub's servers directly for the home page, both `www` and bare addresses over http and https, the sitemap, the feed and the 404 page, and says whether the site is hidden from search engines.

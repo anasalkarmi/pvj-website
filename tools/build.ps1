@@ -68,6 +68,13 @@ if ([IO.Directory]::Exists((LongPath $outDir))) { [IO.Directory]::Delete((LongPa
 $topics = @(Read-Json (Join-Path $root 'content\topics.json'))
 $conferences = @(Read-Json (Join-Path $root 'content\conferences.json') | Sort-Object sortDate -Descending)
 $pages = @(Read-Json (Join-Path $root 'content\pages.json'))
+# Weekly research roundups: content/roundups/<slug>.json (dates, headline, intro lines) with the
+# page body in <slug>.html, which tools/make-roundup.ps1 writes from the checked report.
+$roundups = @()
+$roundupDir = Join-Path $root 'content\roundups'
+if (Test-Path -LiteralPath $roundupDir) {
+    $roundups = @(Get-ChildItem -LiteralPath $roundupDir -Filter *.json | ForEach-Object { Read-Json $_.FullName } | Where-Object { Test-Path -LiteralPath (Join-Path $roundupDir ([string]$_.slug + '.html')) } | Sort-Object compiled -Descending)
+}
 $videos = @(Read-Json (Join-Path $root 'content\videos.json'))
 
 # Optional per-video file content/transcripts/<youtubeId>.txt:
@@ -365,6 +372,7 @@ $footLogo
 <li><a href="$(U '/topics/')">Topics</a></li>
 <li><a href="$(U '/conferences/')">Conferences</a></li>
 <li><a href="$(U '/speakers/')">Speakers</a></li>
+$(if ($script:roundups.Count -gt 0) { '<li><a href="' + (U '/research-roundup/') + '">Research roundup</a></li>' })
 </ul>
 </div>
 <div>
@@ -832,6 +840,53 @@ $(Grid $sv $true '' $true)
 </div>
 <div class="section tight"></div>
 "@ @{ nav = 'speakers'; jsonld = $personLd }
+}
+
+# ---------------------------------------------------------------- research roundups
+function PeriodText([string]$from, [string]$to) {
+    $d1 = [datetime]::ParseExact($from, 'yyyy-MM-dd', $inv); $d2 = [datetime]::ParseExact($to, 'yyyy-MM-dd', $inv)
+    if ($d1.Year -eq $d2.Year -and $d1.Month -eq $d2.Month) { return $d1.Day.ToString() + ' to ' + $d2.ToString('d MMMM yyyy', $inv) }
+    if ($d1.Year -eq $d2.Year) { return $d1.ToString('d MMMM', $inv) + ' to ' + $d2.ToString('d MMMM yyyy', $inv) }
+    return $d1.ToString('d MMMM yyyy', $inv) + ' to ' + $d2.ToString('d MMMM yyyy', $inv)
+}
+if ($roundups.Count -gt 0) {
+    $ruList = New-Object Text.StringBuilder
+    foreach ($ru in $roundups) {
+        $ruPeriod = PeriodText ([string]$ru.from) ([string]$ru.to)
+        $ruPath = "/research-roundup/$($ru.slug)/"
+        $ruFrag = (Read-Text (Join-Path $roundupDir ([string]$ru.slug + '.html'))).Trim()
+        $ruLd = ''
+        if ($cfgUrl) {
+            $ruLd = '{"@context":"https://schema.org","@type":"Article","headline":"' + (J ([string]$ru.headline)) + '","description":"' + (J ([string]$ru.summary)) + '","datePublished":"' + [string]$ru.compiled + 'T00:00:00+00:00","mainEntityOfPage":"' + (J (AbsUrl $ruPath)) + '","author":{"@type":"Organization","name":"' + (J $site.fullName) + '","url":"' + (J (AbsUrl '/')) + '"},"publisher":{"@type":"Organization","name":"' + (J $site.fullName) + '","logo":{"@type":"ImageObject","url":"' + (J (AbsUrl '/assets/img/pvj-logo.png')) + '"}}}'
+        }
+        Write-Page $ruPath ([string]$ru.headline) ([string]$ru.summary) @"
+<div class="wrap">
+<div class="page-head">
+$(Crumbs @(@{ label = 'Research roundup'; href = '/research-roundup/' }, @{ label = $ruPeriod }))
+<span class="eyebrow">Weekly research roundup</span>
+<h1>$(Esc ([string]$ru.headline))</h1>
+<p class="lede">$(Esc ([string]$ru.lede))</p>
+<ul class="facts"><li>Research published $ruPeriod</li><li>Compiled $(DateLong ([string]$ru.compiled))</li></ul>
+</div>
+<div class="roundup">
+$ruFrag
+</div>
+</div>
+<div class="section tight"></div>
+"@ @{ headTitle = "Paediatric research roundup, $ruPeriod"; jsonld = $ruLd; ogType = 'article' }
+        [void]$ruList.Append('<a class="ru-issue" href="' + (U $ruPath) + '"><span class="eyebrow">' + (Esc $ruPeriod) + '</span><b>' + (Esc ([string]$ru.headline)) + '</b><span>' + (Esc ([string]$ru.summary)) + '</span></a>')
+    }
+    Write-Page '/research-roundup/' 'Research roundup' 'The paediatric research papers attracting the most attention and the ones most likely to change practice, with links to the original studies.' @"
+<div class="wrap">
+<div class="page-head">
+$(Crumbs @(@{ label = 'Research roundup' }))
+<h1>Research roundup</h1>
+<p class="lede">The paediatric research papers attracting the most attention, and the ones most likely to change practice, with links to the original studies.</p>
+</div>
+<div class="ru-issues">$($ruList.ToString())</div>
+</div>
+<div class="section tight"></div>
+"@ @{ headTitle = 'Paediatric research roundup' }
 }
 
 # ---------------------------------------------------------------- static pages

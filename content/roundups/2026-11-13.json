@@ -1,0 +1,21 @@
+{
+  "slug": "2026-11-13",
+  "from": "2026-11-07",
+  "to": "2026-11-13",
+  "compiled": "2026-11-13",
+  "headline": "Vitamin K leads the conversation. African trials lead the evidence.",
+  "lede": "The paediatric papers people were talking about this week, and the ones most likely to change practice. Five stories first, then both top tens in full.",
+  "summary": "Paediatric research from 7 to 13 November 2026: five stories, the ten most-discussed papers and the ten most clinically important, with links to the original studies.",
+  "storiesIntro": "The strongest items from both lists, each in about seventy words.",
+  "discussedIntro": "Ten papers ranked by Altmetric Attention Score, read on 13 November 2026. Bars are drawn to scale. Five were published shortly before this week and are flagged; they are here because they are what people are discussing now.",
+  "importantIntro": "Ten papers published this week, ranked by PVJ's editorial judgement of the strength of the evidence and its potential to change practice. This list is a judgement, not a measurement.",
+  "notes": [
+    "This roundup is compiled for PVJ with the help of automated search and summarising tools, from published abstracts and database records. It is not peer reviewed.",
+    "Papers were found through PubMed and Europe PMC records for 7 to 13 November 2026, Crossref, the JAMA Network and Lancet online-first lists, and news and press-release searches. Titles, dates and findings come from those records and abstracts, not from full texts.",
+    "Altmetric Attention Scores were read from Altmetric's public pages on the evening of 13 November 2026. They change daily, and most papers only a few days old have no score yet, which is not the same as a score of zero.",
+    "Each list holds at most five JAMA Network papers and draws on at least five journals and five specialties. That cap kept six higher-scoring JAMA Network papers out of the most-discussed list.",
+    "The notes under each paper say where a detail comes from a news report or press release instead of the paper itself. Where a paper's abstract disagrees with its own results, the figures are left out.",
+    "Papers published on 12 and 13 November may be missing because databases lag by a day or two. NEJM, The BMJ, Archives of Disease in Childhood and BMJ Paediatrics Open had nothing suitable this week."
+  ],
+  "caution": "This roundup is educational content for healthcare professionals. It is not medical advice. Please read the original paper before citing a figure or changing practice."
+}

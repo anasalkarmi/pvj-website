@@ -42,6 +42,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools\check-thumbnails.ps1
 ## Transcripts and key points
 
 - `content/transcripts/<youtubeId>.txt` holds a video's key points and transcript; the video page shows them when the file exists.
+- `content/roundups/` holds the research roundup issues shown under `/research-roundup/`: one `.json` (dates, headline, notes) and one generated `.html` body per issue. `tools/make-roundup.ps1` writes the body from the checked report; see `AGENTS.md`.
 - `content/transcripts/UNCLEAR.tsv` lists every word shown on the site as `[unclear]`: transcripts are published without an audio check, and a word that could not be settled from PVJ's own text is marked instead of guessed. To fill one in, listen to the video, correct `content/transcripts/<youtubeId>.txt`, delete the line and publish. To keep a transcript off the site, list its id in `content/transcripts/_hold.tsv`.
 - Transcripts start from YouTube's automatic captions, tidied for readability, so the site labels them as automatic transcripts.
 

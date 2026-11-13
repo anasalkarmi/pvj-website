@@ -398,3 +398,52 @@ li:nth-child(even) > .speaker-card .avatar { background: var(--red); }
   html { scroll-behavior: auto; }
   * { transition: none !important; }
 }
+
+/* ---------- research roundup (content/roundups, pages under /research-roundup/) ---------- */
+.roundup { max-width: 46rem; display: flex; flex-direction: column; gap: 48px; padding-bottom: 20px; }
+.ru-jump { display: flex; flex-wrap: wrap; gap: 8px; margin-top: -8px; }
+.ru-jump a { font-size: 0.86rem; font-weight: 600; text-decoration: none; color: var(--ink-2); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 6px 13px; }
+.ru-jump a:hover { color: var(--teal); border-color: var(--teal); }
+.ru-sec { display: flex; flex-direction: column; gap: 20px; scroll-margin-top: 90px; }
+.ru-head { display: flex; flex-direction: column; gap: 6px; padding-bottom: 14px; border-bottom: 2px solid var(--ink); }
+.ru-head h2 { margin: 0; font-size: clamp(1.4rem, 4.2vw, 1.8rem); line-height: 1.15; }
+.ru-head p { margin: 0; font-size: 0.94rem; color: var(--muted); }
+.ru-stories { display: flex; flex-direction: column; gap: 14px; }
+.ru-story { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 20px 18px; display: flex; flex-direction: column; gap: 9px; min-width: 0; }
+.ru-kicker { margin: 0; font-size: 0.76rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--red); }
+.ru-kicker span { color: var(--muted); }
+.ru-story h3 { margin: 0; font-size: clamp(1.15rem, 3.6vw, 1.38rem); line-height: 1.24; }
+.ru-sum { margin: 0; color: var(--ink-2); }
+.ru-src { margin: 4px 0 0; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; font-size: 0.88rem; }
+.ru-src span { color: var(--muted); min-width: 0; }
+.ru-src a { font-weight: 600; white-space: nowrap; }
+.ru-rank { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.ru-item { display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); gap: 4px 12px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.ru-item:first-child { padding-top: 4px; }
+.ru-rk { font-weight: 800; font-size: 1.55rem; line-height: 1.1; color: var(--red); font-variant-numeric: tabular-nums; }
+.ru-body { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+.ru-item h3 { margin: 0; font-weight: 600; font-size: 1.02rem; line-height: 1.35; }
+.ru-item h3 a { color: var(--ink); text-decoration: none; }
+.ru-item h3 a:hover { color: var(--teal); text-decoration: underline; }
+.ru-meta { margin: 0; font-size: 0.86rem; color: var(--muted); }
+.ru-flag { display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 999px; background: var(--red-tint); color: var(--red); font-size: 0.74rem; font-weight: 600; white-space: nowrap; }
+.ru-lbl { margin: 4px 0 -4px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.ru-why { margin: 0; color: var(--ink-2); font-size: 0.96rem; }
+.ru-score { display: flex; align-items: center; gap: 10px; }
+.ru-track { flex: 1; height: 10px; background: var(--line); border-radius: 999px; overflow: hidden; min-width: 0; }
+.ru-bar { display: block; height: 100%; background: var(--teal); border-radius: 999px; }
+.ru-score b { flex: none; min-width: 2.4em; text-align: right; font-weight: 700; font-size: 1.05rem; font-variant-numeric: tabular-nums; }
+.ru-item details { font-size: 0.92rem; }
+.ru-item summary { cursor: pointer; width: fit-content; font-weight: 600; color: var(--teal); padding: 2px 0; }
+.ru-item dl { margin: 10px 0 2px; padding: 14px 16px; background: var(--teal-tint); border-radius: 10px; display: flex; flex-direction: column; gap: 4px; }
+.ru-item dt { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.ru-item dd { margin: 0 0 8px; color: var(--ink-2); overflow-wrap: anywhere; }
+.ru-item dd:last-child { margin-bottom: 0; }
+.ru-notes { margin: 0; padding: 0 0 0 1.1em; display: flex; flex-direction: column; gap: 8px; color: var(--ink-2); font-size: 0.95rem; }
+.ru-caution { margin: 0; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); font-size: 0.92rem; color: var(--ink-2); }
+.ru-issues { display: flex; flex-direction: column; gap: 14px; max-width: 46rem; }
+.ru-issue { display: flex; flex-direction: column; gap: 6px; padding: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; text-decoration: none; color: var(--ink-2); }
+.ru-issue b { color: var(--ink); font-size: 1.2rem; line-height: 1.25; }
+.ru-issue:hover { border-color: var(--teal); }
+.ru-issue:hover b { color: var(--teal); }
+@media (min-width: 640px) { .ru-story { padding: 24px 26px 22px; } .ru-item { grid-template-columns: 3rem minmax(0, 1fr); } .ru-rk { font-size: 1.85rem; } }
