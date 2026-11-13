@@ -52,6 +52,7 @@ Corrections made on the site (the YouTube descriptions still contain these typos
 - "Orthopaediac" corrected to "Orthopaedic" (RCPCH 2024, bone and soft tissue tumour referrals)
 - "Warickshire" corrected to "Warwickshire" (RCPCH 2024, unaccompanied asylum seeking children)
 - Professor Natalie Pattison's affiliation corrected from King's College London to Imperial College London (PCCS 2026, "Transition from PICU to adult critical care"), at her own request by email to Mo on 13 November 2026
+- Natalie Pattison's PCCS 2026 interview now links to corrected YouTube upload `-JBfMm4bYVs` (13 November 2026); the existing video page address and transcript are preserved.
 - Six speaker roles had "A leading ..." / "A distinguished ..." trimmed to a plain job description
 
 ## 4. Design
