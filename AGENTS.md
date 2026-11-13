@@ -91,6 +91,16 @@ elements. For many videos, loop over them in the page (navigate with a `yt-navig
 - The picture on a conference's card and at the top of its page is the conference photo with three interview stills down the right-hand side (the layout the owner approved for PCCS 2026 and asked to repeat). `tools\make-conference-picture.ps1` makes it from the photo and three stills in `src\thumbnails\stills\` (use the `cropX` from the thumbnail plan); the header of that script explains the options. Pick stills of three different speakers from that conference, none of them the person in the main photo. Save it as `src\assets\img\conferences\<conference-slug>.jpg` and set `"image"` in `content\conferences.json`.
 - `"logo"` in `content\conferences.json` is shown to the left of the card text: a round badge by default, or `"logoShape": "wide"` for a wordmark (RCPCH). Conference photos and logos belong to the organisers and come from the owner or with his say-so; a logo here does not make the organiser a partner (`partnerLogo` is only for partnerships the owner has confirmed).
 
+## Recipe: a speaker asks for a correction (name, role, affiliation)
+
+The speaker's own word, passed on by the owner or Anas, outranks the YouTube description. The same text usually sits in three places, so correct all three:
+
+1. The site: the speaker's `role` and the `description` in `content\videos.json`, then build and publish. Add the phrase to `work\import\text-fixes.json` so a later import does not bring the old wording back, and add a line to the corrections list in `PLAN.md` section 3.
+2. YouTube: the video's description in YouTube Studio, under PVJ's own Google account (Studio may open under another signed-in account and say there is no permission).
+3. LinkedIn: the PVJ page's post for that interview (links are in `work\outreach\pccs-linkedin-comments.csv` for PCCS 2026). The posts end with "Related organisations:" and a tagged organisation, which is where a wrong affiliation shows most.
+
+A name caption inside the video itself can only be changed by re-exporting the video; tell the owner if that applies.
+
 ## Checking the live site
 
 `tools\check-live.ps1` asks GitHub's servers directly for the home page, both `www` and bare addresses over http and https, the sitemap, the feed and the 404 page, and says whether the site is hidden from search engines.
