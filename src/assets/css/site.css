@@ -234,6 +234,7 @@ a.thumb:hover img { transform: scale(1.03); }
 .conf-item h2, .conf-item h3 { font-size: 1.45rem; margin-bottom: 6px; }
 .conf-item h2 a, .conf-item h3 a { color: var(--ink); text-decoration: none; }
 .conf-item h2 a:hover, .conf-item h3 a:hover { color: var(--teal); }
+.conf-item .conf-logo { display: block; margin-bottom: 10px; }
 .conf-item .meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 10px; }
 .conf-item p { margin-bottom: 10px; color: var(--ink-2); }
 @media (max-width: 760px) { .conf-item { grid-template-columns: 1fr; } }
@@ -418,21 +419,23 @@ li:nth-child(even) > .speaker-card .avatar { background: var(--red); }
 .ru-src span { color: var(--muted); min-width: 0; }
 .ru-src a { font-weight: 600; white-space: nowrap; }
 .ru-rank { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
-.ru-item { display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); gap: 4px 12px; padding: 18px 0; border-bottom: 1px solid var(--line); }
-.ru-item:first-child { padding-top: 4px; }
-.ru-rk { font-weight: 800; font-size: 1.55rem; line-height: 1.1; color: var(--red); font-variant-numeric: tabular-nums; }
-.ru-body { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
-.ru-item h3 { margin: 0; font-weight: 600; font-size: 1.02rem; line-height: 1.35; }
+/* a ranked paper: picture (clinical-area icon with the rank on it), headline, one paragraph.
+   On a phone the paragraph runs full width under the picture and headline. */
+.ru-item { display: grid; grid-template-columns: 72px minmax(0, 1fr); grid-template-areas: "pic head" "body body"; gap: 12px 14px; align-items: center; padding: 24px 0; border-bottom: 1px solid var(--line); }
+.ru-item:first-child { padding-top: 10px; }
+.ru-pic { grid-area: pic; position: relative; width: 72px; height: 72px; border-radius: 16px; background: var(--teal-tint); color: var(--teal); display: grid; place-items: center; }
+.ru-pic svg { width: 46px; height: 46px; }
+.ru-alt .ru-pic { background: var(--red-tint); color: var(--red); }
+.ru-rk { position: absolute; top: -8px; left: -8px; min-width: 28px; height: 28px; padding: 0 6px; border-radius: 999px; background: var(--ink); color: #fff; font-weight: 700; font-size: 0.86rem; line-height: 28px; text-align: center; font-variant-numeric: tabular-nums; }
+.ru-body { grid-area: body; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.ru-item h3 { grid-area: head; margin: 0; font-weight: 700; font-size: 1.08rem; line-height: 1.3; }
 .ru-item h3 a { color: var(--ink); text-decoration: none; }
 .ru-item h3 a:hover { color: var(--teal); text-decoration: underline; }
+.ru-alt .ru-item h3 { font-weight: 600; font-size: 0.98rem; line-height: 1.35; }
+.ru-item .ru-sum { font-size: 0.97rem; }
 .ru-meta { margin: 0; font-size: 0.86rem; color: var(--muted); }
+.ru-meta a { font-weight: 600; white-space: nowrap; }
 .ru-flag { display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 999px; background: var(--red-tint); color: var(--red); font-size: 0.74rem; font-weight: 600; white-space: nowrap; }
-.ru-lbl { margin: 4px 0 -4px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
-.ru-why { margin: 0; color: var(--ink-2); font-size: 0.96rem; }
-.ru-score { display: flex; align-items: center; gap: 10px; }
-.ru-track { flex: 1; height: 10px; background: var(--line); border-radius: 999px; overflow: hidden; min-width: 0; }
-.ru-bar { display: block; height: 100%; background: var(--teal); border-radius: 999px; }
-.ru-score b { flex: none; min-width: 2.4em; text-align: right; font-weight: 700; font-size: 1.05rem; font-variant-numeric: tabular-nums; }
 .ru-item details { font-size: 0.92rem; }
 .ru-item summary { cursor: pointer; width: fit-content; font-weight: 600; color: var(--teal); padding: 2px 0; }
 .ru-item dl { margin: 10px 0 2px; padding: 14px 16px; background: var(--teal-tint); border-radius: 10px; display: flex; flex-direction: column; gap: 4px; }
@@ -446,4 +449,11 @@ li:nth-child(even) > .speaker-card .avatar { background: var(--red); }
 .ru-issue b { color: var(--ink); font-size: 1.2rem; line-height: 1.25; }
 .ru-issue:hover { border-color: var(--teal); }
 .ru-issue:hover b { color: var(--teal); }
-@media (min-width: 640px) { .ru-story { padding: 24px 26px 22px; } .ru-item { grid-template-columns: 3rem minmax(0, 1fr); } .ru-rk { font-size: 1.85rem; } }
+@media (min-width: 640px) {
+  .ru-story { padding: 24px 26px 22px; }
+  .ru-item { grid-template-columns: 104px minmax(0, 1fr); grid-template-areas: "pic head" "pic body"; gap: 8px 22px; align-items: start; }
+  .ru-pic { width: 104px; height: 104px; border-radius: 20px; }
+  .ru-pic svg { width: 64px; height: 64px; }
+  .ru-item h3 { font-size: 1.16rem; padding-top: 2px; }
+  .ru-alt .ru-item h3 { font-size: 1.05rem; }
+}

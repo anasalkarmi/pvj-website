@@ -4,16 +4,151 @@
   "to": "2026-11-13",
   "compiled": "2026-11-13",
   "headline": "Vitamin K leads the conversation. African trials lead the evidence.",
-  "lede": "The paediatric papers people were talking about this week, and the ones most likely to change practice. Five stories first, then both top tens in full.",
-  "summary": "Paediatric research from 7 to 13 November 2026: five stories, the ten most-discussed papers and the ten most clinically important, with links to the original studies.",
+  "lede": "The Paediatric Video Journal brings you the latest evidence and research in child health on an open-access platform. This weekly newsletter adds what is being discussed and the most relevant new research: five stories first, then the top 10 in focus and the top 10 priority papers.",
+  "summary": "Paediatric research from 7 to 13 November 2026: five stories, the top 10 papers in focus and the top 10 priority papers, each with a short summary and a link to the original study.",
   "storiesIntro": "The strongest items from both lists, each in about seventy words.",
-  "discussedIntro": "Ten papers ranked by Altmetric Attention Score, read on 13 November 2026. Bars are drawn to scale. Five were published shortly before this week and are flagged; they are here because they are what people are discussing now.",
-  "importantIntro": "Ten papers published this week, ranked by PVJ's editorial judgement of the strength of the evidence and its potential to change practice. This list is a judgement, not a measurement.",
+  "discussedIntro": "The ten papers drawing the most attention, each in plain words with a short summary. They are ordered by measured attention (Altmetric Attention Score, read on 13 November 2026). Five were published shortly before this week and are flagged.",
+  "importantIntro": "Ten papers published this week, chosen by PVJ for the strength of the evidence and what they could change in practice. This list is an editorial judgement, not a measurement.",
+  "discussed": [
+    {
+      "rank": 1,
+      "doi": "https://doi.org/10.1001/jamapediatrics.2026.5794",
+      "headline": "Reported rise in vitamin K deficiency bleeding among US infants",
+      "summary": "Researchers at Virginia Commonwealth University in the USA analysed health record data on infants aged 6 months or under, 2017-2025. Refusal of newborn prophylaxis is a live debate. As reported by Reuters, data on over 11 million infants showed diagnosed vitamin K-deficient bleeding rising from 24 to 107.4 per 100,000 between 2017 and 2025, while receipt of the newborn injection fell from 97.7% to 95%. The authors caution that this does not show causation and that miscoding is possible. Figures not verified against the paper.",
+      "topic": "neonatology"
+    },
+    {
+      "rank": 2,
+      "doi": "https://doi.org/10.1001/jama.2026.21764",
+      "headline": "Infants who missed newborn vitamin K had higher bleeding risk in US cohort",
+      "summary": "Researchers using hospital data from 50 US states ran a retrospective cohort study of 5,240,780 infants born at 35-43 weeks, 2017-2025 (Epic Cosmos dataset). The question is whether skipping the newborn injection raises bleeding risk. Infants who did not receive intramuscular vitamin K had a higher risk of bleeding by 6 months (288.0 vs 185.9 per 10,000; adjusted RR 1.47, 95% CI 1.43-1.51) and of intracranial bleeding (33.0 vs 13.2 per 10,000; adjusted RR 2.43). The design is observational and based on diagnosis codes.",
+      "topic": "neonatology"
+    },
+    {
+      "rank": 3,
+      "doi": "https://doi.org/10.1016/j.cub.2026.10.014",
+      "headline": "Permanent daylight saving time would add dark-morning school commutes, model finds",
+      "summary": "Researchers at the University of Washington in the USA modelled real school start times and sunrise times against a decade of national fatal-crash records. Permanent daylight saving time is under US legislative debate. In the 14 states that have approved it, it would add about 356 million pre-sunrise school-commute days for children; nationwide, more than 2 billion dark-morning commutes a year. Pedestrian involvement was more likely in dark-morning fatal crashes (OR 1.77), more so for pedestrians aged 5-18 (OR 2.22).",
+      "topic": "surgery-trauma"
+    },
+    {
+      "rank": 4,
+      "doi": "https://doi.org/10.1001/jamanetworkopen.2026.40252",
+      "headline": "Ultraprocessed food intake linked to food-cue brain response and fat gain in children",
+      "summary": "Researchers at the Keck School of Medicine of USC in the USA ran a prospective cohort (BrainChild) with functional MRI in 46 children of healthy weight (mean age 8.7), followed for one year. Ultra-processed food is a heavily covered public topic. Higher habitual intake was associated with a greater dorsal (not ventral) striatal response to food cues, and that response was associated with one-year gains in BMI and body fat. The sample was small and the findings show association only.",
+      "topic": "gastro-nutrition"
+    },
+    {
+      "rank": 5,
+      "doi": "https://doi.org/10.1001/jamapediatrics.2026.5185",
+      "headline": "Low regret reported by former patients of one US youth gender clinic",
+      "summary": "Researchers at a single multidisciplinary gender clinic in the USA ran a cohort study using self-report surveys (Oct 2023-Oct 2025) of 376 former patients who began oestrogen or testosterone as youths. It is a contested policy area. Among 372 respondents with Decision Regret Scale scores, regret was very low (mean 4.3, median 0 on a 0-100 scale); 96.8% said hormone therapy was the right decision, 2.7% reported regret and 1.9% perceived harm. There was no comparison group and response was incomplete.",
+      "topic": "adolescent-transition"
+    },
+    {
+      "rank": 6,
+      "doi": "https://doi.org/10.1523/JNEUROSCI.2200-25.2026",
+      "headline": "Children with dyscalculia differ in arithmetic strategy use and brain activity",
+      "summary": "Researchers at Stanford in the USA ran a case-comparison study of 68 children aged 8-10, using Bayesian computational modelling and whole-brain decoding of brain activity to look at problem-solving deficits in developmental dyscalculia. Children with dyscalculia showed less efficient execution of every arithmetic strategy and metacognitive impairments: slower switching between strategies, reduced sensitivity to problem difficulty and less adaptive strategy choice. Distributed activity in frontoparietal, hippocampal and ventral-visual regions distinguished them from typically achieving peers and predicted counting efficiency and switching sensitivity.",
+      "topic": "neurology"
+    },
+    {
+      "rank": 7,
+      "doi": "https://doi.org/10.1001/jamapediatrics.2026.5190",
+      "headline": "US youths see thousands of food-marketing exposures a year on digital media",
+      "summary": "Researchers in the USA and Canada ran a cross-sectional study of 1,011 US youths aged 8-17, using real-time screen capture plus a survey, Nov 2024-Oct 2025. It bears on debates about regulating digital food marketing to children. Youths saw an estimated median of 3,883 food-marketing exposures a year (adolescents 10,107, children 1,427) and spent a mean 3.7 hours a day on smartphones or tablets outside schoolwork. Per the journal page (the indexed abstract is cut short), 82.6% of exposures were on social media.",
+      "topic": "gastro-nutrition"
+    },
+    {
+      "rank": 8,
+      "doi": "https://doi.org/10.1016/S0140-6736(26)01819-2",
+      "headline": "Parenting app lowered girls' reported sexual violence in Tanzanian trial",
+      "summary": "Researchers in Tanzania ran a cluster-randomised controlled trial in 80 sub-wards, comparing ParentApp with a hygiene app among 2,396 adolescents aged 10-17 and their caregivers, with 18-month follow-up. The question matters because child protection needs cheap, scalable interventions. Girls in ParentApp clusters reported less past-month sexual violence victimisation (IRR 0.43, 95% CI 0.21-0.86), with no effect for boys (IRR 1.21, 0.59-2.43). Past-month maltreatment was lower in ParentApp clusters (adolescent report IRR 0.92, 0.88-0.96), at a delivery cost of US$6 per family at scale.",
+      "topic": "adolescent-transition"
+    },
+    {
+      "rank": 9,
+      "doi": "https://doi.org/10.1126/sciadv.aec2089",
+      "headline": "Early-life exposures linked to health outcomes that persist into adolescence",
+      "summary": "Researchers analysing the HELIX cohort in Europe ran an observational outcome-wide analysis of 586 mother-child pairs, relating about 200 prenatal and childhood exposures to 11 outcomes, as described in an AAAS release; the paper was not opened. Six prenatal and 42 childhood exposures were each associated with several health outcomes, and many associations persisted from ages 6-11 to 12-18. Indoor air pollution, maternal smoking and urban features had the broadest associations.",
+      "topic": "general"
+    },
+    {
+      "rank": 10,
+      "doi": "https://doi.org/10.1007/s00431-026-07578-y",
+      "headline": "Criteria-led discharge on a Swiss children's ward had similar readmissions to standard care",
+      "summary": "Researchers at the Children's Hospital of Central Switzerland, Lucerne, ran a quality-improvement before-and-after study of 355 admissions for bronchiolitis, pneumonia or asthma. Discharge delays and patient flow are problems on busy children's wards. 14-day readmission was 3.2% after criteria-led (nurse-enabled) discharge, 3.4% after standard discharge and 4.5% after post-implementation standard discharge; patient, caregiver and staff satisfaction was high. The authors call it non-inferior for safety, but this was not a randomised non-inferiority trial.",
+      "topic": "respiratory"
+    }
+  ],
+  "important": [
+    {
+      "rank": 1,
+      "doi": "https://doi.org/10.1016/S0140-6736(26)01418-2",
+      "summary": "Researchers in Côte d'Ivoire, Malawi, Mozambique, Uganda, Zambia and Zimbabwe ran a multicentre open-label 2 × 2 factorial superiority randomised trial in 19 hospitals, enrolling 563 infants aged 28-365 days (558 analysed). It asked whether empirical tuberculosis treatment helps infants living with HIV hospitalised with severe pneumonia. Death by 12 months was 48% (132/276) with empirical TB treatment and 43% (121/282) without (adjusted HR 1.12, 95% CI 0.87-1.43; p=0.39). In the comparison groups, 46% started TB treatment anyway.",
+      "topic": "infection"
+    },
+    {
+      "rank": 2,
+      "doi": "https://doi.org/10.1016/S0140-6736(26)01819-2",
+      "summary": "Researchers in Tanzania ran a cluster-randomised controlled trial in 80 sub-wards, comparing ParentApp with a hygiene app among 2,396 adolescents aged 10-17 and their caregivers. It tests a low-cost, scalable violence-prevention programme built into WHO-UNICEF's Parenting for Lifelong Health. Girls in ParentApp clusters reported less past-month sexual violence victimisation (IRR 0.43, 95% CI 0.21-0.86), with no effect for boys (IRR 1.21, 0.59-2.43). Past-month maltreatment was lower in ParentApp clusters (adolescent report IRR 0.92, 0.88-0.96). Outcomes were self-reported.",
+      "topic": "adolescent-transition"
+    },
+    {
+      "rank": 3,
+      "doi": "https://doi.org/10.1542/peds.2026-078217",
+      "summary": "Researchers led from Canada, drawing on international literature, carried out a systematic review and meta-analysis of 250 studies, 9 of them in children actually requiring resuscitation. It informs which tool emergency, resuscitation and transport teams stock and teach. The PAWPER tape (length-based with body-habitus correction) beat the Broselow tape for time to drug administration, dose accuracy and weight-estimation accuracy in all analyses (OR 2.48, 95% CI 2.04-3.02 for estimates within 10%). Age-based formulas were consistently inaccurate. No study reported patient outcomes.",
+      "topic": "emergency-medicine"
+    },
+    {
+      "rank": 4,
+      "doi": "https://doi.org/10.1001/jamanetworkopen.2026.43418",
+      "summary": "Researchers in Italy ran an open-label multicentre non-inferiority randomised trial in 17 NICUs of 283 very preterm infants, testing procalcitonin- and presepsin-guided antibiotics for early-onset sepsis. Biomarker guidance cut antibiotic exposure sharply. Survival without major morbidity was 53% with biomarker-guided antibiotics and 55% with universal treatment (risk difference -1.8 percentage points, 90% CI -11.9 to 8.3), so non-inferiority was not shown. Antibiotics were given to 58% vs 98% of infants, and no infant developed early-onset sepsis. The trial was probably underpowered.",
+      "topic": "neonatology"
+    },
+    {
+      "rank": 5,
+      "doi": "https://doi.org/10.1001/jamapediatrics.2026.5973",
+      "summary": "Researchers in the USA ran a crossover randomised trial in summer treatment programme classrooms, with children in kindergarten to grade 6 who have ADHD (280 enrolled, 235 completed). It questions reliance on classroom accommodations as stand-alone ADHD support. Extended time, frequent breaks, low-distraction workspaces and standing desks, alone or combined, brought no significant benefit for behaviour or academic outcomes. Methylphenidate improved seatwork productivity and quiz scores, and both medication and behaviour therapy reduced rule violations. Figures are to be checked against the full text.",
+      "topic": "mental-health"
+    },
+    {
+      "rank": 6,
+      "doi": "https://doi.org/10.1001/jamanetworkopen.2026.43140",
+      "summary": "Researchers in Guizhou and Shaanxi, China, ran a cluster randomised trial with blinded assessors in 24 communities and 360 households with children aged 3-12, testing a home visit intervention led by civil society organisations to reduce unintentional child injury. The model could extend injury prevention to rural communities. Four-month injury incidence was 11.8% in intervention households and 19.1% in controls (adjusted OR 0.36, 95% CI 0.18-0.73). Caregiver supervision scores rose and household hazard scores fell. Injuries were reported by unblinded caregivers.",
+      "topic": "surgery-trauma"
+    },
+    {
+      "rank": 7,
+      "doi": "https://doi.org/10.1016/S2215-0366(26)00328-7",
+      "summary": "An international team with lead authors in Amsterdam carried out a systematic review and network meta-analysis of 52 RCTs of drugs for acute treatment of obsessive-compulsive disorder, with 9 paediatric trials of 822 children and adolescents analysed separately. It offers comparative evidence for shared decisions on medication. In young people, clomipramine (SMD -1.19, 95% CI -1.73 to -0.64), sertraline, fluoxetine and fluvoxamine were all more efficacious than placebo (low certainty). Only sertraline was less tolerable than placebo (OR 4.51, 95% CI 1.36-14.96).",
+      "topic": "mental-health"
+    },
+    {
+      "rank": 8,
+      "doi": "https://doi.org/10.1016/j.ard.2026.09.018",
+      "summary": "An international panel of 42 experts from 15 countries, with a lead author in Hungary, produced recommendations on childhood idiopathic (primary) angiitis of the central nervous system, using a systematic review of 182 studies, a modified Delphi survey and a consensus conference. It is the first international guidance for a rare, serious childhood disease. The panel agreed 83 statements across seven clinical domains, including nomenclature, imaging, risk stratification and genetic testing. No level 1 evidence existed for any domain.",
+      "topic": "neurology"
+    },
+    {
+      "rank": 9,
+      "doi": "https://doi.org/10.1016/S2352-4642(26)00240-3",
+      "summary": "Researchers from 45 centres in 12 countries analysed prospectively collected Save ChildS Pro registry data in a retrospective cohort of 101 children aged 28 days to 18 years with successful thrombectomy recanalisation. It is the first description of futile recanalisation in children. 18% had a suboptimal 90-day outcome (mRS >2), against 40-60% reported in adults. Lower final reperfusion grade (adjusted OR 0.44, 95% CI 0.23-0.84) and younger age (adjusted OR 0.87 per year) were associated with it. The analysis was exploratory.",
+      "topic": "neurology"
+    },
+    {
+      "rank": 10,
+      "doi": "https://doi.org/10.1097/pcc.0000000000004077",
+      "summary": "Researchers in 168 paediatric intensive care units in 21 countries across Latin America, Spain and Portugal ran a prospective multinational point-prevalence study of sepsis. It links outcomes to resources and vaccination. Of 1,318 children screened, 340 met criteria for clinical sepsis (point prevalence 25.8%); PICU mortality was 13.0% and in-hospital mortality 15.1%. Renal and immunological dysfunction, abnormal nutritional status, lack of vaccination and admission to lower-resource units were associated with higher PICU mortality. Details not verified.",
+      "topic": "critical-care"
+    }
+  ],
   "notes": [
     "This roundup is compiled for PVJ with the help of automated search and summarising tools, from published abstracts and database records. It is not peer reviewed.",
+    "The headlines in the first list are PVJ's plain-language wording, not the papers' titles; each paper's own title is under \"The paper and its attention\". The pictures are icons for the clinical area, not images from the papers.",
     "Papers were found through PubMed and Europe PMC records for 7 to 13 November 2026, Crossref, the JAMA Network and Lancet online-first lists, and news and press-release searches. Titles, dates and findings come from those records and abstracts, not from full texts.",
     "Altmetric Attention Scores were read from Altmetric's public pages on the evening of 13 November 2026. They change daily, and most papers only a few days old have no score yet, which is not the same as a score of zero.",
-    "Each list holds at most five JAMA Network papers and draws on at least five journals and five specialties. That cap kept six higher-scoring JAMA Network papers out of the most-discussed list.",
+    "Each list holds at most five JAMA Network papers and draws on at least five journals and five specialties. That cap kept six higher-scoring JAMA Network papers out of the in-focus list.",
     "The notes under each paper say where a detail comes from a news report or press release instead of the paper itself. Where a paper's abstract disagrees with its own results, the figures are left out.",
     "Papers published on 12 and 13 November may be missing because databases lag by a day or two. NEJM, The BMJ, Archives of Disease in Childhood and BMJ Paediatrics Open had nothing suitable this week."
   ],

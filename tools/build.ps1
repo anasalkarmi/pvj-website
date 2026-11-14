@@ -663,10 +663,20 @@ $($side.ToString())
 $confItems = New-Object Text.StringBuilder
 foreach ($c in $conferences) {
     $cv = @($confVideos[$c.slug]); if ($cv.Count -eq 0) { continue }
+    # Same picture and logo as the conference's card on the home page (owner's request, 13 November 2026);
+    # the newest video's thumbnail is only the fallback for a conference without a picture.
+    $cPic = Thumb $cv[0] '(max-width: 760px) 92vw, 300px'
+    if ([string]$c.image) { $cPic = '<img src="' + (U ([string]$c.image)) + '" alt="" width="640" height="360" loading="lazy" decoding="async">' }
+    $cLogo = ''
+    if ([string]$c.logo) {
+        if ([string]$c.logoShape -eq 'wide') { $cLogo = '<img class="conf-logo wide" src="' + (U ([string]$c.logo)) + '" alt="" width="84" height="16" loading="lazy" decoding="async">' }
+        else { $cLogo = '<img class="conf-logo" src="' + (U ([string]$c.logo)) + '" alt="" width="60" height="60" loading="lazy" decoding="async">' }
+    }
     [void]$confItems.Append(@"
 <article class="conf-item">
-<a class="thumb" href="$(U "/conferences/$($c.slug)/")" tabindex="-1" aria-hidden="true">$(Thumb $cv[0] '(max-width: 760px) 92vw, 300px')</a>
+<a class="thumb" href="$(U "/conferences/$($c.slug)/")" tabindex="-1" aria-hidden="true">$cPic</a>
 <div>
+$cLogo
 <h2><a href="$(U "/conferences/$($c.slug)/")">$(Esc $c.name)</a></h2>
 <p class="meta">$(Esc $c.organiser) &middot; $(Esc $c.location) &middot; $(Esc $c.date)</p>
 <p>$(Esc $c.description)</p>

@@ -27,3 +27,7 @@ Cleaning applied: removed `width`/`height`; every colour is `currentColor` (or `
 | oncology.svg | conditions/ribbon.svg |
 | respiratory.svg | body/lungs.svg |
 | surgery-trauma.svg | specialties/general-surgery.svg |
+
+`general.svg` (a page of text) is not from Health Icons: it was drawn for this site on 14 November 2026 as the picture for a research roundup paper that fits no clinical area. It is not a topic and has no badge on the home page.
+
+The research roundup (`tools/make-roundup.ps1`) uses these same files as the picture beside each ranked paper.

@@ -161,6 +161,8 @@ What decides ranking from here, and is not in the code:
 
 Anas asked for a weekly roundup of paediatric research (the ten most-discussed papers by Altmetric score, the ten most clinically important by editorial judgement, and five newsletter stories), then for it to be a designed newsletter, then for it to go on the site. The first issue, for 7 to 13 November 2026, is at `/research-roundup/2026-11-13/`, with an index at `/research-roundup/` linked from the footer. The owner has not reviewed it. It states on the page that it is compiled with automated tools from abstracts and records and is not peer reviewed. How an issue is made is in `AGENTS.md`.
 
+The owner then saw it and sent voice notes (13 November 2026, kept with their transcripts in `work\feedback\mo-13nov\`). Done on 14 November: the page opens with what PVJ brings; "Most discussed" became "Top 10 in focus" with plain-language headlines; "Most clinically important" became "Top 10 priority papers" under the papers' real titles; every ranked paper has a picture (a clinical-area icon) and one paragraph; the Altmetric bars went, and the figures sit under each paper. He also asked for the Conferences page to show the conference pictures used on the home page (done the same day). Still open from those notes: a weekly presenter video of the five stories for YouTube (he sent a Canva animation tutorial as the style, "less sexy and more professional", with PVJ in the background), and real pictures per paper if the icons are not what he meant. He also said the priority now is partnerships and grant applications, not more features.
+
 ## 7. Roadmap after launch
 
 Phase 2 (content quality)
