@@ -865,10 +865,24 @@ if ($roundups.Count -gt 0) {
         $ruPeriod = PeriodText ([string]$ru.from) ([string]$ru.to)
         $ruPath = "/research-roundup/$($ru.slug)/"
         $ruFrag = (Read-Text (Join-Path $roundupDir ([string]$ru.slug + '.html'))).Trim()
+        # An issue may carry a short video of its five stories: "video" in the issue file, with the MP4 and
+        # its poster under src/assets (served from this site: no outside player, no cookies).
+        $ruVideo = ''; $ruVideoLd = ''; $ruOpt = @{ headTitle = "Paediatric research roundup, $ruPeriod"; ogType = 'article' }
+        if ($ru.video -and [string]$ru.video.src) {
+            $vd = $ru.video
+            foreach ($vf in @([string]$vd.src, [string]$vd.poster)) { if (-not (Test-Path -LiteralPath (Join-Path (Join-Path $root 'src') $vf.TrimStart('/').Replace('/', [string]$sep)))) { throw "DATA PROBLEM: roundup $($ru.slug): video file $vf is not under src" } }
+            $vtr = (@($vd.transcript) | ForEach-Object { '<p>' + (Esc ([string]$_)) + '</p>' }) -join ''
+            $ruVideo = '<figure class="ru-video"><video controls preload="none" playsinline width="1280" height="720" poster="' + (U ([string]$vd.poster)) + '"><source src="' + (U ([string]$vd.src)) + '" type="video/mp4"></video><figcaption>' + (Esc ([string]$vd.caption)) + '</figcaption>' + $(if ($vtr) { '<details><summary>Transcript of the video</summary>' + $vtr + '</details>' }) + '</figure>'
+            if ($cfgUrl) {
+                $ruVideoLd = ',"video":{"@type":"VideoObject","name":"' + (J ([string]$vd.title)) + '","description":"' + (J ([string]$ru.summary)) + '","thumbnailUrl":["' + (J (AbsUrl ([string]$vd.poster))) + '"],"uploadDate":"' + [string]$ru.compiled + 'T00:00:00+00:00","duration":"' + (DurIso ([int]$vd.seconds)) + '","contentUrl":"' + (J (AbsUrl ([string]$vd.src))) + '"}'
+                $ruOpt.image = AbsUrl ([string]$vd.poster)
+            }
+        }
         $ruLd = ''
         if ($cfgUrl) {
-            $ruLd = '{"@context":"https://schema.org","@type":"Article","headline":"' + (J ([string]$ru.headline)) + '","description":"' + (J ([string]$ru.summary)) + '","datePublished":"' + [string]$ru.compiled + 'T00:00:00+00:00","mainEntityOfPage":"' + (J (AbsUrl $ruPath)) + '","author":{"@type":"Organization","name":"' + (J $site.fullName) + '","url":"' + (J (AbsUrl '/')) + '"},"publisher":{"@type":"Organization","name":"' + (J $site.fullName) + '","logo":{"@type":"ImageObject","url":"' + (J (AbsUrl '/assets/img/pvj-logo.png')) + '"}}}'
+            $ruLd = '{"@context":"https://schema.org","@type":"Article","headline":"' + (J ([string]$ru.headline)) + '","description":"' + (J ([string]$ru.summary)) + '","datePublished":"' + [string]$ru.compiled + 'T00:00:00+00:00","mainEntityOfPage":"' + (J (AbsUrl $ruPath)) + '","author":{"@type":"Organization","name":"' + (J $site.fullName) + '","url":"' + (J (AbsUrl '/')) + '"},"publisher":{"@type":"Organization","name":"' + (J $site.fullName) + '","logo":{"@type":"ImageObject","url":"' + (J (AbsUrl '/assets/img/pvj-logo.png')) + '"}}' + $ruVideoLd + '}'
         }
+        $ruOpt.jsonld = $ruLd
         Write-Page $ruPath ([string]$ru.headline) ([string]$ru.summary) @"
 <div class="wrap">
 <div class="page-head">
@@ -879,11 +893,12 @@ $(Crumbs @(@{ label = 'Research roundup'; href = '/research-roundup/' }, @{ labe
 <ul class="facts"><li>Research published $ruPeriod</li><li>Compiled $(DateLong ([string]$ru.compiled))</li></ul>
 </div>
 <div class="roundup">
+$ruVideo
 $ruFrag
 </div>
 </div>
 <div class="section tight"></div>
-"@ @{ headTitle = "Paediatric research roundup, $ruPeriod"; jsonld = $ruLd; ogType = 'article' }
+"@ $ruOpt
         [void]$ruList.Append('<a class="ru-issue" href="' + (U $ruPath) + '"><span class="eyebrow">' + (Esc $ruPeriod) + '</span><b>' + (Esc ([string]$ru.headline)) + '</b><span>' + (Esc ([string]$ru.summary)) + '</span></a>')
     }
     Write-Page '/research-roundup/' 'Research roundup' 'The paediatric research papers attracting the most attention and the ones most likely to change practice, with links to the original studies.' @"

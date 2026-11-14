@@ -402,6 +402,12 @@ li:nth-child(even) > .speaker-card .avatar { background: var(--red); }
 
 /* ---------- research roundup (content/roundups, pages under /research-roundup/) ---------- */
 .roundup { max-width: 46rem; display: flex; flex-direction: column; gap: 48px; padding-bottom: 20px; }
+.ru-video { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.ru-video video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 12px; background: var(--night); }
+.ru-video figcaption { font-size: 0.9rem; color: var(--muted); }
+.ru-video details { font-size: 0.92rem; }
+.ru-video summary { cursor: pointer; width: fit-content; font-weight: 600; color: var(--teal); padding: 2px 0; }
+.ru-video details p { margin: 8px 0 0; color: var(--ink-2); }
 .ru-jump { display: flex; flex-wrap: wrap; gap: 8px; margin-top: -8px; }
 .ru-jump a { font-size: 0.86rem; font-weight: 600; text-decoration: none; color: var(--ink-2); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 6px 13px; }
 .ru-jump a:hover { color: var(--teal); border-color: var(--teal); }
